@@ -10,8 +10,7 @@ Results are saved automatically to the `output/` folder.
 ```
 ZPOe_Project_Filter_Effects/
 ├── data/        ← Put your input images here (.jpg, .png, etc.)
-├── include/     ← One .hpp file per filter (plain functions — no classes needed)
-├── src/         ← main.cpp — only the top section needs editing
+├── src/         ← main.cpp and filter folders (eyobed/, adar/, etc.)
 ├── output/      ← Filtered results are saved here automatically
 └── build/       ← CMake build files (generated, do not commit)
 ```
@@ -75,7 +74,7 @@ The compiled binary will be at `build/ZPOe_Filter_Effects`.
 
 ### Step A — Create your filter file
 
-Copy `include/sepia.hpp` to `include/yourfiltername.hpp`.
+Copy `src/eyobed/histogram_eq.hpp` to `src/yourname/yourfiltername.hpp`.
 
 Inside it, rename the function and replace the logic:
 
@@ -97,7 +96,7 @@ The file has two clearly marked places at the top. You only touch those two.
 
 **1. Include your file:**
 ```cpp
-#include "yourfiltername.hpp"
+#include "yourname/yourfiltername.hpp"
 ```
 
 **2. Add it to the list:**

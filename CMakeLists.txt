@@ -10,7 +10,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(OpenCV REQUIRED)
 
 # Include directories
-include_directories(${OpenCV_INCLUDE_DIRS} include)
+include_directories(${OpenCV_INCLUDE_DIRS} src)
 
 # Automatically collect all .cpp files in src/
 # NOTE: If you add a new .cpp file, re-run cmake to pick it up.

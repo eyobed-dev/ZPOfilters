@@ -9,18 +9,18 @@
 using namespace std;
 using namespace cv;
 
-//  STEP 1 — Include your filter file(s)
+//  STEP 1 — Include your filter hpp file here
 
-// Eyobed  (Convolution | Color & Tone | Glow)
-#include "eyobed/sobel.hpp"
+// Eyobed
 #include "eyobed/histogram_eq.hpp"
 #include "eyobed/vignette.hpp"
+#include "eyobed/sobel.hpp"
 
-// Adar  (Pixel Math | Morphological)
+// Adar
 #include "adar/brightness.hpp"
 #include "adar/median.hpp"
 
-// Denis  (Frequency Domain | Stochastic)
+// Denis
 #include "denis/lowpass_fft.hpp"
 #include "denis/noise.hpp"
 
@@ -35,7 +35,7 @@ struct Filter {
 
 Filter allFilters[] = {
 
-    // ── Eyobed ───────────────────────────────────────────────────────────────
+    //  Eyobed
     { "Sobel Edge",
       "Detects edges using the Sobel gradient operator.\nComputes X and Y gradients separately,\nthen combines them into an edge-strength map.",
       applySobel },
@@ -48,7 +48,7 @@ Filter allFilters[] = {
       "Darkens the edges while keeping the center bright.\nUses a 2D Gaussian surface as a brightness mask\n(center=1.0, edges approach 0.0).",
       applyVignette },
 
-    // ── Adar ─────────────────────────────────────────────────────────────────
+    //  Adar
     { "Brightness",
       "Adds a fixed offset (+60) to every pixel.\nValues above 255 are clamped automatically.\nChange the offset to darken or brighten.",
       applyBrightness },
@@ -57,7 +57,7 @@ Filter allFilters[] = {
       "Replaces each pixel with the median value\nof its 5x5 neighborhood.\nEffectively removes salt-and-pepper noise\nwhile preserving edges.",
       applyMedian },
 
-    // ── Denis ────────────────────────────────────────────────────────────────
+    //  Denis
     { "Low Pass FFT",
       "Removes high frequencies (edges, texture, noise)\nusing the Discrete Fourier Transform.\nOnly frequencies within a circular radius\naround DC are kept.",
       applyLowPassFFT },
@@ -82,11 +82,13 @@ Mat toDisplay(const Mat& src) {
 
 void redraw() {
     if (currentOriginal.empty()) return;
+
     imshow("Original", currentOriginal);
+
     imshow("Filtered", toDisplay(allFilters[filterIdx].apply(currentOriginal.clone())));
+
     Mat info = Mat::zeros(300, 400, CV_8UC3);
     putText(info, allFilters[filterIdx].name, Point(10, 30), FONT_HERSHEY_SIMPLEX, 0.7, Scalar(80, 190, 255), 1, LINE_AA);
-
     int y = 65;
     string cur;
     for (char ch : allFilters[filterIdx].description) {
@@ -117,8 +119,8 @@ int main(int argc, char* argv[]) {
     string dataDir = "../data";
 
     for (const auto& entry : filesystem::directory_iterator(dataDir)) {
-        string ext = entry.path().extension().string();
-        if (ext == ".jpg" || ext == ".jpeg" || ext == ".png" || ext == ".bmp")
+        string extension = entry.path().extension().string();
+        if (extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".bmp")
             imageFiles.push_back(entry.path().string());
     }
 
@@ -135,4 +137,3 @@ int main(int argc, char* argv[]) {
     waitKey(0);
     return 0;
 }
-
