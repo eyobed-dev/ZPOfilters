@@ -1,52 +1,138 @@
-#include <opencv2/opencv.hpp>
+
+#include <filesystem>
 #include <iostream>
+#include <string>
 #include <vector>
 
-/**
- * ZPOe Project: Filter Effects
- * 
- */
+#include <opencv2/opencv.hpp>
 
-int main(int argc, char** argv) {
-    if (argc < 2) {
-        std::cout << "Usage: " << argv[0] << " <image_path>" << std::endl;
-        return -1;
+using namespace std;
+using namespace cv;
+
+//  STEP 1 — Include your filter file(s)
+
+// Eyobed  (Convolution | Color & Tone | Glow)
+#include "eyobed/sobel.hpp"
+#include "eyobed/histogram_eq.hpp"
+#include "eyobed/vignette.hpp"
+
+// Adar  (Pixel Math | Morphological)
+#include "adar/brightness.hpp"
+#include "adar/median.hpp"
+
+// Denis  (Frequency Domain | Stochastic)
+#include "denis/lowpass_fft.hpp"
+#include "denis/noise.hpp"
+
+
+struct Filter {
+  string name;
+  string description;
+  Mat (*apply)(const Mat &);
+};
+
+//  STEP 2 — Register your filter here
+
+Filter allFilters[] = {
+
+    // ── Eyobed ───────────────────────────────────────────────────────────────
+    { "Sobel Edge",
+      "Detects edges using the Sobel gradient operator.\nComputes X and Y gradients separately,\nthen combines them into an edge-strength map.",
+      applySobel },
+
+    { "Histogram Eq",
+      "Equalizes image contrast by redistributing\nbrightness values across the full 0-255 range.\nWorks in YCrCb space to avoid color shifts.",
+      applyHistogramEq },
+
+    { "Vignette",
+      "Darkens the edges while keeping the center bright.\nUses a 2D Gaussian surface as a brightness mask\n(center=1.0, edges approach 0.0).",
+      applyVignette },
+
+    // ── Adar ─────────────────────────────────────────────────────────────────
+    { "Brightness",
+      "Adds a fixed offset (+60) to every pixel.\nValues above 255 are clamped automatically.\nChange the offset to darken or brighten.",
+      applyBrightness },
+
+    { "Median",
+      "Replaces each pixel with the median value\nof its 5x5 neighborhood.\nEffectively removes salt-and-pepper noise\nwhile preserving edges.",
+      applyMedian },
+
+    // ── Denis ────────────────────────────────────────────────────────────────
+    { "Low Pass FFT",
+      "Removes high frequencies (edges, texture, noise)\nusing the Discrete Fourier Transform.\nOnly frequencies within a circular radius\naround DC are kept.",
+      applyLowPassFFT },
+
+    { "Gaussian Noise",
+      "Adds random Gaussian noise (mean=0, stddev=25)\nto simulate camera sensor noise or film grain.\nLarger stddev = stronger noise.",
+      applyGaussianNoise },
+
+};
+
+const int FILTER_COUNT = sizeof(allFilters) / sizeof(allFilters[0]);
+vector<string> imageFiles;
+Mat currentOriginal;
+int imageIdx = 0;
+int filterIdx = 0;
+Mat toDisplay(const Mat& src) {
+    Mat out = src.clone();
+    if (out.channels() == 1) cvtColor(out, out, COLOR_GRAY2BGR);
+    if (out.depth() == CV_32F) out.convertTo(out, CV_8UC3, 255.0);
+    return out;
+}
+
+void redraw() {
+    if (currentOriginal.empty()) return;
+    imshow("Original", currentOriginal);
+    imshow("Filtered", toDisplay(allFilters[filterIdx].apply(currentOriginal.clone())));
+    Mat info = Mat::zeros(300, 400, CV_8UC3);
+    putText(info, allFilters[filterIdx].name, Point(10, 30), FONT_HERSHEY_SIMPLEX, 0.7, Scalar(80, 190, 255), 1, LINE_AA);
+
+    int y = 65;
+    string cur;
+    for (char ch : allFilters[filterIdx].description) {
+        if (ch == '\n') {
+            putText(info, cur, Point(10, y), FONT_HERSHEY_SIMPLEX, 0.45, Scalar(170, 170, 170), 1, LINE_AA);
+            y += 26; cur = "";
+        } else cur += ch;
+    }
+    if (!cur.empty())
+        putText(info, cur, Point(10, y), FONT_HERSHEY_SIMPLEX, 0.45, Scalar(170, 170, 170), 1, LINE_AA);
+
+    imshow("Info", info);
+}
+
+void onImageChange(int pos, void*) {
+    imageIdx = pos;
+    currentOriginal = imread(imageFiles[imageIdx]);
+    redraw();
+}
+
+void onFilterChange(int pos, void*) {
+    filterIdx = pos;
+    redraw();
+}
+
+int main(int argc, char* argv[]) {
+
+    string dataDir = "../data";
+
+    for (const auto& entry : filesystem::directory_iterator(dataDir)) {
+        string ext = entry.path().extension().string();
+        if (ext == ".jpg" || ext == ".jpeg" || ext == ".png" || ext == ".bmp")
+            imageFiles.push_back(entry.path().string());
     }
 
-    std::string imagePath = argv[1];
-    cv::Mat src = cv::imread(imagePath);
+    currentOriginal = imread(imageFiles[0]);
 
-    if (src.empty()) {
-        std::cerr << "Could not open image" << std::endl;
-        return -1;
-    }
+    namedWindow("Controls", WINDOW_NORMAL);
+    resizeWindow("Controls", 400, 60);
+    if ((int)imageFiles.size() > 1)
+        createTrackbar("Image ", "Controls", NULL, (int)imageFiles.size() - 1, onImageChange);
+    if (FILTER_COUNT > 1)
+        createTrackbar("Filter", "Controls", NULL, FILTER_COUNT - 1, onFilterChange);
 
-    //  register  filters here
-    std::vector<std::shared_ptr<Filter>> filters;
-    filters.push_back(std::make_shared<SepiaFilter>());
-
-    std::cout << "select Filter:" << std::endl;
-    for (size_t i = 0; i < filters.size(); ++i) {
-        std::cout << i << ": " << filters[i]->getName() << std::endl;
-    }
-
-    int choice = 0;
-    if (filters.size() > 1) {
-        std::cout << "Choose a filter number: ";
-        std::cin >> choice;
-    }
-
-    if (choice >= 0 && (size_t)choice < filters.size()) {
-        cv::Mat dst = filters[choice]->apply(src);
-        
-        cv::imshow("Original", src);
-        cv::imshow(filters[choice]->getName(), dst);
-        
-        std::cout << "Press any key to exit..." << std::endl;
-        cv::waitKey(0);
-    } else {
-        std::cout << "wrongg choice." << std::endl;
-    }
-
+    redraw();
+    waitKey(0);
     return 0;
 }
+

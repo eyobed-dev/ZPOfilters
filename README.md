@@ -1,42 +1,137 @@
 # ZPOe Project: Filter Effects in Image
 
-This project implements a set of aesthetic image fiter.
+This project applies image filters using **C++** and **OpenCV**.
+Results are saved automatically to the `output/` folder.
 
-##  Structure
-- `data/`: Input images for testing.
-- `doc/`: Project proposal and documentation.
-- `include/`: C++ header files.
-- `src/`: Source code implementation safely.
-- `output/`: Processed image results.
+---
 
-## Filters
-Based on the course requirements, the following filters are suggested for implementation:
+## Directory Structure
 
-add them here
+```
+ZPOe_Project_Filter_Effects/
+├── data/        ← Put your input images here (.jpg, .png, etc.)
+├── include/     ← One .hpp file per filter (plain functions — no classes needed)
+├── src/         ← main.cpp — only the top section needs editing
+├── output/      ← Filtered results are saved here automatically
+└── build/       ← CMake build files (generated, do not commit)
+```
+
+---
+
+## Implemented Filters
+
+| # | File | Function | Description |
+|---|---|---|---|
+| 0 | `sepia.hpp` | `applySepia` | Warm brownish vintage tone |
+
+> Add your row to this table when you implement a filter.
+
+---
+
+## Prerequisites
+
+Install **CMake** and **OpenCV** before building.
+
+### Linux (Ubuntu/Debian)
+```bash
+sudo apt update
+sudo apt install cmake libopencv-dev
+```
+
+### macOS
+```bash
+brew install cmake opencv
+```
+
+---
 
 ## How to Build
-This project uses **CMake** for build management.
 
 ```bash
-mkdir build
+mkdir -p build
 cd build
 cmake ..
 make
 ```
 
-##  Collaboration 
-To avoid merge conflicts follow these steps to add a new filter okey
+The compiled binary will be at `build/ZPOe_Filter_Effects`.
 
-1. **Create a header file** in `include/` (e.g., `MyFilter.hpp`).
-2. **Inherit from `Filter`** and implement `getName()` and `apply()`.
-3. **Register your filter** in `src/main.cpp`:
-   - Include your header: `#include "MyFilter.hpp"`
-   - Add to the registry: `filters.push_back(std::make_shared<MyFilter>());`
+---
 
-### Coding style
-- **Class Names**: PascalCase (e.g., `PaintingFilter`).
-- **Method Names**: camelCase (e.g., `apply()`).
-- **Variables**: camelCase or snake_case consistently.
-- **Documentation**: Comment your logic inside the `apply()` method.
+## How to Run
 
-enjoy
+```bash
+./build/ZPOe_Filter_Effects data/your_image.jpg
+```
+
+- The menu lists all registered filters.
+- If only one filter exists it runs automatically.
+- The result is saved to `output/` **and** shown in a window.
+- Press any key in the image window to exit.
+
+---
+
+## How to Add Your Own Filter
+
+### Step A — Create your filter file
+
+Copy `include/sepia.hpp` to `include/yourfiltername.hpp`.
+
+Inside it, rename the function and replace the logic:
+
+```cpp
+Mat applyYourFilter(Mat src) {
+
+    Mat dst;
+
+    // your image processing code here
+    // dst = ...
+
+    return dst;
+}
+```
+
+### Step B — Register it in `src/main.cpp`
+
+The file has two clearly marked places at the top. You only touch those two.
+
+**1. Include your file:**
+```cpp
+#include "yourfiltername.hpp"
+```
+
+**2. Add it to the list:**
+```cpp
+Filter allFilters[] = {
+    { "Sepia Tone",   applySepia        },
+    { "Your Filter",  applyYourFilter   },   // <-- add this line
+};
+```
+
+That's it. The rest of `main.cpp` handles everything else.
+
+---
+
+## Coding Style
+
+Match the style used in ZPOe course exercises:
+
+| Item | Convention | Example |
+|---|---|---|
+| File names | lowercase with no spaces | `edgedetect.hpp` |
+| Function names | camelCase with `apply` prefix | `applyEdgeDetect` |
+| Variables | camelCase | `srcImage`, `blurResult` |
+| Comments | explain non-obvious logic | `// kernel is flipped for true convolution` |
+
+---
+
+## Useful OpenCV functions
+
+| Function | What it does |
+|---|---|
+| `cvtColor(src, dst, COLOR_BGR2GRAY)` | Convert to grayscale |
+| `GaussianBlur(src, dst, Size(k,k), sigma)` | Gaussian blur |
+| `Canny(src, dst, low, high)` | Edge detection |
+| `threshold(src, dst, thresh, max, type)` | Thresholding |
+| `transform(src, dst, kernel)` | Apply a colour matrix |
+| `filter2D(src, dst, -1, kernel)` | Apply a convolution kernel |
