@@ -1,7 +1,6 @@
 # ZPOe Project: Filter Effects in Image
 
-This project applies image filters using **C++** and **OpenCV**.
-Results are saved automatically to the `output/` folder.
+
 
 ---
 
@@ -10,20 +9,28 @@ Results are saved automatically to the `output/` folder.
 ```
 ZPOe_Project_Filter_Effects/
 ├── data/        ← Put your input images here (.jpg, .png, etc.)
-├── src/         ← main.cpp and filter folders (eyobed/, adar/, etc.)
-├── output/      ← Filtered results are saved here automatically
-└── build/       ← CMake build files (generated, do not commit)
+├── src/         ← main.cpp and filter implementations
+│   ├── eyobed/
+│   ├── adar/
+│   └── denis/
+├── build/       ← CMake build directory
 ```
 
 ---
 
 ## Implemented Filters
 
-| # | File | Function | Description |
-|---|---|---|---|
-| 0 | `sepia.hpp` | `applySepia` | Warm brownish vintage tone |
+The following filters are currently available in the application:
 
-> Add your row to this table when you implement a filter.
+| Filter Name | Description | Author |
+|---|---|---|
+| **Sobel Edge** | Detects edges using the Sobel gradient operator. | Eyobed |
+| **Histogram Eq** | Equalizes image contrast across the 0-255 range. | Eyobed |
+| **Vignette** | Darkens the edges while keeping the center bright. | Eyobed |
+| **Brightness** | Adds a fixed offset (+60) to every pixel. | Adar |
+| **Median** | 5x5 median blur to remove salt-and-pepper noise. | Adar |
+| **Low Pass FFT** | Removes high frequencies using Discrete Fourier Transform. | Denis |
+| **Gaussian Noise** | Adds random Gaussian noise to simulate film grain. | Denis |
 
 ---
 
@@ -53,84 +60,61 @@ cmake ..
 make
 ```
 
-The compiled binary will be at `build/ZPOe_Filter_Effects`.
-
 ---
 
 ## How to Run
 
+1. Make sure you have images inside the `data/` folder.
+2. Run the compiled binary from the `build` directory:
+
 ```bash
-./build/ZPOe_Filter_Effects data/your_image.jpg
+cd build
+./ZPOe_Filter_Effects
 ```
 
-- The menu lists all registered filters.
-- If only one filter exists it runs automatically.
-- The result is saved to `output/` **and** shown in a window.
-- Press any key in the image window to exit.
+- A **Controls** window will open with trackbars.
+- Use the **Image** trackbar to switch between images found in the `data/` folder.
+- Use the **Filter** trackbar to switch between different effects.
+- The active filter's name and description are shown in the **Info** window.
+- Press any key with a window focused to exit.
 
 ---
 
 ## How to Add Your Own Filter
 
-### Step A — Create your filter file
+### Step 1 — Create your filter file
 
-Copy `src/eyobed/histogram_eq.hpp` to `src/yourname/yourfiltername.hpp`.
-
-Inside it, rename the function and replace the logic:
+Create a new file in `src/yourname/yourfilter.hpp`.
+Inside it, implement your logic:
 
 ```cpp
-Mat applyYourFilter(Mat src) {
+#pragma once
+#include <opencv2/opencv.hpp>
 
-    Mat dst;
-
+cv::Mat applyYourFilter(const cv::Mat& src) {
+    cv::Mat dst;
     // your image processing code here
-    // dst = ...
-
     return dst;
 }
 ```
 
-### Step B — Register it in `src/main.cpp`
-
-The file has two clearly marked places at the top. You only touch those two.
+### Step 2 — Register it in `src/main.cpp`
 
 **1. Include your file:**
 ```cpp
-#include "yourname/yourfiltername.hpp"
+//  STEP 1 — Include your filter hpp file here
+#include "yourname/yourfilter.hpp"
 ```
 
 **2. Add it to the list:**
 ```cpp
+//  STEP 2 — Register your filter here
 Filter allFilters[] = {
-    { "Sepia Tone",   applySepia        },
-    { "Your Filter",  applyYourFilter   },   // <-- add this line
+    // ... existing filters
+    { "Your Filter Name",
+      "Description of what your filter does.\nUse newlines for formatting.",
+      applyYourFilter },
 };
 ```
 
-That's it. The rest of `main.cpp` handles everything else.
-
----
-
-## Coding Style
-
-Match the style used in ZPOe course exercises:
-
-| Item | Convention | Example |
-|---|---|---|
-| File names | lowercase with no spaces | `edgedetect.hpp` |
-| Function names | camelCase with `apply` prefix | `applyEdgeDetect` |
-| Variables | camelCase | `srcImage`, `blurResult` |
-| Comments | explain non-obvious logic | `// kernel is flipped for true convolution` |
-
----
-
-## Useful OpenCV functions
-
-| Function | What it does |
-|---|---|
-| `cvtColor(src, dst, COLOR_BGR2GRAY)` | Convert to grayscale |
-| `GaussianBlur(src, dst, Size(k,k), sigma)` | Gaussian blur |
-| `Canny(src, dst, low, high)` | Edge detection |
-| `threshold(src, dst, thresh, max, type)` | Thresholding |
-| `transform(src, dst, kernel)` | Apply a colour matrix |
-| `filter2D(src, dst, -1, kernel)` | Apply a convolution kernel |
+Re-run `make` inside the `build` directory to compile your changes.

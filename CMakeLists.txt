@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(ZPOe_Filter_Effects)
+project(project)
 
 # Require C++17 (needed for std::filesystem)
 set(CMAKE_CXX_STANDARD 17)
@@ -17,7 +17,7 @@ include_directories(${OpenCV_INCLUDE_DIRS} src)
 file(GLOB_RECURSE SOURCE_FILES src/*.cpp)
 
 # Target executable
-add_executable(ZPOe_Filter_Effects ${SOURCE_FILES})
+add_executable(project ${SOURCE_FILES})
 
 # Link OpenCV libraries (and stdc++fs for filesystem on older GCC)
-target_link_libraries(ZPOe_Filter_Effects ${OpenCV_LIBS})
+target_link_libraries(project ${OpenCV_LIBS})
