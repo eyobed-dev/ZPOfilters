@@ -15,6 +15,7 @@ using namespace cv;
 #include "eyobed/histogram_eq.hpp"
 #include "eyobed/vignette.hpp"
 #include "eyobed/sobel.hpp"
+#include "eyobed/zoom_blur.hpp"
 
 // Adar
 #include "adar/brightness.hpp"
@@ -47,6 +48,10 @@ Filter allFilters[] = {
     { "Vignette",
       "Darkens the edges while keeping the center bright.\nUses a 2D Gaussian surface as a brightness mask\n(center=1.0, edges approach 0.0).",
       applyVignette },
+
+    { "Zoom Blur",
+      "Radial blur effect that streaks pixels from the edges\ntowards the center. Uses a manual box blur kernel.",
+      applyZoomBlur },
 
     //  Adar
     { "Brightness",

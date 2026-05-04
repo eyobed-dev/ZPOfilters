@@ -24,13 +24,6 @@ The following filters are currently available in the application:
 
 | Filter Name | Description | Author |
 |---|---|---|
-| **Sobel Edge** | Detects edges using the Sobel gradient operator. | Eyobed |
-| **Histogram Eq** | Equalizes image contrast across the 0-255 range. | Eyobed |
-| **Vignette** | Darkens the edges while keeping the center bright. | Eyobed |
-| **Brightness** | Adds a fixed offset (+60) to every pixel. | Adar |
-| **Median** | 5x5 median blur to remove salt-and-pepper noise. | Adar |
-| **Low Pass FFT** | Removes high frequencies using Discrete Fourier Transform. | Denis |
-| **Gaussian Noise** | Adds random Gaussian noise to simulate film grain. | Denis |
 
 ---
 
