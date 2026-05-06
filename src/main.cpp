@@ -13,20 +13,25 @@ using namespace cv;
 
 // Eyobed
 #include "eyobed/histogram_eq.hpp"
-#include "eyobed/vignette.hpp"
-#include "eyobed/sobel.hpp"
 #include "eyobed/zoom_blur.hpp"
+#include "eyobed/posterize.hpp"
+#include "eyobed/lens_distortion.hpp"
 
 // Adar
-#include "adar/brightness.hpp"
-#include "adar/median.hpp"
+#include "adar/emboss.hpp"
+#include "adar/dodge.hpp"
+#include "adar/swirl.hpp"
+#include "adar/bloom.hpp"
 
 // Denis
-#include "denis/lowpass_fft.hpp"
-#include "denis/noise.hpp"
+#include "denis/threshold.hpp"
+#include "denis/diffuse.hpp"
+#include "denis/crosshatch.hpp"
+#include "denis/hue_rotate.hpp"
 
 
 struct Filter {
+  string author;
   string name;
   string description;
   Mat (*apply)(const Mat &);
@@ -37,39 +42,55 @@ struct Filter {
 Filter allFilters[] = {
 
     //  Eyobed
-    { "Sobel Edge",
-      "Detects edges using the Sobel gradient operator.\nComputes X and Y gradients separately,\nthen combines them into an edge-strength map.",
-      applySobel },
-
-    { "Histogram Eq",
+    { "Eyobed", "Histogram Eq",
       "Equalizes image contrast by redistributing\nbrightness values across the full 0-255 range.\nWorks in YCrCb space to avoid color shifts.",
       applyHistogramEq },
 
-    { "Vignette",
-      "Darkens the edges while keeping the center bright.\nUses a 2D Gaussian surface as a brightness mask\n(center=1.0, edges approach 0.0).",
-      applyVignette },
+    { "Eyobed", "Lens Distortion",
+      "Applies a manual barrel distortion effect.\nPixels are mapped using a radial geometric transform.",
+      applyLensDistortion },
 
-    { "Zoom Blur",
+    { "Eyobed", "Zoom Blur",
       "Radial blur effect that streaks pixels from the edges\ntowards the center. Uses a manual box blur kernel.",
       applyZoomBlur },
 
-    //  Adar
-    { "Brightness",
-      "Adds a fixed offset (+60) to every pixel.\nValues above 255 are clamped automatically.\nChange the offset to darken or brighten.",
-      applyBrightness },
+    { "Eyobed", "Posterize",
+      "Reduces the number of colors in the image manually.\nMakes the image look like a comic or retro art.",
+      applyPosterize },
 
-    { "Median",
-      "Replaces each pixel with the median value\nof its 5x5 neighborhood.\nEffectively removes salt-and-pepper noise\nwhile preserving edges.",
-      applyMedian },
+    //  Adar
+    { "Adar", "Relief Emboss",
+      "Calculates the directional difference between\nneighboring pixels to create a 3D gray relief texture.",
+      applyEmboss },
+
+    { "Adar", "Dodge",
+      "Applies a Color Dodge blend manually to blow out\nhighlights and dramatically increase contrast.",
+      applyDodge },
+
+    { "Adar", "Swirl",
+      "Warps the image manually using polar coordinates\nto create a geometric vortex effect at the center.",
+      applySwirl },
+
+    { "Adar", "Bloom",
+      "Manually extracts bright pixels, applies a nested\nbox blur loop, and adds them back to create a glow.",
+      applyBloom },
 
     //  Denis
-    { "Low Pass FFT",
-      "Removes high frequencies (edges, texture, noise)\nusing the Discrete Fourier Transform.\nOnly frequencies within a circular radius\naround DC are kept.",
-      applyLowPassFFT },
+    { "Denis", "Threshold",
+      "Converts the image to pure black and white\nbased on a manual intensity threshold (127).\nImplemented pixel-by-pixel.",
+      applyThreshold },
 
-    { "Gaussian Noise",
-      "Adds random Gaussian noise (mean=0, stddev=25)\nto simulate camera sensor noise or film grain.\nLarger stddev = stronger noise.",
-      applyGaussianNoise },
+    { "Denis", "Diffuse",
+      "Creates a frosted glass effect by manually\nscattering pixels within a small random radius.",
+      applyDiffuse },
+
+    { "Denis", "Crosshatch",
+      "Applies a sketch-like shading effect.\nDraws diagonal lines whose density depends\non the manual calculation of pixel darkness.",
+      applyCrosshatch },
+
+    { "Denis", "Hue Rotate",
+      "Shifts the hue of every pixel manually by +60\ndegrees using HSV color space.",
+      applyHueRotate },
 
 };
 
@@ -85,25 +106,37 @@ Mat toDisplay(const Mat& src) {
     return out;
 }
 
+Mat resizeForDisplay(const Mat& src, int maxWidth = 800, int maxHeight = 600) {
+    if (src.empty()) return src;
+    double scale = min((double)maxWidth / src.cols, (double)maxHeight / src.rows);
+    if (scale >= 1.0) return src; 
+    Mat resized;
+    resize(src, resized, Size(), scale, scale, INTER_AREA);
+    return resized;
+}
+
 void redraw() {
     if (currentOriginal.empty()) return;
 
-    imshow("Original", currentOriginal);
+    imshow("Original", resizeForDisplay(currentOriginal));
 
-    imshow("Filtered", toDisplay(allFilters[filterIdx].apply(currentOriginal.clone())));
+    imshow("Filtered", resizeForDisplay(toDisplay(allFilters[filterIdx].apply(currentOriginal.clone()))));
 
     Mat info = Mat::zeros(300, 400, CV_8UC3);
-    putText(info, allFilters[filterIdx].name, Point(10, 30), FONT_HERSHEY_SIMPLEX, 0.7, Scalar(80, 190, 255), 1, LINE_AA);
-    int y = 65;
+    
+    int descY = 30;
+    putText(info, allFilters[filterIdx].name + " (by " + allFilters[filterIdx].author + ")", Point(10, descY), FONT_HERSHEY_SIMPLEX, 0.6, Scalar(80, 190, 255), 1, LINE_AA);
+    descY += 25;
+    
     string cur;
     for (char ch : allFilters[filterIdx].description) {
         if (ch == '\n') {
-            putText(info, cur, Point(10, y), FONT_HERSHEY_SIMPLEX, 0.45, Scalar(170, 170, 170), 1, LINE_AA);
-            y += 26; cur = "";
+            putText(info, cur, Point(10, descY), FONT_HERSHEY_SIMPLEX, 0.45, Scalar(200, 200, 200), 1, LINE_AA);
+            descY += 22; cur = "";
         } else cur += ch;
     }
     if (!cur.empty())
-        putText(info, cur, Point(10, y), FONT_HERSHEY_SIMPLEX, 0.45, Scalar(170, 170, 170), 1, LINE_AA);
+        putText(info, cur, Point(10, descY), FONT_HERSHEY_SIMPLEX, 0.45, Scalar(200, 200, 200), 1, LINE_AA);
 
     imshow("Info", info);
 }
