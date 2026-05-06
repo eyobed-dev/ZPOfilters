@@ -1,0 +1,114 @@
+\documentclass[12pt,a4paper]{article}
+
+% --- Essential Packages ---
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{subcaption}
+\usepackage{float}
+
+% --- Hyperlink Colors ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=cyan
+}
+
+% --- Title Page Info ---
+\title{
+     \vspace*{1cm}
+    \includegraphics[width=6cm]{../report/assets/logo.png} \\
+    \vspace*{1cm}
+    \large Brno University of Technology \\
+    \large Faculty of Information Technology \\
+    \vspace{2cm}
+
+    \textbf{Image Processing Filter Effects} \\
+    \vspace*{1cm}
+    \large Project Report\\
+    \vspace{1cm}
+    \large{ZPOe 25/26} \\
+    \vspace{1cm}
+    \vspace*{1cm}
+    \large Adar Otieno - xotiena00\\
+    \large Deniz Aksoy - xaksoyd00\\
+    \large Eyobed Awel Nuri - xnuriey00\\
+    \vfill
+    \date{\today}
+}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\tableofcontents
+\newpage
+
+% --- Main Content ---
+
+\section{Introduction}
+In the field of computer vision and image processing, filters are essential tools used to manipulate and analyze images. They operate by modifying the pixels of an image based on mathematical functions, allowing for enhancements, artistic effects, or noise reduction. 
+
+This project explores the implementation of custom image filters using C++ and the OpenCV library. Rather than relying entirely on pre-built, high-level OpenCV functions, the focus of this work is on the manual, pixel-by-pixel implementation of various effects to understand the underlying mathematics and algorithms. The application serves as an interactive GUI that allows users to seamlessly apply and switch between 12 unique filters developed by the team.
+
+\subsection{Project Architecture}
+The core application is built as a single interactive window utilizing OpenCV's HighGUI module. The architecture emphasizes modularity, ensuring that each contributor can develop their effects independently. 
+
+The application utilizes a \texttt{Filter} structure to register the effects:
+\begin{verbatim}
+struct Filter {
+  string author;
+  string name;
+  string description;
+  Mat (*apply)(const Mat &);
+};
+\end{verbatim}
+
+This structure enables the main application to dynamically load the filters, populate the trackbar controls, and render an informative metadata panel detailing the active effect and its creator.
+
+\section{Implementation Details}
+The project incorporates a total of 12 distinct filters, divided equally among the three contributors: Eyobed, Adar, and Denis.
+
+\subsection{Eyobed's Filters}
+\begin{itemize}
+    \item \textbf{Histogram Equalization:} Enhances image contrast by redistributing the brightness values across the full 0-255 range. To prevent unwanted color shifting, the algorithm operates in the YCrCb color space, applying the equalization solely to the luminance (Y) channel before converting back to BGR.
+    \item \textbf{Lens Distortion:} Applies a manual barrel distortion effect, simulating the physical curvature of a camera lens. The pixels are mapped using a radial geometric transform.
+    \item \textbf{Zoom Blur:} A radial blur effect that streaks pixels from the edges of the image towards the center. This is achieved using a manually implemented directional box blur kernel.
+    \item \textbf{Posterize:} Reduces the continuous color palette into a limited number of discrete values. This manual color quantization gives the image a distinct comic-book or retro-art aesthetic.
+\end{itemize}
+
+\subsection{Adar's Filters}
+Adar's contributions focus on manual pixel manipulation using native loops, avoiding optimized OpenCV functions for educational purposes.
+\begin{itemize}
+    \item \textbf{Relief Emboss:} Creates a 3D gray relief texture by subtracting the bottom-right neighboring pixel from the top-left neighbor and adding an offset of 128 to center the result.
+    \item \textbf{Dodge:} Implements the classic Color Dodge blend formula: \texttt{(pixel * 255) / max(1, 255 - pixel)}. This blows out the highlights and drastically increases contrast.
+    \item \textbf{Swirl:} Warps the image into a vortex by converting Cartesian coordinates to Polar coordinates, applying a nonlinear rotational offset based on the radius, and converting back to sample the pixel.
+    \item \textbf{Bloom:} Extracts bright pixels (intensity $>$ 180) and applies a brute-force nested 7x7 loop to blur them. The resulting glow is then added directly back to the original image.
+\end{itemize}
+
+\subsection{Denis's Filters}
+Similar to Adar, Denis's filters prioritize foundational algorithms through direct matrix iteration.
+\begin{itemize}
+    \item \textbf{Threshold:} Iterates through every pixel and manually calculates the luminosity using the \texttt{0.299R + 0.587G + 0.114B} formula, applying a hard check to push values to pure black or white.
+    \item \textbf{Diffuse:} Creates a frosted glass effect by replacing each pixel's value with a randomly selected neighbor from within a localized radius.
+    \item \textbf{Crosshatch:} Uses modulo arithmetic on the X and Y coordinates to draw diagonal pen strokes. The density of the strokes increases based on the darkness of the underlying pixel.
+    \item \textbf{Hue Rotate:} Utilizes OpenCV strictly to convert the color space to HSV, then manually loops through the matrix applying modulo arithmetic to shift the Hue channel by +60 degrees.
+\end{itemize}
+
+\section{Graphical User Interface}
+The application provides an intuitive way to visualize the image processing results. It is composed of three primary windows:
+
+\begin{enumerate}
+    \item \textbf{Controls:} Houses two OpenCV trackbars. The first trackbar cycles through all available images in the \texttt{data/} directory. The second trackbar cycles through the 12 registered filters.
+    \item \textbf{Original / Filtered Views:} Displays the before-and-after results. To ensure a consistent viewing experience, a \texttt{resizeForDisplay()} function scales both images to fit within an 800x600 bounding box, preserving the aspect ratio. This scaling is done purely for presentation; the filters continue to process the native, full-resolution matrix.
+    \item \textbf{Info Panel:} An informative window that dynamically displays the name of the currently active filter, its creator, and a detailed description of how the mathematical effect is achieved.
+\end{enumerate}
+
+\section{Conclusion}
+This project successfully demonstrates the application of both fundamental and advanced image processing techniques. By implementing many of the effects manually through pixel iteration, the team gained a deep understanding of the mathematical operations that power modern computer vision libraries. The resulting application is highly modular, easily extensible, and serves as an excellent testbed for future algorithmic experiments. The authors used tools such as LLM to assist with development of the solution in accordance with the way permitted by the instructor at the beginning of the semester.
+
+\end{document}
