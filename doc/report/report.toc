@@ -3,6 +3,12 @@
 \contentsline {section}{\numberline {2}Implementation Details}{3}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Eyobed's Filters}{3}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Adar's Filters}{4}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Denis's Filters}{4}{subsection.2.3}%
-\contentsline {section}{\numberline {3}Graphical User Interface}{4}{section.3}%
-\contentsline {section}{\numberline {4}Conclusion}{5}{section.4}%
+\contentsline {subsection}{\numberline {2.3}Deniz's Filters}{4}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Original Input Images}{4}{subsubsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.2}Threshold Filter}{5}{subsubsection.2.3.2}%
+\contentsline {subsubsection}{\numberline {2.3.3}Diffuse Filter}{6}{subsubsection.2.3.3}%
+\contentsline {subsubsection}{\numberline {2.3.4}Crosshatch Filter}{7}{subsubsection.2.3.4}%
+\contentsline {subsubsection}{\numberline {2.3.5}Hue Rotate Filter}{8}{subsubsection.2.3.5}%
+\contentsline {subsubsection}{\numberline {2.3.6}Evaluation and Discussion}{9}{subsubsection.2.3.6}%
+\contentsline {section}{\numberline {3}Graphical User Interface}{9}{section.3}%
+\contentsline {section}{\numberline {4}Conclusion}{10}{section.4}%
