@@ -1,34 +1,47 @@
-#ifndef EYOBED_HISTOGRAM_EQ_HPP
-#define EYOBED_HISTOGRAM_EQ_HPP
-
+#pragma once
 #include <opencv2/opencv.hpp>
-using namespace std;
+
 using namespace cv;
 
-// Histogram Equalization — improves contrast by spreading pixel
-// intensity values more evenly across the full 0–255 range.
-//
-// Done in YCrCb color space so only brightness (Y channel) is equalized,
-// not the colors — this avoids ugly color shifts.
-Mat applyHistogramEq(const Mat& src) {
+// Histogram Equalization
 
-    // Convert BGR → YCrCb  (Y = brightness, Cr/Cb = color info)
+Mat applyHistogramEq(const Mat& src) {
+    // BGR to YCrCb we need only Y for this
     Mat ycrcb;
     cvtColor(src, ycrcb, COLOR_BGR2YCrCb);
 
-    // Split into 3 separate channel images
-    vector<Mat> channels;
-    split(ycrcb, channels);
+    int totalPixels = ycrcb.rows * ycrcb.cols;
 
-    // Equalize only the Y (brightness) channel
-    equalizeHist(channels[0], channels[0]);
+    // make frequency histogram of Y values
+    int hist[256] = {0};
+    for (int y = 0; y < ycrcb.rows; y++)
+        for (int x = 0; x < ycrcb.cols; x++)
+    // increment the count of the pixel value
+            hist[ycrcb.at<Vec3b>(y, x)[0]]++;
 
-    // Merge channels back and convert back to BGR
-    merge(channels, ycrcb);
+    // PDF
+    float pdf[256] = {0.0f};
+    for (int i = 0; i < 256; i++)
+        pdf[i] = (float)hist[i] / totalPixels;
+
+    // CDF 
+    float cdf[256] = {0.0f};
+    cdf[0] = pdf[0];
+    for (int i = 1; i < 256; i++)
+        cdf[i] = cdf[i - 1] + pdf[i];
+
+    // Remap table scale CDF to [0, 255]
+    int remap[256] = {0};
+    for (int i = 0; i < 256; i++)
+        remap[i] = std::max(0, std::min(255, cvRound(cdf[i] * 255.0f)));
+
+    // Apply remap to Y channel only
+    for (int y = 0; y < ycrcb.rows; y++)
+        for (int x = 0; x < ycrcb.cols; x++)
+            ycrcb.at<Vec3b>(y, x)[0] = remap[ycrcb.at<Vec3b>(y, x)[0]];
+
+    // YCrCb to BGR convert back
     Mat dst;
     cvtColor(ycrcb, dst, COLOR_YCrCb2BGR);
-
     return dst;
 }
-
-#endif // EYOBED_HISTOGRAM_EQ_HPP

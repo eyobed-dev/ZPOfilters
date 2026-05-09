@@ -25,17 +25,21 @@
     \large Brno University of Technology \\
     \large Faculty of Information Technology \\
     \vspace{2cm}
+    
+    \large{Image Processing (in English) (ZPOe 25/26)} \\
+    \vspace{1cm}
 
-    \textbf{Image Processing Filter Effects} \\
+    \textbf{Application of Basic Image Processing Filters on Human Face Images} \\
     \vspace*{1cm}
     \large Project Report\\
     \vspace{1cm}
-    \large{ZPOe 25/26} \\
     \vspace{1cm}
-    \vspace*{1cm}
-    \large Adar Otieno - xotiena00\\
-    \large Deniz Aksoy - xaksoyd00\\
-    \large Eyobed Awel Nuri - xnuriey00\\
+    \large
+    \begin{tabular}{l l}
+        Adar Otieno & \texttt{xotiena00} \\
+        Deniz Aksoy & \texttt{xaksoyd00} \\
+        Eyobed Awel Nuri & \texttt{xnuriey00} \\
+    \end{tabular}
     \vfill
     \date{\today}
 }
@@ -51,35 +55,244 @@
 % --- Main Content ---
 
 \section{Introduction}
-In the field of computer vision and image processing, filters are essential tools used to manipulate and analyze images. They operate by modifying the pixels of an image based on mathematical functions, allowing for enhancements, artistic effects, or noise reduction. 
+The students have decided to rework the project by removing previously proposed trivial filters such as sharpen and replaced them with more sophisticated ones as per the suggestions of the professor. We developed 12 filters from different categories in total, 4 filters per student. 
 
-This project explores the implementation of custom image filters using C++ and the OpenCV library. Rather than relying entirely on pre-built, high-level OpenCV functions, the focus of this work is on the manual, pixel-by-pixel implementation of various effects to understand the underlying mathematics and algorithms. The application serves as an interactive GUI that allows users to seamlessly apply and switch between 12 unique filters developed by the team.
 
-\subsection{Project Architecture}
-The core application is built as a single interactive window utilizing OpenCV's HighGUI module. The architecture emphasizes modularity, ensuring that each contributor can develop their effects independently. 
-
-The application utilizes a \texttt{Filter} structure to register the effects:
+\section{Compilation and Running}
+The project uses CMake for build management. Standard compilation and execution steps:
 \begin{verbatim}
-struct Filter {
-  string author;
-  string name;
-  string description;
-  Mat (*apply)(const Mat &);
-};
+mkdir build && cd build
+cmake .. && make
+./project
 \end{verbatim}
+The application expects input images in the \texttt{data/} directory. The GUI features trackbars for image/filter selection and a side-by-side visualization window (800x600) with a metadata panel for filter descriptions. If you can not see the windows, drag them around to expose them.
 
-This structure enables the main application to dynamically load the filters, populate the trackbar controls, and render an informative metadata panel detailing the active effect and its creator.
-
-\section{Implementation Details}
-The project incorporates a total of 12 distinct filters, divided equally among the three contributors: Eyobed, Adar, and Denis.
+\section{Implementations}
+This section presents the filters developed by each student. Each student individually developed 4 filters, only the GUI is shared by the students. 
 
 \subsection{Eyobed's Filters}
-\begin{itemize}
-    \item \textbf{Histogram Equalization:} Enhances image contrast by redistributing the brightness values across the full 0-255 range. To prevent unwanted color shifting, the algorithm operates in the YCrCb color space, applying the equalization solely to the luminance (Y) channel before converting back to BGR.
-    \item \textbf{Lens Distortion:} Applies a manual barrel distortion effect, simulating the physical curvature of a camera lens. The pixels are mapped using a radial geometric transform.
-    \item \textbf{Zoom Blur:} A radial blur effect that streaks pixels from the edges of the image towards the center. This is achieved using a manually implemented directional box blur kernel.
-    \item \textbf{Posterize:} Reduces the continuous color palette into a limited number of discrete values. This manual color quantization gives the image a distinct comic-book or retro-art aesthetic.
-\end{itemize}
+
+\subsubsection{Original Input Images}
+The following four images (Figure~\ref{fig:eyobed_originals}) serve as the baseline for all subsequent filter demonstrations in this section.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.23\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{assets/original_0.png}
+        \caption{Source 1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.23\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{assets/original_1.png}
+        \caption{Source 2}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.23\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{assets/original_2.png}
+        \caption{Source 3}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.23\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{assets/original_3.png}
+        \caption{Source 4}
+    \end{subfigure}
+    \caption{Original unprocessed input images used for Eyobed's filter evaluations.}
+    \label{fig:eyobed_originals}
+\end{figure}
+
+\subsubsection{Histogram Equalization}
+Histogram Equalization enhances image contrast by redistributing the brightness values. To prevent unwanted color shifting, the algorithm operates in the YCrCb color space, applying the equalization only to the luminance channel before converting back to BGR.
+
+The algorithm calculates the histogram frequencies, the Probability Density Function (PDF), and the Cumulative Distribution Function (CDF). The PDF for a pixel intensity $i$ is calculated as:
+\[
+PDF(i) = \frac{\text{count}(i)}{\text{total pixels}}
+\]
+The CDF is then calculated as the cumulative sum of the PDF:
+\[
+CDF(i) = \sum_{j=0}^{i} PDF(j)
+\]
+Finally, the new remapped pixel value is computed by scaling the CDF to the 0-255 range:
+\[
+\text{Output}(x,y) = \text{round}(CDF(I(x,y)) \times 255)
+\]
+
+\begin{figure}[H]
+    \centering
+
+    \begin{subfigure}{0.23\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{assets/histogram_eq_filtered_0.png}
+        \caption{Result 1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.23\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{assets/histogram_eq_filtered_1.png}
+        \caption{Result 2}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.23\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{assets/histogram_eq_filtered_2.png}
+        \caption{Result 3}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.23\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{assets/histogram_eq_filtered_3.png}
+        \caption{Result 4}
+    \end{subfigure}
+
+    \caption{Results after applying the Histogram Equalization filter.}
+    \label{fig:hist_eq_results}
+\end{figure}
+
+\subsubsection{Lens Distortion}
+
+The filter uses an inverse geometric mapping to simulate lens distortion. For each output pixel $(x, y)$, the source coordinate $(s_x, s_y)$ is calculated through three steps listed below:
+
+\begin{description}
+    \item[1. Normalization:] Coordinates are centered and scaled by $R = \sqrt{c_x^2 + c_y^2}$:
+    \[ d_x = \frac{x - c_x}{R}, \quad d_y = \frac{y - c_y}{R} \]
+    \item[2. Distortion:] A radial factor is computed using coefficient $k$:
+    \[ \text{dist} = 1 + k(d_x^2 + d_y^2) \]
+    Positive $k$ produces barrel distortion, while negative $k$ produces pincushion effects.
+    \item[3. Mapping:] Coordinates are scaled back to source pixel space:
+    \[ s_x = d_x \cdot \text{dist} \cdot R + c_x, \quad s_y = d_y \cdot \text{dist} \cdot R + c_y \]
+\end{description}
+Pixels are sampled using nearest-neighbor interpolation. The computational complexity is $O(W \times H)$.
+
+\begin{figure}[H]
+    \centering
+
+    \begin{subfigure}{0.23\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{assets/lens_distortion_filtered_0.png}
+        \caption{Result 1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.23\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{assets/lens_distortion_filtered_1.png}
+        \caption{Result 2}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.23\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{assets/lens_distortion_filtered_2.png}
+        \caption{Result 3}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.23\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{assets/lens_distortion_filtered_3.png}
+        \caption{Result 4}
+    \end{subfigure}
+
+    \caption{Results after applying the Lens Distortion filter ($k = 5.0$).}
+    \label{fig:lens_distortion_results}
+\end{figure}
+
+\subsubsection{Posterize}
+
+Reduces color depth by quantizing each channel into $L = 8$ discrete levels. A 256-entry LUT is computed once to improve performance.
+
+\begin{description}
+    \item[1. Step Calculation:] The spacing between levels:
+    \[ \text{step} = \frac{255}{L - 1} \approx 36.4 \]
+    \item[2. LUT Construction:] Each intensity $i$ is snapped to the nearest level index, then scaled back:
+    \[ \text{level}_i = \text{round}\!\left(\frac{i}{\text{step}}\right), \quad \text{LUT}[i] = \text{round}(\text{level}_i \times \text{step}) \]
+    \item[3. Pixel Remapping:] Each BGR channel is independently mapped:
+    \[ \text{Output}_{c}(x, y) = \text{LUT}[\text{Input}_{c}(x, y)], \quad c \in \{B, G, R\} \]
+\end{description}
+Complexity: $O(W \times H)$ for the pixel pass, plus $O(256)$ for LUT construction.
+
+\begin{figure}[H]
+    \centering
+
+    \begin{subfigure}{0.23\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{assets/posterize_filtered_0.png}
+        \caption{Result 1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.23\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{assets/posterize_filtered_1.png}
+        \caption{Result 2}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.23\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{assets/posterize_filtered_2.png}
+        \caption{Result 3}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.23\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{assets/posterize_filtered_3.png}
+        \caption{Result 4}
+    \end{subfigure}
+
+    \caption{Results after applying the Posterize filter ($L = 8$ levels).}
+    \label{fig:posterize_results}
+\end{figure}
+
+
+\subsubsection{Vignette Blur}
+
+Softens edges while keeping the center sharp. Implemented as a two step process: a 15×15 box blur followed by a radial blend.
+
+\begin{description}
+    \item[1. Box Blur:] For interior pixels (7-pixel border excluded), compute the 15×15 mean kernel convolution.
+    \[ \text{Blur}(x,y) = \frac{1}{225} \sum_{dy=-7}^{7} \sum_{dx=-7}^{7} \text{Input}(x+dx,\, y+dy) \]
+    \item[2. Radial Mask:] Normalize the distance from center $(c_x, c_y)$ by the corner radius $R$:
+    \[ d = \frac{\sqrt{(x-c_x)^2 + (y-c_y)^2}}{R}, \quad d \in [0, 1] \]
+    The center maps to 0 (no blur) and corners to 1 (full blur).
+    \item[3. Blending:] Linearly interpolate between original and blurred using $d$ as the weight:
+    \[ \text{Output}(x,y) = \text{Input}(x,y) \cdot (1-d) + \text{Blur}(x,y) \cdot d \]
+\end{description}
+Complexity: $O(W \times H)$ since the blur and blend are computed in a single pass.
+
+\begin{figure}[H]
+    \centering
+
+    \begin{subfigure}{0.23\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{assets/vignette_blur_filtered_0.png}
+        \caption{Result 1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.23\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{assets/vignette_blur_filtered_1.png}
+        \caption{Result 2}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.23\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{assets/vignette_blur_filtered_2.png}
+        \caption{Result 3}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.23\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{assets/vignette_blur_filtered_3.png}
+        \caption{Result 4}
+    \end{subfigure}
+
+    \caption{Results after applying the Vignette Blur filter using a 15x15 manual kernel.}
+    \label{fig:vignette_blur_results}
+\end{figure}
+
+\subsubsection{Discussion}
+The author of this section studied about implementation of histogram eqalization,lens distortion, posterization, and vignette blur filters. He believes that these filters are good demonstrations of concepts discussed in class. Additional techniques like look up tables helped to take into consideration the performance aspect of image processing. 
+
+
 
 \subsection{Adar's Filters}
 Adar's contributions focus on manual pixel manipulation using native loops, avoiding optimized OpenCV functions for educational purposes.
@@ -354,16 +567,18 @@ since each pixel is processed independently.
 
 The implemented filters successfully demonstrate several fundamental concepts in image processing, including binary segmentation, stochastic pixel manipulation, procedural non-photorealistic rendering, and color-space transformation. The Threshold filter proved highly effective for simplifying image structures and emphasizing high-contrast regions, making it particularly suitable for preprocessing tasks such as OCR and edge extraction. The Diffuse filter generated visually organic distortions that simulated frosted-glass effects through randomized neighborhood sampling, although fine image details were partially degraded due to stochastic pixel replacement. The Crosshatch filter effectively transformed photographic content into stylized sketch-like renderings using lightweight mathematical coordinate patterns, demonstrating how procedural line generation can emulate traditional artistic shading techniques. Finally, the Hue Rotate filter showed that manipulating the HSV color space provides an efficient method for altering image appearance while preserving geometric structure and brightness information. Overall, the results confirm that relatively simple pixel-level algorithms can produce both technically meaningful and visually compelling transformations while maintaining computational efficiency with linear time complexity.
 
-\section{Graphical User Interface}
-The application provides an intuitive way to visualize the image processing results. It is composed of three primary windows:
 
-\begin{enumerate}
-    \item \textbf{Controls:} Houses two OpenCV trackbars. The first trackbar cycles through all available images in the \texttt{data/} directory. The second trackbar cycles through the 12 registered filters.
-    \item \textbf{Original / Filtered Views:} Displays the before-and-after results. To ensure a consistent viewing experience, a \texttt{resizeForDisplay()} function scales both images to fit within an 800x600 bounding box, preserving the aspect ratio. This scaling is done purely for presentation; the filters continue to process the native, full-resolution matrix.
-    \item \textbf{Info Panel:} An informative window that dynamically displays the name of the currently active filter, its creator, and a detailed description of how the mathematical effect is achieved.
-\end{enumerate}
 
 \section{Conclusion}
-This project successfully demonstrates the application of both fundamental and advanced image processing techniques. By implementing many of the effects manually through pixel iteration, the team gained a deep understanding of the mathematical operations that power modern computer vision libraries. The resulting application is highly modular, easily extensible, and serves as an excellent testbed for future algorithmic experiments. The authors used tools such as LLM to assist with development of the solution in accordance with the way permitted by the instructor at the beginning of the semester.
+This project successfully demonstrates the application of both fundamental and advanced image processing techniques. The students also estimated the computational complexity of each filter thanks to the knowledge they acquired in the course TINe. Moreover, we  also learned the importance of using appropriate data structures and algorithms for image processing. The authors would like to acknowledge the utility of AI tools such as ChatGPT in the realization of this project in a reasonable and responsible manner.
+
+\begin{thebibliography}{9}
+\bibitem{ma2003analytical}
+Ma, L., Chen, Y., \& Moore, K. L. (2003).
+\textit{A New Analytical Radial Distortion Model for Camera Calibration}.
+arXiv preprint cs/0307046.
+\end{thebibliography}
 
 \end{document}
+
+

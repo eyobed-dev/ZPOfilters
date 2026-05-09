@@ -9,11 +9,11 @@
 using namespace std;
 using namespace cv;
 
-//  STEP 1 — Include your filter hpp file here
+// Including filter hpp files
 
 // Eyobed
 #include "eyobed/histogram_eq.hpp"
-#include "eyobed/zoom_blur.hpp"
+#include "eyobed/vignette_blur.hpp"
 #include "eyobed/posterize.hpp"
 #include "eyobed/lens_distortion.hpp"
 
@@ -37,28 +37,28 @@ struct Filter {
   Mat (*apply)(const Mat &);
 };
 
-//  STEP 2 — Register your filter here
+// Register filters
 
 Filter allFilters[] = {
 
-    //  Eyobed
+    // Eyobed
     { "Eyobed", "Histogram Eq",
-      "Equalizes image contrast by redistributing\nbrightness values across the full 0-255 range.\nWorks in YCrCb space to avoid color shifts.",
+      "Equalizes image contrast by redistributing\nbrightness. Done in YCrCb space to avoid color shift problem.",
       applyHistogramEq },
 
     { "Eyobed", "Lens Distortion",
-      "Applies a manual barrel distortion effect.\nPixels are mapped using a radial geometric transform.",
+      "lens distortion effect.\nPixels are mapped using a lens geometric transform.",
       applyLensDistortion },
 
-    { "Eyobed", "Zoom Blur",
-      "Radial blur effect that streaks pixels from the edges\ntowards the center. Uses a manual box blur kernel.",
-      applyZoomBlur },
+    { "Eyobed", "Vignette Blur",
+      "Softens the edges of the image while keeping\nthe center sharp.\nCombines a 15x15 box blur\nwith a radial distanc mask.",
+      applyVignetteBlur },
 
     { "Eyobed", "Posterize",
-      "Reduces the number of colors in the image manually.\nMakes the image look like a comic or retro art.",
+      "Reduces the number of colors in the image manually.\nMakes the image look like a poster print.",
       applyPosterize },
 
-    //  Adar
+    // Adar
     { "Adar", "Relief Emboss",
       "Calculates the directional difference between\nneighboring pixels to create a 3D gray relief texture.",
       applyEmboss },
@@ -75,7 +75,7 @@ Filter allFilters[] = {
       "Manually extracts bright pixels, applies a nested\nbox blur loop, and adds them back to create a glow.",
       applyBloom },
 
-    //  Denis
+    // Denis
     { "Denis", "Threshold",
       "Converts the image to pure black and white\nbased on a manual intensity threshold (127).\nImplemented pixel-by-pixel.",
       applyThreshold },
@@ -99,13 +99,15 @@ vector<string> imageFiles;
 Mat currentOriginal;
 int imageIdx = 0;
 int filterIdx = 0;
+
+
 Mat toDisplay(const Mat& src) {
     Mat out = src.clone();
     if (out.channels() == 1) cvtColor(out, out, COLOR_GRAY2BGR);
     if (out.depth() == CV_32F) out.convertTo(out, CV_8UC3, 255.0);
     return out;
 }
-
+// fix big images problem
 Mat resizeForDisplay(const Mat& src, int maxWidth = 800, int maxHeight = 600) {
     if (src.empty()) return src;
     double scale = min((double)maxWidth / src.cols, (double)maxHeight / src.rows);
@@ -154,6 +156,7 @@ void onFilterChange(int pos, void*) {
 
 int main(int argc, char* argv[]) {
 
+    // make sure the faces are in /data 
     string dataDir = "../data";
 
     for (const auto& entry : filesystem::directory_iterator(dataDir)) {
@@ -161,6 +164,9 @@ int main(int argc, char* argv[]) {
         if (extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".bmp")
             imageFiles.push_back(entry.path().string());
     }
+
+    // Sort to order the faces
+    sort(imageFiles.begin(), imageFiles.end());
 
     currentOriginal = imread(imageFiles[0]);
 
