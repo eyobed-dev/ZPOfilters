@@ -18,9 +18,9 @@ using namespace cv;
 #include "eyobed/lens_distortion.hpp"
 
 // Adar
-#include "adar/emboss.hpp"
+#include "adar/orton.hpp"
 #include "adar/dodge.hpp"
-#include "adar/swirl.hpp"
+#include "adar/gamma.hpp"
 #include "adar/bloom.hpp"
 
 // Denis
@@ -59,17 +59,17 @@ Filter allFilters[] = {
       applyPosterize },
 
     // Adar
-    { "Adar", "Relief Emboss",
-      "Calculates the directional difference between\nneighboring pixels to create a 3D gray relief texture.",
-      applyEmboss },
+    { "Adar", "Orton",
+      "Blends the original with a manually blurred screen\nlayer to create a soft cinematic glow.",
+      applyOrton },
 
     { "Adar", "Dodge",
       "Applies a Color Dodge blend manually to blow out\nhighlights and dramatically increase contrast.",
       applyDodge },
 
-    { "Adar", "Swirl",
-      "Warps the image manually using polar coordinates\nto create a geometric vortex effect at the center.",
-      applySwirl },
+    { "Adar", "Gamma",
+      "Applies manual power-law correction per channel\nwith pixel-wise math and explicit clamping.",
+      applyGamma },
 
     { "Adar", "Bloom",
       "Manually extracts bright pixels, applies a nested\nbox blur loop, and adds them back to create a glow.",
@@ -99,6 +99,27 @@ vector<string> imageFiles;
 Mat currentOriginal;
 int imageIdx = 0;
 int filterIdx = 0;
+int gammaSlider = 220;            // 2.20
+int ortonSigmaSlider = 200;       // 2.00
+int ortonStrengthSlider = 60;     // 0.60
+int dodgeStrengthSlider = 100;    // 1.00
+int dodgeProtectSlider = 0;       // 0
+int bloomRadiusSlider = 3;        // 3
+int bloomThresholdSlider = 180;   // 180
+int bloomStrengthSlider = 100;    // 1.00
+
+constexpr int GAMMA_MIN_SLIDER = 5;    // 0.05
+constexpr int GAMMA_MAX_SLIDER = 500;  // 5.00
+constexpr int ORTON_SIGMA_MIN_SLIDER = 10;    // 0.10
+constexpr int ORTON_SIGMA_MAX_SLIDER = 2000;  // 20.00
+constexpr int DODGE_STRENGTH_MAX_SLIDER = 200;  // 2.00
+constexpr int DODGE_PROTECT_MAX_SLIDER = 128;
+constexpr int BLOOM_RADIUS_MAX_SLIDER = 12;
+constexpr int BLOOM_THRESHOLD_MAX_SLIDER = 255;
+constexpr int BLOOM_STRENGTH_MAX_SLIDER = 300;  // 3.00
+
+const string PARAM_WINDOW = "Filter Parameters";
+bool isParamWindowVisible = false;
 
 
 Mat toDisplay(const Mat& src) {
@@ -116,6 +137,16 @@ Mat resizeForDisplay(const Mat& src, int maxWidth = 800, int maxHeight = 600) {
     resize(src, resized, Size(), scale, scale, INTER_AREA);
     return resized;
 }
+
+void onGammaChange(int pos, void*);
+void onOrtonSigmaChange(int pos, void*);
+void onOrtonStrengthChange(int pos, void*);
+void onDodgeStrengthChange(int pos, void*);
+void onDodgeProtectChange(int pos, void*);
+void onBloomRadiusChange(int pos, void*);
+void onBloomThresholdChange(int pos, void*);
+void onBloomStrengthChange(int pos, void*);
+void updateParameterWindow();
 
 void redraw() {
     if (currentOriginal.empty()) return;
@@ -151,7 +182,108 @@ void onImageChange(int pos, void*) {
 
 void onFilterChange(int pos, void*) {
     filterIdx = pos;
+    updateParameterWindow();
     redraw();
+}
+
+void onGammaChange(int pos, void*) {
+    int safePos = max(GAMMA_MIN_SLIDER, pos);
+    if (safePos != pos) {
+        gammaSlider = safePos;
+        if (isParamWindowVisible)
+            setTrackbarPos("Gamma x0.01", PARAM_WINDOW, safePos);
+    }
+
+    setGammaValue(safePos / 100.0);
+    redraw();
+}
+
+void onOrtonSigmaChange(int pos, void*) {
+    int safePos = max(ORTON_SIGMA_MIN_SLIDER, pos);
+    if (safePos != pos) {
+        ortonSigmaSlider = safePos;
+        if (isParamWindowVisible)
+            setTrackbarPos("Sigma x0.01", PARAM_WINDOW, safePos);
+    }
+    setOrtonSigma(safePos / 100.0);
+    redraw();
+}
+
+void onOrtonStrengthChange(int pos, void*) {
+    ortonStrengthSlider = max(0, min(100, pos));
+    if (ortonStrengthSlider != pos && isParamWindowVisible)
+        setTrackbarPos("Strength %", PARAM_WINDOW, ortonStrengthSlider);
+    setOrtonStrength(ortonStrengthSlider / 100.0);
+    redraw();
+}
+
+void onDodgeStrengthChange(int pos, void*) {
+    dodgeStrengthSlider = max(0, min(DODGE_STRENGTH_MAX_SLIDER, pos));
+    if (dodgeStrengthSlider != pos && isParamWindowVisible)
+        setTrackbarPos("Strength x0.01", PARAM_WINDOW, dodgeStrengthSlider);
+    setDodgeStrength(dodgeStrengthSlider / 100.0);
+    redraw();
+}
+
+void onDodgeProtectChange(int pos, void*) {
+    dodgeProtectSlider = max(0, min(DODGE_PROTECT_MAX_SLIDER, pos));
+    if (dodgeProtectSlider != pos && isParamWindowVisible)
+        setTrackbarPos("Protect", PARAM_WINDOW, dodgeProtectSlider);
+    setDodgeProtect(dodgeProtectSlider);
+    redraw();
+}
+
+void onBloomRadiusChange(int pos, void*) {
+    bloomRadiusSlider = max(1, min(BLOOM_RADIUS_MAX_SLIDER, pos));
+    if (bloomRadiusSlider != pos && isParamWindowVisible)
+        setTrackbarPos("Radius", PARAM_WINDOW, bloomRadiusSlider);
+    setBloomRadius(bloomRadiusSlider);
+    redraw();
+}
+
+void onBloomThresholdChange(int pos, void*) {
+    bloomThresholdSlider = max(0, min(BLOOM_THRESHOLD_MAX_SLIDER, pos));
+    if (bloomThresholdSlider != pos && isParamWindowVisible)
+        setTrackbarPos("Threshold", PARAM_WINDOW, bloomThresholdSlider);
+    setBloomThreshold(bloomThresholdSlider);
+    redraw();
+}
+
+void onBloomStrengthChange(int pos, void*) {
+    bloomStrengthSlider = max(0, min(BLOOM_STRENGTH_MAX_SLIDER, pos));
+    if (bloomStrengthSlider != pos && isParamWindowVisible)
+        setTrackbarPos("Glow x0.01", PARAM_WINDOW, bloomStrengthSlider);
+    setBloomStrength(bloomStrengthSlider / 100.0);
+    redraw();
+}
+
+void updateParameterWindow() {
+    if (isParamWindowVisible) {
+        destroyWindow(PARAM_WINDOW);
+        isParamWindowVisible = false;
+    }
+
+    const string& filterName = allFilters[filterIdx].name;
+    if (filterName != "Gamma" && filterName != "Orton" && filterName != "Dodge" && filterName != "Bloom")
+        return;
+
+    namedWindow(PARAM_WINDOW, WINDOW_NORMAL);
+    resizeWindow(PARAM_WINDOW, 380, 160);
+    isParamWindowVisible = true;
+
+    if (filterName == "Gamma") {
+        createTrackbar("Gamma x0.01", PARAM_WINDOW, &gammaSlider, GAMMA_MAX_SLIDER, onGammaChange);
+    } else if (filterName == "Orton") {
+        createTrackbar("Sigma x0.01", PARAM_WINDOW, &ortonSigmaSlider, ORTON_SIGMA_MAX_SLIDER, onOrtonSigmaChange);
+        createTrackbar("Strength %", PARAM_WINDOW, &ortonStrengthSlider, 100, onOrtonStrengthChange);
+    } else if (filterName == "Dodge") {
+        createTrackbar("Strength x0.01", PARAM_WINDOW, &dodgeStrengthSlider, DODGE_STRENGTH_MAX_SLIDER, onDodgeStrengthChange);
+        createTrackbar("Protect", PARAM_WINDOW, &dodgeProtectSlider, DODGE_PROTECT_MAX_SLIDER, onDodgeProtectChange);
+    } else if (filterName == "Bloom") {
+        createTrackbar("Radius", PARAM_WINDOW, &bloomRadiusSlider, BLOOM_RADIUS_MAX_SLIDER, onBloomRadiusChange);
+        createTrackbar("Threshold", PARAM_WINDOW, &bloomThresholdSlider, BLOOM_THRESHOLD_MAX_SLIDER, onBloomThresholdChange);
+        createTrackbar("Glow x0.01", PARAM_WINDOW, &bloomStrengthSlider, BLOOM_STRENGTH_MAX_SLIDER, onBloomStrengthChange);
+    }
 }
 
 int main(int argc, char* argv[]) {
@@ -169,6 +301,14 @@ int main(int argc, char* argv[]) {
     sort(imageFiles.begin(), imageFiles.end());
 
     currentOriginal = imread(imageFiles[0]);
+    setGammaValue(gammaSlider / 100.0);
+    setOrtonSigma(ortonSigmaSlider / 100.0);
+    setOrtonStrength(ortonStrengthSlider / 100.0);
+    setDodgeStrength(dodgeStrengthSlider / 100.0);
+    setDodgeProtect(dodgeProtectSlider);
+    setBloomRadius(bloomRadiusSlider);
+    setBloomThreshold(bloomThresholdSlider);
+    setBloomStrength(bloomStrengthSlider / 100.0);
 
     namedWindow("Controls", WINDOW_NORMAL);
     resizeWindow("Controls", 400, 60);
@@ -176,6 +316,7 @@ int main(int argc, char* argv[]) {
         createTrackbar("Image ", "Controls", NULL, (int)imageFiles.size() - 1, onImageChange);
     if (FILTER_COUNT > 1)
         createTrackbar("Filter", "Controls", NULL, FILTER_COUNT - 1, onFilterChange);
+    updateParameterWindow();
 
     redraw();
     waitKey(0);
