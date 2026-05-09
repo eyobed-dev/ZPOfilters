@@ -12,8 +12,7 @@
 \contentsline {subsection}{\numberline {3.3}Deniz's Filters}{7}{subsection.3.3}%
 \contentsline {subsubsection}{\numberline {3.3.1}Original Input Images}{7}{subsubsection.3.3.1}%
 \contentsline {subsubsection}{\numberline {3.3.2}Threshold Filter}{8}{subsubsection.3.3.2}%
-\contentsline {subsubsection}{\numberline {3.3.3}Diffuse Filter}{9}{subsubsection.3.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.4}Crosshatch Filter}{10}{subsubsection.3.3.4}%
-\contentsline {subsubsection}{\numberline {3.3.5}Hue Rotate Filter}{11}{subsubsection.3.3.5}%
-\contentsline {subsubsection}{\numberline {3.3.6}Evaluation and Discussion}{12}{subsubsection.3.3.6}%
-\contentsline {section}{\numberline {4}Conclusion}{12}{section.4}%
+\contentsline {subsubsection}{\numberline {3.3.3}Diffuse Filter}{8}{subsubsection.3.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.4}Crosshatch Filter}{9}{subsubsection.3.3.4}%
+\contentsline {subsubsection}{\numberline {3.3.5}Hue Rotate Filter}{10}{subsubsection.3.3.5}%
+\contentsline {section}{\numberline {4}Conclusion}{10}{section.4}%
