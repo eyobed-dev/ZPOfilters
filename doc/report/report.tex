@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+\iffalse
 \documentclass[12pt,a4paper]{article}
 
 % --- Essential Packages ---
@@ -545,7 +545,7 @@ arXiv preprint cs/0307046.
 \end{document}
 
 
-=======
+\fi
 \documentclass[12pt,a4paper]{article}
 
 % --- Essential Packages ---
@@ -846,36 +846,36 @@ The author of this section studied about implementation of histogram eqalization
 
 \subsection{Deniz's Filters}
 
-Similar to Adar, Deniz's filters prioritize foundational image processing algorithms implemented through direct pixel-by-pixel matrix iteration. The objective of these filters is not only to produce visually interesting effects but also to demonstrate the mathematical principles behind image segmentation, stochastic distortion, procedural rendering, and color-space manipulation.
+Deniz's filters focus on fundamental image processing operations implemented through direct pixel-by-pixel matrix iteration. The implemented filters demonstrate concepts such as binary segmentation, stochastic distortion, procedural rendering, and color-space manipulation.
 
 \subsubsection{Original Input Images}
 
-The following images were selected as the common input dataset for evaluating the visual behavior and robustness of the implemented filters.
+The following images were selected as the common input dataset for evaluating the implemented filters.
 
 \begin{figure}[H]
     \centering
 
     \begin{subfigure}{0.23\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/cross_original_1.jpg}
+        \includegraphics[width=\linewidth]{assets/00.jpg}
         \caption{Input 1}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.23\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/cross_original_2.jpg}
+        \includegraphics[width=\linewidth]{assets/01.jpg}
         \caption{Input 2}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.23\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/cross_original_3.jpg}
+        \includegraphics[width=\linewidth]{assets/03.jpg}
         \caption{Input 3}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.23\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/cross_original_4.jpg}
+        \includegraphics[width=\linewidth]{assets/04.jpg}
         \caption{Input 4}
     \end{subfigure}
 
@@ -885,13 +885,11 @@ The following images were selected as the common input dataset for evaluating th
 
 \subsubsection{Threshold Filter}
 
-The Threshold filter is a classical image segmentation and binarization technique used to separate foreground information from the background. The implementation manually iterates through every pixel and computes its luminosity value using the weighted grayscale conversion formula:
+The Threshold filter converts the image into a binary black-and-white representation using grayscale luminosity computation and threshold comparison. It is commonly used in OCR systems, segmentation, and preprocessing pipelines.
 
 \[
 L = 0.299R + 0.587G + 0.114B
 \]
-
-This weighted grayscale formula reflects the sensitivity of the human visual system, which perceives green wavelengths more strongly than blue wavelengths. After computing the luminosity, a binary threshold operation is applied:
 
 \[
 \text{Output} =
@@ -901,17 +899,11 @@ This weighted grayscale formula reflects the sensitivity of the human visual sys
 \end{cases}
 \]
 
-where \(T\) denotes the threshold value.
-
-Thresholding belongs to the category of binary image processing and is widely used in OCR systems, edge detection, document analysis, license plate recognition, and preprocessing pipelines for machine learning applications.
-
-The computational complexity of the algorithm is:
+The algorithm processes each pixel independently with linear complexity:
 
 \[
 O(W \times H)
 \]
-
-where \(W\) and \(H\) represent the width and height of the image respectively.
 
 \begin{figure}[H]
     \centering
@@ -940,31 +932,23 @@ where \(W\) and \(H\) represent the width and height of the image respectively.
     \caption{Result 4}
 \end{subfigure}
 
-    \caption{Results after applying the Threshold filter to the original images shown in Figure~\ref{fig:original_inputs}.}
+    \caption{Results after applying the Threshold filter.}
     \label{fig:threshold_results}
 \end{figure}
 
 \subsubsection{Diffuse Filter}
 
-The Diffuse filter creates a frosted-glass distortion effect by replacing each pixel with a randomly selected neighboring pixel located within a predefined radius. Unlike traditional blur filters that average neighboring pixels, the diffuse filter uses stochastic sampling to introduce randomized local distortion.
-
-For a given pixel coordinate \((x,y)\), a neighboring pixel is selected according to:
+The Diffuse filter creates a frosted-glass effect by randomly replacing each pixel with a neighboring pixel within a selected radius.
 
 \[
 (x', y') = (x + r_x,\ y + r_y)
 \]
 
-where \(r_x\) and \(r_y\) are random offsets constrained within the selected radius.
-
-This process creates an organic scattering effect that resembles viewing an object through textured or frosted glass. The filter belongs to the category of artistic image stylization and non-linear image distortion.
-
-The algorithm is computationally linear:
+The filter produces stochastic local distortions while maintaining linear computational complexity:
 
 \[
 O(W \times H)
 \]
-
-although random memory access patterns may slightly reduce cache efficiency compared to standard convolution-based methods.
 
 \begin{figure}[H]
     \centering
@@ -993,86 +977,68 @@ although random memory access patterns may slightly reduce cache efficiency comp
     \caption{Result 4}
 \end{subfigure}
 
-    \caption{Results after applying the Diffuse filter to the original images shown in Figure~\ref{fig:original_inputs}.}
+    \caption{Results after applying the Diffuse filter.}
     \label{fig:diffuse_results}
 \end{figure}
 
 \subsubsection{Crosshatch Filter}
 
-The Crosshatch filter is a non-photorealistic rendering (NPR) technique designed to imitate traditional pen-and-ink sketching methods. Instead of relying on convolution kernels, the filter procedurally generates diagonal line structures using modulo arithmetic on pixel coordinates.
-
-The basic pattern generation can be represented as:
+The Crosshatch filter simulates sketch-style rendering using procedural diagonal line generation based on pixel coordinates.
 
 \[
 (x + y) \bmod n = 0
 \]
 
-where \(n\) controls the spacing between hatch lines.
-
-Additional line layers are introduced depending on the darkness of the underlying pixel. Darker image regions receive denser hatch structures, while brighter regions contain fewer strokes. This behavior simulates classical artistic shading techniques used in traditional crosshatching.
-
-The filter is computationally lightweight and maintains linear complexity:
+Darker image regions generate denser hatch patterns, creating a pen-and-ink drawing effect.
 
 \[
 O(W \times H)
 \]
-
-Crosshatching is frequently used in sketch simulation, comic-book rendering, procedural graphics, and artistic visualization systems.
 
 \begin{figure}[H]
     \centering
 
     \begin{subfigure}{0.23\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/cross_filtered_1.png}
+        \includegraphics[width=\linewidth]{assets/cross_1.png}
         \caption{Result 1}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.23\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/cross_filtered_2.png}
+        \includegraphics[width=\linewidth]{assets/cross_2.png}
         \caption{Result 2}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.23\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/cross_filtered_3.png}
+        \includegraphics[width=\linewidth]{assets/cross_3.png}
         \caption{Result 3}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.23\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/cross_filtered_4.png}
+        \includegraphics[width=\linewidth]{assets/cross_4.png}
         \caption{Result 4}
     \end{subfigure}
 
-    \caption{Results after applying the Crosshatch filter to the original images shown in Figure~\ref{fig:original_inputs}.}
+    \caption{Results after applying the Crosshatch filter.}
     \label{fig:crosshatch_results}
 \end{figure}
 
 \subsubsection{Hue Rotate Filter}
 
-The Hue Rotate filter modifies image colors by rotating the Hue channel in the HSV color space. The image is first converted from BGR to HSV using OpenCV before manually modifying the Hue channel.
-
-The hue transformation is computed as:
+The Hue Rotate filter modifies image colors by rotating the Hue channel in HSV color space.
 
 \[
 H' = (H + \Delta H) \bmod 180
 \]
 
-where \(\Delta H = 60\) degrees in the implemented effect.
-
-Modulo arithmetic is required because hue values form a circular color wheel. Once the hue exceeds the maximum range, it wraps around to the beginning of the spectrum.
-
-Hue rotation is widely used in artistic color grading, game graphics, data augmentation, augmented reality filters, and image stylization pipelines.
-
-The computational complexity remains:
+The implemented version applies a \(60^\circ\) hue shift while preserving brightness and structural information.
 
 \[
 O(W \times H)
 \]
-
-since each pixel is processed independently.
 
 \begin{figure}[H]
     \centering
@@ -1101,14 +1067,9 @@ since each pixel is processed independently.
     \caption{Result 4}
 \end{subfigure}
 
-    \caption{Results after applying the Hue Rotate filter to the original images shown in Figure~\ref{fig:original_inputs}.}
+    \caption{Results after applying the Hue Rotate filter.}
     \label{fig:hue_results}
 \end{figure}
-\subsubsection{Evaluation and Discussion}
-
-The implemented filters successfully demonstrate several fundamental concepts in image processing, including binary segmentation, stochastic pixel manipulation, procedural non-photorealistic rendering, and color-space transformation. The Threshold filter proved highly effective for simplifying image structures and emphasizing high-contrast regions, making it particularly suitable for preprocessing tasks such as OCR and edge extraction. The Diffuse filter generated visually organic distortions that simulated frosted-glass effects through randomized neighborhood sampling, although fine image details were partially degraded due to stochastic pixel replacement. The Crosshatch filter effectively transformed photographic content into stylized sketch-like renderings using lightweight mathematical coordinate patterns, demonstrating how procedural line generation can emulate traditional artistic shading techniques. Finally, the Hue Rotate filter showed that manipulating the HSV color space provides an efficient method for altering image appearance while preserving geometric structure and brightness information. Overall, the results confirm that relatively simple pixel-level algorithms can produce both technically meaningful and visually compelling transformations while maintaining computational efficiency with linear time complexity.
-
-
 
 \subsection{Adar's Filters}
 Adar's contributions focus on creative glow and tone/brightness manipulation filters.
@@ -1345,4 +1306,3 @@ arXiv preprint cs/0307046.
 \end{document}
 
 
->>>>>>> 596e30b96f86da2b9dd827890857413b9d320abb
