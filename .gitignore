@@ -49,9 +49,7 @@ build/
 # Output directory (generated filter effects - this is bullshit)
 output/
 
-# Data directory (test images — not committed, download that 2GB file on your own)
-data/
-!data/.gitkeep
+
 
 # IDEs
 .vscode/
