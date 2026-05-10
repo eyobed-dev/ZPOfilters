@@ -60,3 +60,14 @@ output/
 # OS files
 .DS_Store
 Thumbs.db
+
+# LaTeX
+*.aux
+*.log
+*.toc
+*.pdf
+*.out
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.synctex(busy)
