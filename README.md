@@ -1,5 +1,10 @@
 # Application of Basic Image Processing Filters on Human Face
 
+## Team
+- Adar Otieno - xotiena00
+- Deniz Aksoy - xaksoyd00
+- Eyobed Awel Nuri - xnuriey00
+
 ## Directory Structure
 
 ```
