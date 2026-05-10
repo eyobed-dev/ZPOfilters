@@ -16,17 +16,17 @@ using namespace cv;
 #include "eyobed/posterize.hpp"
 #include "eyobed/vignette_blur.hpp"
 
-// Adar
-#include "adar/bloom.hpp"
-#include "adar/dodge.hpp"
-#include "adar/gamma.hpp"
-#include "adar/orton.hpp"
-
 // Denis
 #include "denis/crosshatch.hpp"
 #include "denis/diffuse.hpp"
 #include "denis/hue_rotate.hpp"
 #include "denis/threshold.hpp"
+
+// Adar
+#include "adar/bloom.hpp"
+#include "adar/dodge.hpp"
+#include "adar/gamma.hpp"
+#include "adar/orton.hpp"
 
 struct Filter {
   string author;
@@ -62,27 +62,6 @@ Filter allFilters[] = {
      "look like a poster print.",
      applyPosterize},
 
-    // Adar
-    {"Adar", "Orton",
-     "Blends the original with a manually blurred screen\nlayer to create a "
-     "soft cinematic glow.",
-     applyOrton},
-
-    {"Adar", "Dodge",
-     "Applies a Color Dodge blend manually to blow out\nhighlights and "
-     "dramatically increase contrast.",
-     applyDodge},
-
-    {"Adar", "Gamma",
-     "Applies manual power-law correction per channel\nwith pixel-wise math "
-     "and explicit clamping.",
-     applyGamma},
-
-    {"Adar", "Bloom",
-     "Manually extracts bright pixels, applies a nested\nbox blur loop, and "
-     "adds them back to create a glow.",
-     applyBloom},
-
     // Denis
     {"Denis", "Threshold",
      "Converts the image to pure black and white\nbased on a manual intensity "
@@ -103,6 +82,27 @@ Filter allFilters[] = {
      "Shifts the hue of every pixel manually by +60\ndegrees using HSV color "
      "space.",
      applyHueRotate},
+
+    // Adar
+    {"Adar", "Orton",
+     "Blends the original with a manually blurred screen\nlayer to create a "
+     "soft cinematic glow.",
+     applyOrton},
+
+    {"Adar", "Dodge",
+     "Applies a Color Dodge blend manually to blow out\nhighlights and "
+     "dramatically increase contrast.",
+     applyDodge},
+
+    {"Adar", "Gamma",
+     "Applies manual power-law correction per channel\nwith pixel-wise math "
+     "and explicit clamping.",
+     applyGamma},
+
+    {"Adar", "Bloom",
+     "Manually extracts bright pixels, applies a nested\nbox blur loop, and "
+     "adds them back to create a glow.",
+     applyBloom},
 
 };
 
@@ -147,9 +147,9 @@ void updateParameterWindow();
 void redraw() {
   if (src.empty())
     return;
+  Mat filtered = allFilters[filterIdx].apply(src.clone());
   imshow("Original", src);
-  imshow("Filtered", allFilters[filterIdx].apply(
-                         src.clone())); // apply cloned src to fitered
+  imshow("Filtered", filtered);
 
   Mat info = Mat::zeros(300, 400, CV_8UC3); // Display filter info
   int descY = 30;

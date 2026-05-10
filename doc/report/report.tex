@@ -1,557 +1,9 @@
-\iffalse
 \documentclass[12pt,a4paper]{article}
 
 % --- Essential Packages ---
 \usepackage[utf8]{inputenc}
 \usepackage{geometry}
-\geometry{a4paper, margin=1in}
-\usepackage{amsmath}
-\usepackage{graphicx}
-\usepackage{hyperref}
-\usepackage{subcaption}
-\usepackage{float}
-
-% --- Hyperlink Colors ---
-\hypersetup{
-    colorlinks=true,
-    linkcolor=blue,
-    urlcolor=cyan
-}
-
-% --- Title Page Info ---
-\title{
-     \vspace*{1cm}
-    \includegraphics[width=6cm]{../report/assets/logo.png} \\
-    \vspace*{1cm}
-    \large Brno University of Technology \\
-    \large Faculty of Information Technology \\
-    \vspace{2cm}
-    
-    \large{Image Processing (in English) (ZPOe 25/26)} \\
-    \vspace{1cm}
-
-    \textbf{Application of Basic Image Processing Filters on Human Face Images} \\
-    \vspace*{1cm}
-    \large Project Report\\
-    \vspace{1cm}
-    \vspace{1cm}
-    \large
-    \begin{tabular}{l l}
-        Adar Otieno & \texttt{xotiena00} \\
-        Deniz Aksoy & \texttt{xaksoyd00} \\
-        Eyobed Awel Nuri & \texttt{xnuriey00} \\
-    \end{tabular}
-    \vfill
-    \date{\today}
-}
-
-\begin{document}
-
-\maketitle
-\newpage
-
-\tableofcontents
-\newpage
-
-% --- Main Content ---
-
-\section{Introduction}
-The students have decided to rework the project by removing previously proposed trivial filters such as sharpen and replaced them with more sophisticated ones as per the suggestions of the professor. We developed 12 filters from different categories in total, 4 filters per student. 
-
-
-\section{Compilation and Running}
-The project uses CMake for build management. Standard compilation and execution steps:
-\begin{verbatim}
-mkdir build && cd build
-cmake .. && make
-./project
-\end{verbatim}
-The application expects input images in the \texttt{data/} directory. The GUI features trackbars for image/filter selection and a side-by-side visualization window (800x600) with a metadata panel for filter descriptions. If you can not see the windows, drag them around to expose them.
-
-\section{Implementations}
-This section presents the filters developed by each student. Each student individually developed 4 filters, only the GUI is shared by the students. 
-
-\subsection{Eyobed's Filters}
-
-\subsubsection{Original Input Images}
-The following four images (Figure~\ref{fig:eyobed_originals}) serve as the baseline for all subsequent filter demonstrations in this section.
-
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}{0.23\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/original_0.png}
-        \caption{Source 1}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.23\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/original_1.png}
-        \caption{Source 2}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.23\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/original_2.png}
-        \caption{Source 3}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.23\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/original_3.png}
-        \caption{Source 4}
-    \end{subfigure}
-    \caption{Original unprocessed input images used for Eyobed's filter evaluations.}
-    \label{fig:eyobed_originals}
-\end{figure}
-
-\subsubsection{Histogram Equalization}
-Histogram Equalization enhances image contrast by redistributing the brightness values. To prevent unwanted color shifting, the algorithm operates in the YCrCb color space, applying the equalization only to the luminance channel before converting back to BGR.
-
-The algorithm calculates the histogram frequencies, the Probability Density Function (PDF), and the Cumulative Distribution Function (CDF). The PDF for a pixel intensity $i$ is calculated as:
-\[
-PDF(i) = \frac{\text{count}(i)}{\text{total pixels}}
-\]
-The CDF is then calculated as the cumulative sum of the PDF:
-\[
-CDF(i) = \sum_{j=0}^{i} PDF(j)
-\]
-Finally, the new remapped pixel value is computed by scaling the CDF to the 0-255 range:
-\[
-\text{Output}(x,y) = \text{round}(CDF(I(x,y)) \times 255)
-\]
-
-\begin{figure}[H]
-    \centering
-
-    \begin{subfigure}{0.23\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/histogram_eq_filtered_0.png}
-        \caption{Result 1}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.23\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/histogram_eq_filtered_1.png}
-        \caption{Result 2}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.23\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/histogram_eq_filtered_2.png}
-        \caption{Result 3}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.23\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/histogram_eq_filtered_3.png}
-        \caption{Result 4}
-    \end{subfigure}
-
-    \caption{Results after applying the Histogram Equalization filter.}
-    \label{fig:hist_eq_results}
-\end{figure}
-
-\subsubsection{Lens Distortion}
-
-The filter uses an inverse geometric mapping to simulate lens distortion. For each output pixel $(x, y)$, the source coordinate $(s_x, s_y)$ is calculated through three steps listed below:
-
-\begin{description}
-    \item[1. Normalization:] Coordinates are centered and scaled by $R = \sqrt{c_x^2 + c_y^2}$:
-    \[ d_x = \frac{x - c_x}{R}, \quad d_y = \frac{y - c_y}{R} \]
-    \item[2. Distortion:] A radial factor is computed using coefficient $k$:
-    \[ \text{dist} = 1 + k(d_x^2 + d_y^2) \]
-    Positive $k$ produces barrel distortion, while negative $k$ produces pincushion effects.
-    \item[3. Mapping:] Coordinates are scaled back to source pixel space:
-    \[ s_x = d_x \cdot \text{dist} \cdot R + c_x, \quad s_y = d_y \cdot \text{dist} \cdot R + c_y \]
-\end{description}
-Pixels are sampled using nearest-neighbor interpolation. The computational complexity is $O(W \times H)$.
-
-\begin{figure}[H]
-    \centering
-
-    \begin{subfigure}{0.23\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/lens_distortion_filtered_0.png}
-        \caption{Result 1}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.23\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/lens_distortion_filtered_1.png}
-        \caption{Result 2}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.23\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/lens_distortion_filtered_2.png}
-        \caption{Result 3}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.23\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/lens_distortion_filtered_3.png}
-        \caption{Result 4}
-    \end{subfigure}
-
-    \caption{Results after applying the Lens Distortion filter ($k = 5.0$).}
-    \label{fig:lens_distortion_results}
-\end{figure}
-
-\subsubsection{Posterize}
-
-Reduces color depth by quantizing each channel into $L = 8$ discrete levels. A 256-entry LUT is computed once to improve performance.
-
-\begin{description}
-    \item[1. Step Calculation:] The spacing between levels:
-    \[ \text{step} = \frac{255}{L - 1} \approx 36.4 \]
-    \item[2. LUT Construction:] Each intensity $i$ is snapped to the nearest level index, then scaled back:
-    \[ \text{level}_i = \text{round}\!\left(\frac{i}{\text{step}}\right), \quad \text{LUT}[i] = \text{round}(\text{level}_i \times \text{step}) \]
-    \item[3. Pixel Remapping:] Each BGR channel is independently mapped:
-    \[ \text{Output}_{c}(x, y) = \text{LUT}[\text{Input}_{c}(x, y)], \quad c \in \{B, G, R\} \]
-\end{description}
-Complexity: $O(W \times H)$ for the pixel pass, plus $O(256)$ for LUT construction.
-
-\begin{figure}[H]
-    \centering
-
-    \begin{subfigure}{0.23\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/posterize_filtered_0.png}
-        \caption{Result 1}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.23\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/posterize_filtered_1.png}
-        \caption{Result 2}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.23\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/posterize_filtered_2.png}
-        \caption{Result 3}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.23\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/posterize_filtered_3.png}
-        \caption{Result 4}
-    \end{subfigure}
-
-    \caption{Results after applying the Posterize filter ($L = 8$ levels).}
-    \label{fig:posterize_results}
-\end{figure}
-
-
-\subsubsection{Vignette Blur}
-
-Softens edges while keeping the center sharp. Implemented as a two step process: a 15×15 box blur followed by a radial blend.
-
-\begin{description}
-    \item[1. Box Blur:] For interior pixels (7-pixel border excluded), compute the 15×15 mean kernel convolution.
-    \[ \text{Blur}(x,y) = \frac{1}{225} \sum_{dy=-7}^{7} \sum_{dx=-7}^{7} \text{Input}(x+dx,\, y+dy) \]
-    \item[2. Radial Mask:] Normalize the distance from center $(c_x, c_y)$ by the corner radius $R$:
-    \[ d = \frac{\sqrt{(x-c_x)^2 + (y-c_y)^2}}{R}, \quad d \in [0, 1] \]
-    The center maps to 0 (no blur) and corners to 1 (full blur).
-    \item[3. Blending:] Linearly interpolate between original and blurred using $d$ as the weight:
-    \[ \text{Output}(x,y) = \text{Input}(x,y) \cdot (1-d) + \text{Blur}(x,y) \cdot d \]
-\end{description}
-Complexity: $O(W \times H)$ since the blur and blend are computed in a single pass.
-
-\begin{figure}[H]
-    \centering
-
-    \begin{subfigure}{0.23\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/vignette_blur_filtered_0.png}
-        \caption{Result 1}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.23\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/vignette_blur_filtered_1.png}
-        \caption{Result 2}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.23\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/vignette_blur_filtered_2.png}
-        \caption{Result 3}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.23\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/vignette_blur_filtered_3.png}
-        \caption{Result 4}
-    \end{subfigure}
-
-    \caption{Results after applying the Vignette Blur filter using a 15x15 manual kernel.}
-    \label{fig:vignette_blur_results}
-\end{figure}
-
-\subsubsection{Discussion}
-The author of this section studied about implementation of histogram eqalization,lens distortion, posterization, and vignette blur filters. He believes that these filters are good demonstrations of concepts discussed in class. Additional techniques like look up tables helped to take into consideration the performance aspect of image processing. 
-
-
-
-\subsection{Adar's Filters}
-Adar's contributions focus on manual pixel manipulation using native loops, avoiding optimized OpenCV functions for educational purposes.
-\begin{itemize}
-    \item \textbf{Relief Emboss:} Creates a 3D gray relief texture by subtracting the bottom-right neighboring pixel from the top-left neighbor and adding an offset of 128 to center the result.
-    \item \textbf{Dodge:} Implements the classic Color Dodge blend formula: \texttt{(pixel * 255) / max(1, 255 - pixel)}. This blows out the highlights and drastically increases contrast.
-    \item \textbf{Swirl:} Warps the image into a vortex by converting Cartesian coordinates to Polar coordinates, applying a nonlinear rotational offset based on the radius, and converting back to sample the pixel.
-    \item \textbf{Bloom:} Extracts bright pixels (intensity $>$ 180) and applies a brute-force nested 7x7 loop to blur them. The resulting glow is then added directly back to the original image.
-\end{itemize}
-
-\subsection{Deniz's Filters}
-
-Deniz's filters focus on fundamental image processing operations implemented through direct pixel-by-pixel matrix iteration. The implemented filters demonstrate concepts such as binary segmentation, stochastic distortion, procedural rendering, and color-space manipulation.
-
-\subsubsection{Original Input Images}
-
-The following images were selected as the common input dataset for evaluating the implemented filters.
-
-\begin{figure}[H]
-    \centering
-
-    \begin{subfigure}{0.23\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/00.jpg}
-        \caption{Input 1}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.23\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/01.jpg}
-        \caption{Input 2}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.23\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/03.jpg}
-        \caption{Input 3}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.23\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/04.jpg}
-        \caption{Input 4}
-    \end{subfigure}
-
-    \caption{Original input images used for evaluating Denis's image processing filters.}
-    \label{fig:original_inputs}
-\end{figure}
-
-\subsubsection{Threshold Filter}
-
-The Threshold filter converts the image into a binary black-and-white representation using grayscale luminosity computation and threshold comparison. It is commonly used in OCR systems, segmentation, and preprocessing pipelines.
-
-\[
-L = 0.299R + 0.587G + 0.114B
-\]
-
-\[
-\text{Output} =
-\begin{cases}
-255, & \text{if } L > T \\
-0, & \text{otherwise}
-\end{cases}
-\]
-
-The algorithm processes each pixel independently with linear complexity:
-
-\[
-O(W \times H)
-\]
-
-\begin{figure}[H]
-    \centering
-
-    \begin{subfigure}{0.23\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{assets/threshold_1.png}
-    \caption{Result 1}
-\end{subfigure}
-\hfill
-\begin{subfigure}{0.23\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{assets/threshold_2.png}
-    \caption{Result 2}
-\end{subfigure}
-\hfill
-\begin{subfigure}{0.23\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{assets/threshold_3.png}
-    \caption{Result 3}
-\end{subfigure}
-\hfill
-\begin{subfigure}{0.23\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{assets/threshold_4.png}
-    \caption{Result 4}
-\end{subfigure}
-
-    \caption{Results after applying the Threshold filter.}
-    \label{fig:threshold_results}
-\end{figure}
-
-\subsubsection{Diffuse Filter}
-
-The Diffuse filter creates a frosted-glass effect by randomly replacing each pixel with a neighboring pixel within a selected radius.
-
-\[
-(x', y') = (x + r_x,\ y + r_y)
-\]
-
-The filter produces stochastic local distortions while maintaining linear computational complexity:
-
-\[
-O(W \times H)
-\]
-
-\begin{figure}[H]
-    \centering
-
-    \begin{subfigure}{0.23\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{assets/diffuse_1.png}
-    \caption{Result 1}
-\end{subfigure}
-\hfill
-\begin{subfigure}{0.23\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{assets/diffuse_2.png}
-    \caption{Result 2}
-\end{subfigure}
-\hfill
-\begin{subfigure}{0.23\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{assets/diffuse_3.png}
-    \caption{Result 3}
-\end{subfigure}
-\hfill
-\begin{subfigure}{0.23\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{assets/diffuse_4.png}
-    \caption{Result 4}
-\end{subfigure}
-
-    \caption{Results after applying the Diffuse filter.}
-    \label{fig:diffuse_results}
-\end{figure}
-
-\subsubsection{Crosshatch Filter}
-
-The Crosshatch filter simulates sketch-style rendering using procedural diagonal line generation based on pixel coordinates.
-
-\[
-(x + y) \bmod n = 0
-\]
-
-Darker image regions generate denser hatch patterns, creating a pen-and-ink drawing effect.
-
-\[
-O(W \times H)
-\]
-
-\begin{figure}[H]
-    \centering
-
-    \begin{subfigure}{0.23\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/cross_1.png}
-        \caption{Result 1}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.23\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/cross_2.png}
-        \caption{Result 2}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.23\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/cross_3.png}
-        \caption{Result 3}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.23\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/cross_4.png}
-        \caption{Result 4}
-    \end{subfigure}
-
-    \caption{Results after applying the Crosshatch filter.}
-    \label{fig:crosshatch_results}
-\end{figure}
-
-\subsubsection{Hue Rotate Filter}
-
-The Hue Rotate filter modifies image colors by rotating the Hue channel in HSV color space.
-
-\[
-H' = (H + \Delta H) \bmod 180
-\]
-
-The implemented version applies a \(60^\circ\) hue shift while preserving brightness and structural information.
-
-\[
-O(W \times H)
-\]
-
-\begin{figure}[H]
-    \centering
-
-    \begin{subfigure}{0.23\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{assets/hue_1.png}
-    \caption{Result 1}
-\end{subfigure}
-\hfill
-\begin{subfigure}{0.23\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{assets/hue_2.png}
-    \caption{Result 2}
-\end{subfigure}
-\hfill
-\begin{subfigure}{0.23\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{assets/hue_3.png}
-    \caption{Result 3}
-\end{subfigure}
-\hfill
-\begin{subfigure}{0.23\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{assets/hue_4.png}
-    \caption{Result 4}
-\end{subfigure}
-
-    \caption{Results after applying the Hue Rotate filter.}
-    \label{fig:hue_results}
-\end{figure}
-
-
-\section{Conclusion}
-This project successfully demonstrates the application of both fundamental and advanced image processing techniques. The students also estimated the computational complexity of each filter thanks to the knowledge they acquired in the course TINe. Moreover, we  also learned the importance of using appropriate data structures and algorithms for image processing. The authors would like to acknowledge the utility of AI tools such as ChatGPT in the realization of this project in a reasonable and responsible manner.
-
-\begin{thebibliography}{9}
-\bibitem{ma2003analytical}
-Ma, L., Chen, Y., \& Moore, K. L. (2003).
-\textit{A New Analytical Radial Distortion Model for Camera Calibration}.
-arXiv preprint cs/0307046.
-\end{thebibliography}
-
-\end{document}
-
-
-\fi
-\documentclass[12pt,a4paper]{article}
-
-% --- Essential Packages ---
-\usepackage[utf8]{inputenc}
-\usepackage{geometry}
-\geometry{a4paper, margin=1in}
+\geometry{a4paper, margin=0.5in}
 \usepackage{amsmath}
 \usepackage{booktabs}
 \usepackage{graphicx}
@@ -565,7 +17,6 @@ arXiv preprint cs/0307046.
     linkcolor=blue,
     urlcolor=cyan
 }
-\setcounter{tocdepth}{3}
 
 % --- Title Page Info ---
 \title{
@@ -578,21 +29,22 @@ arXiv preprint cs/0307046.
     
     \large{Image Processing (in English) (ZPOe 25/26)} \\
     \vspace{1cm}
-
+    
     \textbf{Application of Basic Image Processing Filters on Human Face Images} \\
     \vspace*{1cm}
-    \large Project Report\\
-    \vspace{1cm}
-    \vspace{1cm}
+    \large Project Report
+}
+
+\author{
     \large
     \begin{tabular}{l l}
         Adar Otieno & \texttt{xotiena00} \\
         Deniz Aksoy & \texttt{xaksoyd00} \\
         Eyobed Awel Nuri & \texttt{xnuriey00} \\
     \end{tabular}
-    \vfill
-    \date{\today}
 }
+
+\date{\today}
 
 \begin{document}
 
@@ -605,57 +57,57 @@ arXiv preprint cs/0307046.
 % --- Main Content ---
 
 \section{Introduction}
-The students have decided to rework the project by removing previously proposed trivial filters such as sharpen and replaced them with more sophisticated ones as per the suggestions of the professor. We developed 12 filters from different categories in total, 4 filters per student. 
+The students have decided to rework the project by removing previously proposed trivial filters, namely blur, sharpen and emboss and replaced them with more sophisticated ones as per the suggestions of the professor. We developed 12 filters from different categories in total, 4 filters per student. 
 
 
 \section{Compilation and Running}
-The project uses CMake for build management. Standard compilation and execution steps:
+The project uses CMake for build management. The compilation and execution steps are shown below:
 \begin{verbatim}
 mkdir build && cd build
 cmake .. && make
 ./project
 \end{verbatim}
-The application expects input images in the \texttt{data/} directory. The GUI features trackbars for image/filter selection and a side-by-side visualization window (800x600) with a metadata panel for filter descriptions. If you can not see the windows, drag them around to expose them.
+The program expects input images in the \texttt{data/} directory. If you have extra images, put them there. The GUI has trackbars for image/filter selection and viewing windows to show the original and filtered images and an info panel for the description of the applied filter. If you cannot see the windows, drag them around to expose them.
 
 \section{Implementations}
 This section presents the filters developed by each student. Each student individually developed 4 filters, only the GUI is shared by the students. 
 
-\subsection{Eyobed's Filters}
-
-\subsubsection{Original Input Images}
-The following four images (Figure~\ref{fig:eyobed_originals}) serve as the baseline for all subsequent filter demonstrations in this section.
+\subsection{Common Input Images}
+The following four images (Figure~\ref{fig:common_inputs}) serve as the common baseline for evaluating the filters.
 
 \begin{figure}[H]
     \centering
     \begin{subfigure}{0.23\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/original_0.png}
+        \includegraphics[width=\linewidth]{assets/00.png}
         \caption{Source 1}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.23\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/original_1.png}
+        \includegraphics[width=\linewidth]{assets/01.jpg}
         \caption{Source 2}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.23\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/original_2.png}
+        \includegraphics[width=\linewidth]{assets/03.jpg}
         \caption{Source 3}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.23\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/original_3.png}
+        \includegraphics[width=\linewidth]{assets/04.jpg}
         \caption{Source 4}
     \end{subfigure}
-    \caption{Original unprocessed input images used for Eyobed's filter evaluations.}
-    \label{fig:eyobed_originals}
+    \caption{Original unprocessed input images}
+    \label{fig:common_inputs}
 \end{figure}
 
+\subsection{Eyobed's Filters}
+
 \subsubsection{Histogram Equalization}
-Histogram Equalization enhances image contrast by redistributing the brightness values. To prevent unwanted color shifting, the algorithm operates in the YCrCb color space, applying the equalization only to the luminance channel before converting back to BGR.
+Histogram Equalization is a contrast enhancement filter that redistributes the brightness values in an image. To prevent unwanted color shifting, we do it in the YCrCb color space only on the luminance channel then converting back to BGR.
 
 The algorithm calculates the histogram frequencies, the Probability Density Function (PDF), and the Cumulative Distribution Function (CDF). The PDF for a pixel intensity $i$ is calculated as:
 \[
@@ -665,7 +117,7 @@ The CDF is then calculated as the cumulative sum of the PDF:
 \[
 CDF(i) = \sum_{j=0}^{i} PDF(j)
 \]
-Finally, the new remapped pixel value is computed by scaling the CDF to the 0-255 range:
+Finally, the new pixel values are computed by scaling the CDF to the 0-255 range:
 \[
 \text{Output}(x,y) = \text{round}(CDF(I(x,y)) \times 255)
 \]
@@ -675,25 +127,25 @@ Finally, the new remapped pixel value is computed by scaling the CDF to the 0-25
 
     \begin{subfigure}{0.23\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/histogram_eq_filtered_0.png}
+        \includegraphics[width=\linewidth]{assets/eyobed/histogram_eq_0.png}
         \caption{Result 1}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.23\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/histogram_eq_filtered_1.png}
+        \includegraphics[width=\linewidth]{assets/eyobed/histogram_eq_1.png}
         \caption{Result 2}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.23\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/histogram_eq_filtered_2.png}
+        \includegraphics[width=\linewidth]{assets/eyobed/histogram_eq_2.png}
         \caption{Result 3}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.23\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/histogram_eq_filtered_3.png}
+        \includegraphics[width=\linewidth]{assets/eyobed/histogram_eq_3.png}
         \caption{Result 4}
     \end{subfigure}
 
@@ -706,7 +158,7 @@ Finally, the new remapped pixel value is computed by scaling the CDF to the 0-25
 The filter uses an inverse geometric mapping to simulate lens distortion. For each output pixel $(x, y)$, the source coordinate $(s_x, s_y)$ is calculated through three steps listed below:
 
 \begin{description}
-    \item[1. Normalization:] Coordinates are centered and scaled by $R = \sqrt{c_x^2 + c_y^2}$:
+    \item[1. Normalization:] Coordinates are centered and scaled by $R = \sqrt{c_x^2 + c_y^2}$ to maintain similar results for different image sizes:
     \[ d_x = \frac{x - c_x}{R}, \quad d_y = \frac{y - c_y}{R} \]
     \item[2. Distortion:] A radial factor is computed using coefficient $k$:
     \[ \text{dist} = 1 + k(d_x^2 + d_y^2) \]
@@ -714,32 +166,32 @@ The filter uses an inverse geometric mapping to simulate lens distortion. For ea
     \item[3. Mapping:] Coordinates are scaled back to source pixel space:
     \[ s_x = d_x \cdot \text{dist} \cdot R + c_x, \quad s_y = d_y \cdot \text{dist} \cdot R + c_y \]
 \end{description}
-Pixels are sampled using nearest-neighbor interpolation. The computational complexity is $O(W \times H)$.
+Pixels are then sampled using nearest-neighbor interpolation. The computational complexity is $O(W \times H)$.
 
 \begin{figure}[H]
     \centering
 
     \begin{subfigure}{0.23\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/lens_distortion_filtered_0.png}
+        \includegraphics[width=\linewidth]{assets/eyobed/lens_distortion_0.png}
         \caption{Result 1}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.23\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/lens_distortion_filtered_1.png}
+        \includegraphics[width=\linewidth]{assets/eyobed/lens_distortion_1.png}
         \caption{Result 2}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.23\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/lens_distortion_filtered_2.png}
+        \includegraphics[width=\linewidth]{assets/eyobed/lens_distortion_2.png}
         \caption{Result 3}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.23\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/lens_distortion_filtered_3.png}
+        \includegraphics[width=\linewidth]{assets/eyobed/lens_distortion_3.png}
         \caption{Result 4}
     \end{subfigure}
 
@@ -766,25 +218,25 @@ Complexity: $O(W \times H)$ for the pixel pass, plus $O(256)$ for LUT constructi
 
     \begin{subfigure}{0.23\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/posterize_filtered_0.png}
+        \includegraphics[width=\linewidth]{assets/eyobed/posterize_0.png}
         \caption{Result 1}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.23\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/posterize_filtered_1.png}
+        \includegraphics[width=\linewidth]{assets/eyobed/posterize_1.png}
         \caption{Result 2}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.23\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/posterize_filtered_2.png}
+        \includegraphics[width=\linewidth]{assets/eyobed/posterize_2.png}
         \caption{Result 3}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.23\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/posterize_filtered_3.png}
+        \includegraphics[width=\linewidth]{assets/eyobed/posterize_3.png}
         \caption{Result 4}
     \end{subfigure}
 
@@ -813,25 +265,25 @@ Complexity: $O(W \times H)$ since the blur and blend are computed in a single pa
 
     \begin{subfigure}{0.23\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/vignette_blur_filtered_0.png}
+        \includegraphics[width=\linewidth]{assets/eyobed/vignette_blur_0.png}
         \caption{Result 1}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.23\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/vignette_blur_filtered_1.png}
+        \includegraphics[width=\linewidth]{assets/eyobed/vignette_blur_1.png}
         \caption{Result 2}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.23\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/vignette_blur_filtered_2.png}
+        \includegraphics[width=\linewidth]{assets/eyobed/vignette_blur_2.png}
         \caption{Result 3}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.23\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/vignette_blur_filtered_3.png}
+        \includegraphics[width=\linewidth]{assets/eyobed/vignette_blur_3.png}
         \caption{Result 4}
     \end{subfigure}
 
@@ -839,49 +291,9 @@ Complexity: $O(W \times H)$ since the blur and blend are computed in a single pa
     \label{fig:vignette_blur_results}
 \end{figure}
 
-\subsubsection{Discussion}
-The author of this section studied about implementation of histogram eqalization,lens distortion, posterization, and vignette blur filters. He believes that these filters are good demonstrations of concepts discussed in class. Additional techniques like look up tables helped to take into consideration the performance aspect of image processing. 
-
-
-
 \subsection{Deniz's Filters}
 
-Deniz's filters focus on fundamental image processing operations implemented through direct pixel-by-pixel matrix iteration. The implemented filters demonstrate concepts such as binary segmentation, stochastic distortion, procedural rendering, and color-space manipulation.
-
-\subsubsection{Original Input Images}
-
-The following images were selected as the common input dataset for evaluating the implemented filters.
-
-\begin{figure}[H]
-    \centering
-
-    \begin{subfigure}{0.23\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/00.jpg}
-        \caption{Input 1}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.23\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/01.jpg}
-        \caption{Input 2}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.23\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/03.jpg}
-        \caption{Input 3}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.23\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/04.jpg}
-        \caption{Input 4}
-    \end{subfigure}
-
-    \caption{Original input images used for evaluating Denis's image processing filters.}
-    \label{fig:original_inputs}
-\end{figure}
+Deniz's filters focus on fundamental image processing operations implemented through direct pixel-by-pixel matrix iteration.
 
 \subsubsection{Threshold Filter}
 
@@ -910,25 +322,25 @@ O(W \times H)
 
     \begin{subfigure}{0.23\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{assets/threshold_1.png}
+    \includegraphics[width=\linewidth]{assets/denis/threshold_0.png}
     \caption{Result 1}
 \end{subfigure}
 \hfill
 \begin{subfigure}{0.23\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{assets/threshold_2.png}
+    \includegraphics[width=\linewidth]{assets/denis/threshold_1.png}
     \caption{Result 2}
 \end{subfigure}
 \hfill
 \begin{subfigure}{0.23\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{assets/threshold_3.png}
+    \includegraphics[width=\linewidth]{assets/denis/threshold_2.png}
     \caption{Result 3}
 \end{subfigure}
 \hfill
 \begin{subfigure}{0.23\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{assets/threshold_4.png}
+    \includegraphics[width=\linewidth]{assets/denis/threshold_3.png}
     \caption{Result 4}
 \end{subfigure}
 
@@ -939,13 +351,11 @@ O(W \times H)
 \subsubsection{Diffuse Filter}
 
 The Diffuse filter creates a frosted-glass effect by randomly replacing each pixel with a neighboring pixel within a selected radius.
-
 \[
 (x', y') = (x + r_x,\ y + r_y)
 \]
 
 The filter produces stochastic local distortions while maintaining linear computational complexity:
-
 \[
 O(W \times H)
 \]
@@ -955,25 +365,25 @@ O(W \times H)
 
     \begin{subfigure}{0.23\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{assets/diffuse_1.png}
+    \includegraphics[width=\linewidth]{assets/denis/diffuse_0.png}
     \caption{Result 1}
 \end{subfigure}
 \hfill
 \begin{subfigure}{0.23\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{assets/diffuse_2.png}
+    \includegraphics[width=\linewidth]{assets/denis/diffuse_1.png}
     \caption{Result 2}
 \end{subfigure}
 \hfill
 \begin{subfigure}{0.23\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{assets/diffuse_3.png}
+    \includegraphics[width=\linewidth]{assets/denis/diffuse_2.png}
     \caption{Result 3}
 \end{subfigure}
 \hfill
 \begin{subfigure}{0.23\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{assets/diffuse_4.png}
+    \includegraphics[width=\linewidth]{assets/denis/diffuse_3.png}
     \caption{Result 4}
 \end{subfigure}
 
@@ -984,13 +394,10 @@ O(W \times H)
 \subsubsection{Crosshatch Filter}
 
 The Crosshatch filter simulates sketch-style rendering using procedural diagonal line generation based on pixel coordinates.
-
 \[
 (x + y) \bmod n = 0
 \]
-
 Darker image regions generate denser hatch patterns, creating a pen-and-ink drawing effect.
-
 \[
 O(W \times H)
 \]
@@ -1000,25 +407,25 @@ O(W \times H)
 
     \begin{subfigure}{0.23\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/cross_1.png}
+        \includegraphics[width=\linewidth]{assets/denis/crosshatch_0.png}
         \caption{Result 1}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.23\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/cross_2.png}
+        \includegraphics[width=\linewidth]{assets/denis/crosshatch_1.png}
         \caption{Result 2}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.23\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/cross_3.png}
+        \includegraphics[width=\linewidth]{assets/denis/crosshatch_2.png}
         \caption{Result 3}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.23\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/cross_4.png}
+        \includegraphics[width=\linewidth]{assets/denis/crosshatch_3.png}
         \caption{Result 4}
     \end{subfigure}
 
@@ -1029,13 +436,10 @@ O(W \times H)
 \subsubsection{Hue Rotate Filter}
 
 The Hue Rotate filter modifies image colors by rotating the Hue channel in HSV color space.
-
 \[
 H' = (H + \Delta H) \bmod 180
 \]
-
 The implemented version applies a \(60^\circ\) hue shift while preserving brightness and structural information.
-
 \[
 O(W \times H)
 \]
@@ -1045,25 +449,25 @@ O(W \times H)
 
     \begin{subfigure}{0.23\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{assets/hue_1.png}
+    \includegraphics[width=\linewidth]{assets/denis/hue_rotate_0.png}
     \caption{Result 1}
 \end{subfigure}
 \hfill
 \begin{subfigure}{0.23\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{assets/hue_2.png}
+    \includegraphics[width=\linewidth]{assets/denis/hue_rotate_1.png}
     \caption{Result 2}
 \end{subfigure}
 \hfill
 \begin{subfigure}{0.23\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{assets/hue_3.png}
+    \includegraphics[width=\linewidth]{assets/denis/hue_rotate_2.png}
     \caption{Result 3}
 \end{subfigure}
 \hfill
 \begin{subfigure}{0.23\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{assets/hue_4.png}
+    \includegraphics[width=\linewidth]{assets/denis/hue_rotate_3.png}
     \caption{Result 4}
 \end{subfigure}
 
@@ -1071,205 +475,105 @@ O(W \times H)
     \label{fig:hue_results}
 \end{figure}
 
+
 \subsection{Adar's Filters}
-Adar's contributions focus on creative glow and tone/brightness manipulation filters.
+Adar's contributions focus on manual pixel manipulation using native loops, avoiding optimized OpenCV functions for educational purposes.
 
 \subsubsection{Bloom Filter}
-\textbf{Core model}
-\[
-M(x)=\mathbf{1}_{I_g(x)\ge T},\quad B=I\odot M,\quad G=G_{\sigma}*B,\quad I'=I+\alpha G
-\]
-\textbf{Notation} \(T\): threshold, \(\sigma\): blur spread, \(\alpha\): glow strength, \(I'\): output.
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{assets/adar/bloomsample1.jpg}
+        \caption{Input}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{assets/adar/bloom1.jpg}
+        \caption{Bloom Effect}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{assets/adar/bloom1graph.jpg}
+        \caption{Intensity Graph}
+    \end{subfigure}
+    \caption{Bloom filter results and light intensity analysis.}
+\end{figure}
 
-\textbf{Pixel-level transformation}
-\[
-I'_c(x,y)=I_c(x,y)+\alpha\sum_{i=-r}^{r}\sum_{j=-r}^{r}G_{\sigma}(i,j)\,B_c(x+i,y+j)
-\]
-Only bright pixels feed the glow layer; high \(T\) can suppress bloom even with high \(\alpha\).
+\subsubsection{Orton Effect}
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{assets/adar/ortonsample1.jpg}
+        \caption{Input}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{assets/adar/orton1.jpg}
+        \caption{Orton Effect}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{assets/adar/orton1graph.jpg}
+        \caption{Contrast Graph}
+    \end{subfigure}
+    \caption{Orton Effect results and contrast analysis.}
+\end{figure}
 
-\textbf{Algorithm (implementation)}
-\begin{verbatim}
-for each pixel (x,y):
-  scan (2r+1)x(2r+1) neighborhood
-  accumulate only neighbors with intensity > threshold
-  glow = sum / ((2r+1)*(2r+1))
-  out = clamp(src + strength * glow)
-\end{verbatim}
-\textbf{Implementation note} Radius/threshold/strength are clamped in setter functions; output channels are clamped to \([0,255]\).
+\subsubsection{Gamma Correction}
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{assets/adar/gammasample1.jpg}
+        \caption{Input}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{assets/adar/gamma1.jpg}
+        \caption{Gamma $\gamma=2.2$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{assets/adar/gamma1graph.jpg}
+        \caption{Gamma Curve}
+    \end{subfigure}
+    \caption{Gamma correction results and mapping curves.}
+\end{figure}
 
-\textbf{Experiment -- Bloom}
-\begin{center}
-\begin{tabular}{ccc}
-\includegraphics[width=0.31\textwidth]{assets/bloom1.jpg} &
-\includegraphics[width=0.31\textwidth]{assets/bloom2.jpg} &
-\includegraphics[width=0.31\textwidth]{assets/bloom3.jpg} \\
-\scriptsize $T=24,\ \alpha=0.05,\ \sigma=0.5$ &
-\scriptsize $T=21,\ \alpha=0.65,\ \sigma=1.2$ &
-\scriptsize $T=144,\ \alpha=1.8,\ \sigma=11.3$ \\
-\includegraphics[width=0.31\textwidth]{assets/bloom1graph.jpg} &
-\includegraphics[width=0.31\textwidth]{assets/bloom2graph.jpg} &
-\includegraphics[width=0.31\textwidth]{assets/bloom3graph.jpg}
-\end{tabular}
-\end{center}
+\subsubsection{Color Dodge}
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{assets/adar/dodgesample1.jpg}
+        \caption{Input}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{assets/adar/dodge1.jpg}
+        \caption{Dodge Effect}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{assets/adar/dodge1graph.jpg}
+        \caption{Blend Graph}
+    \end{subfigure}
+    \caption{Color Dodge results and blend analysis.}
+\end{figure}
 
-\textbf{Use} cinematic highlight glow and light-source emphasis.  
-\begin{center}
-\begin{tabular}{ccc}
-\includegraphics[width=0.31\textwidth]{assets/bloomsample1.jpg} &
-\includegraphics[width=0.31\textwidth]{assets/bloomsample2.jpg} &
-\includegraphics[width=0.31\textwidth]{assets/bloomsample3.jpg}
-\end{tabular}
-\end{center}
-\textbf{Compare} stronger spatial glow than gamma/dodge.
-\textbf{Cost note} Per-pixel asymptotic cost is \(O(k^2)\) because Bloom applies Gaussian blur on a \(k\times k\) neighborhood.
+\section{Comparison of Filter Categories}
 
-\subsubsection{Orton Effect Filter}
-\textbf{Core model}
-\[
-S = 255 - \frac{(255-I)(255-B)}{255},\quad B=G_{\sigma}*I,\quad I'=(1-\alpha)I+\alpha S
-\]
-\textbf{Notation} \(B\): blurred image, \(S\): screen blend, \(\sigma\): blur spread, \(\alpha\): mix strength.
-
-\textbf{Pixel-level transformation}
-\[
-\begin{aligned}
-B_c(x,y)&=\sum_{i=-r}^{r}\sum_{j=-r}^{r}G_{\sigma}(i,j)\,I_c(x+i,y+j),\\
-S_c(x,y)&=255-\frac{(255-I_c(x,y))(255-B_c(x,y))}{255},\\
-I'_c(x,y)&=(1-\alpha)I_c(x,y)+\alpha S_c(x,y).
-\end{aligned}
-\]
-
-\textbf{Algorithm (implementation)}
-\begin{verbatim}
-build 1D Gaussian kernel from sigma
-horizontal pass with edge clamping
-vertical pass with edge clamping
-screen = 255 - ((255-src)*(255-blur)/255)
-out = clamp((1-strength)*src + strength*screen)
-\end{verbatim}
-\textbf{Implementation note} Implementation uses separable blur in \texttt{CV\_64FC3}, then blends and clamps per channel.
-
-\textbf{Experiment -- Orton}
-\begin{center}
-\begin{tabular}{ccc}
-\includegraphics[width=0.31\textwidth]{assets/orton1.jpg} &
-\includegraphics[width=0.31\textwidth]{assets/orton2.jpg} &
-\includegraphics[width=0.31\textwidth]{assets/orton3.jpg} \\
-\scriptsize $\alpha=0.15,\ \sigma=0.1$ &
-\scriptsize $\alpha=0.45,\ \sigma=8.5$ &
-\scriptsize $\alpha=1.0,\ \sigma=19.1$ \\
-\includegraphics[width=0.31\textwidth]{assets/orton1graph.jpg} &
-\includegraphics[width=0.31\textwidth]{assets/orton2graph.jpg} &
-\includegraphics[width=0.31\textwidth]{assets/orton3graph3.jpg}
-\end{tabular}
-\end{center}
-
-\textbf{Use} soft-focus portrait look with reduced micro-contrast.  
-\begin{center}
-\begin{tabular}{ccc}
-\includegraphics[width=0.31\textwidth]{assets/ortonsample1.jpg} &
-\includegraphics[width=0.31\textwidth]{assets/ortonsample2.jpg} &
-\includegraphics[width=0.31\textwidth]{assets/ortonsample3.jpg}
-\end{tabular}
-\end{center}
-\textbf{Compare} gentler and more diffuse than bloom.
-\textbf{Cost note} Per-pixel asymptotic cost is \(O(k^2)\) due to Gaussian blur plus point-wise blend.
-
-\subsubsection{Gamma Filter}
-\textbf{Core model}
-\[
-V_{\text{out}} = A\,V_{\text{in}}^{\gamma},\qquad
-I' = 255\left(\frac{I}{255}\right)^{1/\gamma}
-\]
-\textbf{Notation} \(\gamma\): tone-curve exponent, \(A\): scale (usually 1), \(I\in[0,255]\): 8-bit input.
-\textbf{Why \(0..255\)} 8-bit \texttt{uint8} images have 256 levels; divide by 255 to normalize to \([0,1]\), then multiply by 255 to return.
-
-\textbf{Pixel-level transformation}
-\[
-I'_{c}(x,y)=255\left(\frac{I_{c}(x,y)}{255}\right)^{1/\gamma}
-\]
-\(\gamma<1\): brighter midtones, \(\gamma>1\): darker midtones.
-
-\textbf{Algorithm (implementation)}
-\begin{verbatim}
-invGamma = 1.0 / gamma
-for each pixel/channel:
-  normalized = value / 255.0
-  corrected = round((normalized ^ invGamma) * 255)
-  out = clamp(corrected)
-\end{verbatim}
-\textbf{Implementation note} \(\gamma\) is clamped in the setter and correction is computed directly per channel (no LUT in C++).
-
-\textbf{Experiment -- Gamma}
-\begin{center}
-\begin{tabular}{ccc}
-\includegraphics[width=0.31\textwidth]{assets/gamma1.jpg} &
-\includegraphics[width=0.31\textwidth]{assets/gamma2.jpg} &
-\includegraphics[width=0.31\textwidth]{assets/gamma3.jpg} \\
-\scriptsize $\gamma=0.2$ & \scriptsize $\gamma=1.0$ & \scriptsize $\gamma=1.95$ \\
-\includegraphics[width=0.31\textwidth]{assets/gamma1graph.jpg} &
-\includegraphics[width=0.31\textwidth]{assets/gamma2graph.jpg} &
-\includegraphics[width=0.31\textwidth]{assets/gamma3graph.jpg}
-\end{tabular}
-\end{center}
-
-\textbf{Use} controlled global tone and midtone correction.  
-\begin{center}
-\begin{tabular}{ccc}
-\includegraphics[width=0.31\textwidth]{assets/gammasample1.jpg} &
-\includegraphics[width=0.31\textwidth]{assets/gammasample2.jpg} &
-\includegraphics[width=0.31\textwidth]{assets/gammasample3.jpg}
-\end{tabular}
-\end{center}
-\textbf{Compare} smoother and less aggressive than dodge.
-\textbf{Cost note} Per-pixel asymptotic cost is \(O(1)\) when implemented with LUT lookup.
-
-\subsubsection{Dodge Filter}
-\textbf{Core model}
-\[
-I' \approx \frac{255\,I}{255-sI}
-\]
-\textbf{Notation} \(s\): dodge strength, \(I\): input intensity, \(I'\): output intensity.
-
-\textbf{Pixel-level transformation}
-\[
-I'_{c}(x,y)=\mathrm{clip}\!\left(\frac{255\,I_{c}(x,y)}{\max(255-s\,I_{c}(x,y),1)}\right)
-\]
-Higher \(s\) strongly boosts highlights and may clip to white.
-
-\textbf{Algorithm (implementation)}
-\begin{verbatim}
-for each pixel/channel:
-  dodge = (src*255) / max(1, 255 - src + protect)
-  out = clamp((1-strength)*src + strength*dodge)
-\end{verbatim}
-\textbf{Implementation note} Strength/protect are clamped in setters; denominator is guarded and output is clamped per channel.
-
-\textbf{Experiment -- Dodge}
-\begin{center}
-\begin{tabular}{ccc}
-\includegraphics[width=0.31\textwidth]{assets/dodge1.jpg} &
-\includegraphics[width=0.31\textwidth]{assets/dodge2.jpg} &
-\includegraphics[width=0.31\textwidth]{assets/dodge3.jpg} \\
-\scriptsize $s=0.01$ & \scriptsize $s=0.5$ & \scriptsize $s=0.90$ \\
-\includegraphics[width=0.31\textwidth]{assets/dodge1graph.jpg} &
-\includegraphics[width=0.31\textwidth]{assets/dodge2graph.jpg} &
-\includegraphics[width=0.31\textwidth]{assets/dodge3graph.jpg}
-\end{tabular}
-\end{center}
-
-\textbf{Use} stylized highlight brightening and sketch-like effects.  
-\begin{center}
-\begin{tabular}{ccc}
-\includegraphics[width=0.31\textwidth]{assets/dodgesample1.jpg} &
-\includegraphics[width=0.31\textwidth]{assets/dodgesample2.jpg} &
-\includegraphics[width=0.31\textwidth]{assets/dodgesample3.jpg}
-\end{tabular}
-\end{center}
-\textbf{Compare} more aggressive than gamma; non-spatial (no blur spread).
-\textbf{Cost note} Per-pixel asymptotic cost is \(O(1)\) for direct pixel arithmetic.
-
-\paragraph{Creative Glow Comparison}
+\paragraph{Geometric / Structural Comparison}
 \begin{center}
 \setlength{\tabcolsep}{3pt}
 \footnotesize
@@ -1312,5 +616,3 @@ arXiv preprint cs/0307046.
 \end{thebibliography}
 
 \end{document}
-
-
