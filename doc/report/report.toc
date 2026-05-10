@@ -1,0 +1,25 @@
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}%
+\contentsline {section}{\numberline {2}Compilation and Running}{3}{section.2}%
+\contentsline {section}{\numberline {3}Implementations}{3}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Common Input Images}{3}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Eyobed's Filters}{3}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Histogram Equalization}{3}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Lens Distortion}{4}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}Posterize}{5}{subsubsection.3.2.3}%
+\contentsline {subsubsection}{\numberline {3.2.4}Vignette Blur}{5}{subsubsection.3.2.4}%
+\contentsline {subsubsection}{\numberline {3.2.5}Discussion}{6}{subsubsection.3.2.5}%
+\contentsline {subsection}{\numberline {3.3}Deniz's Filters}{6}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Threshold Filter}{6}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Diffuse Filter}{7}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.3}Crosshatch Filter}{7}{subsubsection.3.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.4}Hue Rotate Filter}{7}{subsubsection.3.3.4}%
+\contentsline {subsubsection}{\numberline {3.3.5}Evaluation and Discussion}{8}{subsubsection.3.3.5}%
+\contentsline {subsection}{\numberline {3.4}Adar's Filters}{8}{subsection.3.4}%
+\contentsline {subsubsection}{\numberline {3.4.1}Bloom Filter}{8}{subsubsection.3.4.1}%
+\contentsline {subsubsection}{\numberline {3.4.2}Orton Effect Filter}{9}{subsubsection.3.4.2}%
+\contentsline {subsubsection}{\numberline {3.4.3}Gamma Filter}{10}{subsubsection.3.4.3}%
+\contentsline {subsubsection}{\numberline {3.4.4}Dodge Filter}{11}{subsubsection.3.4.4}%
+\contentsline {section}{\numberline {4}Comparison of Filter Categories}{12}{section.4}%
+\contentsline {paragraph}{Geometric / Structural Comparison}{12}{section*.11}%
+\contentsline {paragraph}{Tone / Brightness Comparison}{12}{section*.12}%
+\contentsline {section}{\numberline {5}Conclusion}{12}{section.5}%
