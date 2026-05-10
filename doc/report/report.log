@@ -1,296 +1,349 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2025.10.29)  10 MAY 2026 11:57
+=======
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.5.7)  10 MAY 2026 12:20
+>>>>>>> f2a0313 (Update report)
 entering extended mode
  restricted \write18 enabled.
- file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/home/eyobed/Documents/School/BUT/Semester 2/ZPOe/ZPOe_Project_Filter_Effects/doc/report/report.tex"
-(/home/eyobed/Documents/School/BUT/Semester 2/ZPOe/ZPOe_Project_Filter_Effects/doc/report/report.tex
-LaTeX2e <2024-11-01> patch level 2
-L3 programming layer <2025-01-18>
+**report.tex
+(./report.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2024/06/29 v1.4n Standard LaTeX document class
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
-File: size12.clo 2024/06/29 v1.4n Standard LaTeX file (size option)
+File: size12.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
 )
-\c@part=\count196
-\c@section=\count197
-\c@subsection=\count198
-\c@subsubsection=\count199
-\c@paragraph=\count266
-\c@subparagraph=\count267
-\c@figure=\count268
-\c@table=\count269
-\abovecaptionskip=\skip49
-\belowcaptionskip=\skip50
-\bibindent=\dimen141
-) (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
-Package: inputenc 2024/02/08 v1.3d Input encoding file
+\c@part=\count187
+\c@section=\count188
+\c@subsection=\count189
+\c@subsubsection=\count190
+\c@paragraph=\count191
+\c@subparagraph=\count192
+\c@figure=\count193
+\c@table=\count194
+\abovecaptionskip=\skip48
+\belowcaptionskip=\skip49
+\bibindent=\dimen140
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2021/02/14 v1.3d Input encoding file
 \inpenc@prehook=\toks17
 \inpenc@posthook=\toks18
-) (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
- (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 \KV@toks@=\toks19
-) (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
- (/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
-Package: iftex 2024/12/12 v1.0g TeX engine tests
+
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2022/02/03 v1.0f TeX engine tests
 ))
-\Gm@cnth=\count270
-\Gm@cntv=\count271
-\c@Gm@tempcnt=\count272
-\Gm@bindingoffset=\dimen142
-\Gm@wd@mp=\dimen143
-\Gm@odd@mp=\dimen144
-\Gm@even@mp=\dimen145
-\Gm@layoutwidth=\dimen146
-\Gm@layoutheight=\dimen147
-\Gm@layouthoffset=\dimen148
-\Gm@layoutvoffset=\dimen149
+\Gm@cnth=\count195
+\Gm@cntv=\count196
+\c@Gm@tempcnt=\count197
+\Gm@bindingoffset=\dimen141
+\Gm@wd@mp=\dimen142
+\Gm@odd@mp=\dimen143
+\Gm@even@mp=\dimen144
+\Gm@layoutwidth=\dimen145
+\Gm@layoutheight=\dimen146
+\Gm@layouthoffset=\dimen147
+\Gm@layoutvoffset=\dimen148
 \Gm@dimlist=\toks20
-) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
-Package: amsmath 2024/11/05 v2.17t AMS math features
-\@mathmargin=\skip51
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2023/05/13 v2.17o AMS math features
+\@mathmargin=\skip50
 
 For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2021/08/26 v2.01 AMS text
- (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks21
-\ex@=\dimen150
-)) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+\ex@=\dimen149
+))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen151
-) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+\pmbraise@=\dimen150
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
-\inf@bad=\count273
-LaTeX Info: Redefining \frac on input line 233.
-\uproot@=\count274
-\leftroot@=\count275
-LaTeX Info: Redefining \overline on input line 398.
-LaTeX Info: Redefining \colon on input line 409.
-\classnum@=\count276
-\DOTSCASE@=\count277
-LaTeX Info: Redefining \ldots on input line 495.
-LaTeX Info: Redefining \dots on input line 498.
-LaTeX Info: Redefining \cdots on input line 619.
-\Mathstrutbox@=\box52
-\strutbox@=\box53
-LaTeX Info: Redefining \big on input line 721.
-LaTeX Info: Redefining \Big on input line 722.
-LaTeX Info: Redefining \bigg on input line 723.
-LaTeX Info: Redefining \Bigg on input line 724.
-\big@size=\dimen152
-LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
-\macc@depth=\count278
-LaTeX Info: Redefining \bmod on input line 904.
-LaTeX Info: Redefining \pmod on input line 909.
-LaTeX Info: Redefining \smash on input line 939.
-LaTeX Info: Redefining \relbar on input line 969.
-LaTeX Info: Redefining \Relbar on input line 970.
-\c@MaxMatrixCols=\count279
-\dotsspace@=\muskip17
-\c@parentequation=\count280
-\dspbrk@lvl=\count281
+\inf@bad=\count198
+LaTeX Info: Redefining \frac on input line 234.
+\uproot@=\count199
+\leftroot@=\count266
+LaTeX Info: Redefining \overline on input line 399.
+LaTeX Info: Redefining \colon on input line 410.
+\classnum@=\count267
+\DOTSCASE@=\count268
+LaTeX Info: Redefining \ldots on input line 496.
+LaTeX Info: Redefining \dots on input line 499.
+LaTeX Info: Redefining \cdots on input line 620.
+\Mathstrutbox@=\box51
+\strutbox@=\box52
+LaTeX Info: Redefining \big on input line 722.
+LaTeX Info: Redefining \Big on input line 723.
+LaTeX Info: Redefining \bigg on input line 724.
+LaTeX Info: Redefining \Bigg on input line 725.
+\big@size=\dimen151
+LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
+\macc@depth=\count269
+LaTeX Info: Redefining \bmod on input line 905.
+LaTeX Info: Redefining \pmod on input line 910.
+LaTeX Info: Redefining \smash on input line 940.
+LaTeX Info: Redefining \relbar on input line 970.
+LaTeX Info: Redefining \Relbar on input line 971.
+\c@MaxMatrixCols=\count270
+\dotsspace@=\muskip16
+\c@parentequation=\count271
+\dspbrk@lvl=\count272
 \tag@help=\toks22
-\row@=\count282
-\column@=\count283
-\maxfields@=\count284
+\row@=\count273
+\column@=\count274
+\maxfields@=\count275
 \andhelp@=\toks23
-\eqnshift@=\dimen153
-\alignsep@=\dimen154
-\tagshift@=\dimen155
-\tagwidth@=\dimen156
-\totwidth@=\dimen157
-\lineht@=\dimen158
+\eqnshift@=\dimen152
+\alignsep@=\dimen153
+\tagshift@=\dimen154
+\tagwidth@=\dimen155
+\totwidth@=\dimen156
+\lineht@=\dimen157
 \@envbody=\toks24
-\multlinegap=\skip52
-\multlinetaggap=\skip53
+\multlinegap=\skip51
+\multlinetaggap=\skip52
 \mathdisplay@stack=\toks25
 LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
-) (/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
+)
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen159
-\lightrulewidth=\dimen160
-\cmidrulewidth=\dimen161
-\belowrulesep=\dimen162
-\belowbottomsep=\dimen163
-\aboverulesep=\dimen164
-\abovetopsep=\dimen165
-\cmidrulesep=\dimen166
-\cmidrulekern=\dimen167
-\defaultaddspace=\dimen168
-\@cmidla=\count285
-\@cmidlb=\count286
-\@aboverulesep=\dimen169
-\@belowrulesep=\dimen170
-\@thisruleclass=\count287
-\@lastruleclass=\count288
-\@thisrulewidth=\dimen171
-) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+\heavyrulewidth=\dimen158
+\lightrulewidth=\dimen159
+\cmidrulewidth=\dimen160
+\belowrulesep=\dimen161
+\belowbottomsep=\dimen162
+\aboverulesep=\dimen163
+\abovetopsep=\dimen164
+\cmidrulesep=\dimen165
+\cmidrulekern=\dimen166
+\defaultaddspace=\dimen167
+\@cmidla=\count276
+\@cmidlb=\count277
+\@aboverulesep=\dimen168
+\@belowrulesep=\dimen169
+\@thisruleclass=\count278
+\@lastruleclass=\count279
+\@thisrulewidth=\dimen170
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
- (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
- (/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
-Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
-) (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: pdftex.def on input line 106.
- (/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
-File: pdftex.def 2024/04/13 v1.2c Graphics/color driver for pdftex
+Package graphics Info: Driver file: pdftex.def on input line 107.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
 ))
-\Gin@req@height=\dimen172
-\Gin@req@width=\dimen173
-) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2024-11-05 v7.01l Hypertext links for LaTeX
- (/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+\Gin@req@height=\dimen171
+\Gin@req@width=\dimen172
+)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2024-01-20 v7.01h Hypertext links for LaTeX
+
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
-) (/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
-) (/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
- (/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
-) (/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
-Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
- (/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
-)) (/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty
+))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
-) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2023-11-26 v2.56 Cross-referencing by name of section
- (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
-) (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
- (/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
-\c@section@level=\count289
-) (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
-Package: etoolbox 2025/02/11 v2.5l e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count290
-) (/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty
-Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
+\c@section@level=\count280
 )
-\@linkdim=\dimen174
-\Hy@linkcounter=\count291
-\Hy@pagecounter=\count292
- (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2024-11-05 v7.01l Hyperref: PDFDocEncoding definition (HO)
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count281
+)
+\@linkdim=\dimen173
+\Hy@linkcounter=\count282
+\Hy@pagecounter=\count283
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2024-01-20 v7.01h Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
-) (/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty
+)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count293
- (/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def
-File: puenc.def 2024-11-05 v7.01l Hyperref: PDF Unicode definition (HO)
+\Hy@SavedSpaceFactor=\count284
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2024-01-20 v7.01h Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
-Package hyperref Info: Hyper figures OFF on input line 4157.
-Package hyperref Info: Link nesting OFF on input line 4162.
-Package hyperref Info: Hyper index ON on input line 4165.
-Package hyperref Info: Plain pages OFF on input line 4172.
-Package hyperref Info: Backreferencing OFF on input line 4177.
+Package hyperref Info: Hyper figures OFF on input line 4179.
+Package hyperref Info: Link nesting OFF on input line 4184.
+Package hyperref Info: Hyper index ON on input line 4187.
+Package hyperref Info: Plain pages OFF on input line 4194.
+Package hyperref Info: Backreferencing OFF on input line 4199.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4424.
-\c@Hy@tempcnt=\count294
- (/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
-\Urlmuskip=\muskip18
+Package hyperref Info: Bookmarks ON on input line 4446.
+\c@Hy@tempcnt=\count285
+
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 4763.
-\XeTeXLinkMargin=\dimen175
- (/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+LaTeX Info: Redefining \url on input line 4784.
+\XeTeXLinkMargin=\dimen174
+
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
- (/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
-Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
 ))
-\Fld@menulength=\count295
-\Field@Width=\dimen176
-\Fld@charsize=\dimen177
-Package hyperref Info: Hyper figures OFF on input line 6042.
-Package hyperref Info: Link nesting OFF on input line 6047.
-Package hyperref Info: Hyper index ON on input line 6050.
-Package hyperref Info: backreferencing OFF on input line 6057.
-Package hyperref Info: Link coloring OFF on input line 6062.
-Package hyperref Info: Link coloring with OCG OFF on input line 6067.
-Package hyperref Info: PDF/A mode OFF on input line 6072.
- (/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty
+\Fld@menulength=\count286
+\Field@Width=\dimen175
+\Fld@charsize=\dimen176
+Package hyperref Info: Hyper figures OFF on input line 6063.
+Package hyperref Info: Link nesting OFF on input line 6068.
+Package hyperref Info: Hyper index ON on input line 6071.
+Package hyperref Info: backreferencing OFF on input line 6078.
+Package hyperref Info: Link coloring OFF on input line 6083.
+Package hyperref Info: Link coloring with OCG OFF on input line 6088.
+Package hyperref Info: PDF/A mode OFF on input line 6093.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count296
-\c@Item=\count297
-\c@Hfootnote=\count298
+\Hy@abspage=\count287
+\c@Item=\count288
+\c@Hfootnote=\count289
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
- (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2024-11-05 v7.01l Hyperref driver for pdfTeX
- (/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty
-Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2024-01-20 v7.01h Hyperref driver for pdfTeX
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
+kage
 with kernel methods
 )
-\Fld@listcount=\count299
-\c@bookmark@seq@number=\count300
- (/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+\Fld@listcount=\count290
+\c@bookmark@seq@number=\count291
+
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
- (/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
 Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
-Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+85.
 )
-\Hy@SectionHShift=\skip54
-) (/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+\Hy@SectionHShift=\skip53
+)
+(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
 Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
- (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2023/08/05 v3.6o Customizing captions (AR)
- (/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
-\caption@tempdima=\dimen178
-\captionmargin=\dimen179
-\caption@leftmargin=\dimen180
-\caption@rightmargin=\dimen181
-\caption@width=\dimen182
-\caption@indent=\dimen183
-\caption@parindent=\dimen184
-\caption@hangindent=\dimen185
+\caption@tempdima=\dimen177
+\captionmargin=\dimen178
+\caption@leftmargin=\dimen179
+\caption@rightmargin=\dimen180
+\caption@width=\dimen181
+\caption@indent=\dimen182
+\caption@parindent=\dimen183
+\caption@hangindent=\dimen184
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count301
-\c@continuedfloat=\count302
+\c@caption@flags=\count292
+\c@continuedfloat=\count293
 Package caption Info: hyperref package is loaded.
 )
 Package caption Info: New subtype `subfigure' on input line 238.
-\c@subfigure=\count303
+\c@subfigure=\count294
 Package caption Info: New subtype `subtable' on input line 238.
-\c@subtable=\count304
-) (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+\c@subtable=\count295
+)
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count305
+\c@float@type=\count296
 \float@exts=\toks26
-\float@box=\box54
+\float@box=\box53
 \@float@everytoks=\toks27
-\@floatcapt=\box55
+\@floatcapt=\box54
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 19.
- (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count306
-\l__pdf_internal_box=\box56
-) (./report.aux)
+
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count297
+\l__pdf_internal_box=\box55
+)
+(./report.aux)
 \openout1 = `report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
@@ -348,29 +401,35 @@ LaTeX Font Info:    ... okay on input line 49.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count307
-\scratchdimen=\dimen186
-\scratchbox=\box57
-\nofMPsegments=\count308
-\nofMParguments=\count309
+\scratchcounter=\count298
+\scratchdimen=\dimen185
+\scratchbox=\box56
+\nofMPsegments=\count299
+\nofMParguments=\count300
 \everyMPshowfont=\toks28
-\MPscratchCnt=\count310
-\MPscratchDim=\dimen187
-\MPnumerator=\count311
-\makeMPintoPDFobject=\count312
+\MPscratchCnt=\count301
+\MPscratchDim=\dimen186
+\MPnumerator=\count302
+\makeMPintoPDFobject=\count303
 \everyMPtoPDFconversion=\toks29
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
- (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
-)) (/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
-Package: color 2024/06/23 v1.3e Standard LaTeX Color (DPC)
- (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2022/01/06 v1.3d Standard LaTeX Color (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: pdftex.def on input line 149.
- (/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
 Package hyperref Info: Link coloring ON on input line 49.
  (./report.out) (./report.out)
 \@outlinefile=\write3
@@ -379,149 +438,177 @@ Package hyperref Info: Link coloring ON on input line 49.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
-<../report/assets/logo.png, id=88, 1503.6175pt x 602.25pt>
+<../report/assets/logo.png, id=96, 1503.6175pt x 602.25pt>
 File: ../report/assets/logo.png Graphic file (type png)
 <use ../report/assets/logo.png>
 Package pdftex.def Info: ../report/assets/logo.png  used on input line 52.
 (pdftex.def)             Requested size: 170.71652pt x 68.37048pt.
+ [1
 
-
-[1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <../report/assets/logo.png>] (./report.toc)
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <../report/assets/logo.png>
+] (./report.toc)
 \tf@toc=\write4
 \openout4 = `report.toc'.
 
-
-
-[2]
-<assets/00.png, id=126, 513.92pt x 513.92pt>
+ [2]
+<assets/00.png, id=136, 513.92pt x 513.92pt>
 File: assets/00.png Graphic file (type png)
 <use assets/00.png>
 Package pdftex.def Info: assets/00.png  used on input line 82.
 (pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
-<assets/01.jpg, id=127, 513.92pt x 513.92pt>
+<assets/01.jpg, id=137, 513.92pt x 513.92pt>
 File: assets/01.jpg Graphic file (type jpg)
 <use assets/01.jpg>
 Package pdftex.def Info: assets/01.jpg  used on input line 88.
 (pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
-<assets/03.jpg, id=128, 462.528pt x 462.528pt>
+<assets/03.jpg, id=138, 462.528pt x 462.528pt>
 File: assets/03.jpg Graphic file (type jpg)
 <use assets/03.jpg>
 Package pdftex.def Info: assets/03.jpg  used on input line 94.
 (pdftex.def)             Requested size: 120.80246pt x 120.79787pt.
-<assets/04.jpg, id=129, 462.528pt x 462.528pt>
+<assets/04.jpg, id=139, 462.528pt x 462.528pt>
 File: assets/04.jpg Graphic file (type jpg)
 <use assets/04.jpg>
 Package pdftex.def Info: assets/04.jpg  used on input line 100.
 (pdftex.def)             Requested size: 120.80246pt x 120.79787pt.
-
-
-[3 <./assets/00.png> <./assets/01.jpg> <./assets/03.jpg> <./assets/04.jpg>]
-<assets/eyobed/histogram_eq_0.png, id=137, 513.92pt x 513.92pt>
+ [3 <./assets/00.png> <./assets/01.jpg> <./assets/03.jpg> <./assets/04.jpg>]
+<assets/eyobed/histogram_eq_0.png, id=147, 513.92pt x 513.92pt>
 File: assets/eyobed/histogram_eq_0.png Graphic file (type png)
 <use assets/eyobed/histogram_eq_0.png>
-Package pdftex.def Info: assets/eyobed/histogram_eq_0.png  used on input line 130.
+Package pdftex.def Info: assets/eyobed/histogram_eq_0.png  used on input line 1
+30.
 (pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
-<assets/eyobed/histogram_eq_1.png, id=138, 513.92pt x 513.92pt>
+<assets/eyobed/histogram_eq_1.png, id=148, 513.92pt x 513.92pt>
 File: assets/eyobed/histogram_eq_1.png Graphic file (type png)
 <use assets/eyobed/histogram_eq_1.png>
-Package pdftex.def Info: assets/eyobed/histogram_eq_1.png  used on input line 136.
+Package pdftex.def Info: assets/eyobed/histogram_eq_1.png  used on input line 1
+36.
 (pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
-<assets/eyobed/histogram_eq_2.png, id=139, 513.92pt x 513.92pt>
+<assets/eyobed/histogram_eq_2.png, id=149, 513.92pt x 513.92pt>
 File: assets/eyobed/histogram_eq_2.png Graphic file (type png)
 <use assets/eyobed/histogram_eq_2.png>
-Package pdftex.def Info: assets/eyobed/histogram_eq_2.png  used on input line 142.
+Package pdftex.def Info: assets/eyobed/histogram_eq_2.png  used on input line 1
+42.
 (pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
-<assets/eyobed/histogram_eq_3.png, id=140, 513.92pt x 513.92pt>
+<assets/eyobed/histogram_eq_3.png, id=150, 513.92pt x 513.92pt>
 File: assets/eyobed/histogram_eq_3.png Graphic file (type png)
 <use assets/eyobed/histogram_eq_3.png>
-Package pdftex.def Info: assets/eyobed/histogram_eq_3.png  used on input line 148.
+Package pdftex.def Info: assets/eyobed/histogram_eq_3.png  used on input line 1
+48.
 (pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
-<assets/eyobed/lens_distortion_0.png, id=141, 513.92pt x 513.92pt>
+<assets/eyobed/lens_distortion_0.png, id=151, 513.92pt x 513.92pt>
 File: assets/eyobed/lens_distortion_0.png Graphic file (type png)
 <use assets/eyobed/lens_distortion_0.png>
-Package pdftex.def Info: assets/eyobed/lens_distortion_0.png  used on input line 176.
+Package pdftex.def Info: assets/eyobed/lens_distortion_0.png  used on input lin
+e 176.
 (pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
-<assets/eyobed/lens_distortion_1.png, id=142, 513.92pt x 513.92pt>
+<assets/eyobed/lens_distortion_1.png, id=152, 513.92pt x 513.92pt>
 File: assets/eyobed/lens_distortion_1.png Graphic file (type png)
 <use assets/eyobed/lens_distortion_1.png>
-Package pdftex.def Info: assets/eyobed/lens_distortion_1.png  used on input line 182.
+Package pdftex.def Info: assets/eyobed/lens_distortion_1.png  used on input lin
+e 182.
 (pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
-<assets/eyobed/lens_distortion_2.png, id=143, 513.92pt x 513.92pt>
+<assets/eyobed/lens_distortion_2.png, id=153, 513.92pt x 513.92pt>
 File: assets/eyobed/lens_distortion_2.png Graphic file (type png)
 <use assets/eyobed/lens_distortion_2.png>
-Package pdftex.def Info: assets/eyobed/lens_distortion_2.png  used on input line 188.
+Package pdftex.def Info: assets/eyobed/lens_distortion_2.png  used on input lin
+e 188.
 (pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
-<assets/eyobed/lens_distortion_3.png, id=144, 513.92pt x 513.92pt>
+<assets/eyobed/lens_distortion_3.png, id=154, 513.92pt x 513.92pt>
 File: assets/eyobed/lens_distortion_3.png Graphic file (type png)
 <use assets/eyobed/lens_distortion_3.png>
-Package pdftex.def Info: assets/eyobed/lens_distortion_3.png  used on input line 194.
+Package pdftex.def Info: assets/eyobed/lens_distortion_3.png  used on input lin
+e 194.
 (pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
-
-
-[4 <./assets/eyobed/histogram_eq_0.png (PNG copy)> <./assets/eyobed/histogram_eq_1.png (PNG copy)> <./assets/eyobed/histogram_eq_2.png (PNG copy)> <./assets/eyobed/histogram_eq_3.png (PNG copy)> <./assets/eyobed/lens_distortion_0.png (PNG copy)> <./assets/eyobed/lens_distortion_1.png (PNG copy)> <./assets/eyobed/lens_distortion_2.png (PNG copy)> <./assets/eyobed/lens_distortion_3.png (PNG copy)>]
-<assets/eyobed/posterize_0.png, id=155, 513.92pt x 513.92pt>
+ [4 <./assets/eyobed/histogram_eq_0.png (PNG copy)> <./assets/eyobed/histogram_
+eq_1.png (PNG copy)> <./assets/eyobed/histogram_eq_2.png (PNG copy)> <./assets/
+eyobed/histogram_eq_3.png (PNG copy)> <./assets/eyobed/lens_distortion_0.png (P
+NG copy)> <./assets/eyobed/lens_distortion_1.png (PNG copy)> <./assets/eyobed/l
+ens_distortion_2.png (PNG copy)> <./assets/eyobed/lens_distortion_3.png (PNG co
+py)>]
+<assets/eyobed/posterize_0.png, id=165, 513.92pt x 513.92pt>
 File: assets/eyobed/posterize_0.png Graphic file (type png)
 <use assets/eyobed/posterize_0.png>
 Package pdftex.def Info: assets/eyobed/posterize_0.png  used on input line 221.
+
 (pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
-<assets/eyobed/posterize_1.png, id=156, 513.92pt x 513.92pt>
+<assets/eyobed/posterize_1.png, id=166, 513.92pt x 513.92pt>
 File: assets/eyobed/posterize_1.png Graphic file (type png)
 <use assets/eyobed/posterize_1.png>
 Package pdftex.def Info: assets/eyobed/posterize_1.png  used on input line 227.
+
 (pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
-<assets/eyobed/posterize_2.png, id=157, 513.92pt x 513.92pt>
+<assets/eyobed/posterize_2.png, id=167, 513.92pt x 513.92pt>
 File: assets/eyobed/posterize_2.png Graphic file (type png)
 <use assets/eyobed/posterize_2.png>
 Package pdftex.def Info: assets/eyobed/posterize_2.png  used on input line 233.
+
 (pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
-<assets/eyobed/posterize_3.png, id=158, 513.92pt x 513.92pt>
+<assets/eyobed/posterize_3.png, id=168, 513.92pt x 513.92pt>
 File: assets/eyobed/posterize_3.png Graphic file (type png)
 <use assets/eyobed/posterize_3.png>
 Package pdftex.def Info: assets/eyobed/posterize_3.png  used on input line 239.
+
 (pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
-<assets/eyobed/vignette_blur_0.png, id=159, 513.92pt x 513.92pt>
+<assets/eyobed/vignette_blur_0.png, id=169, 513.92pt x 513.92pt>
 File: assets/eyobed/vignette_blur_0.png Graphic file (type png)
 <use assets/eyobed/vignette_blur_0.png>
-Package pdftex.def Info: assets/eyobed/vignette_blur_0.png  used on input line 268.
+Package pdftex.def Info: assets/eyobed/vignette_blur_0.png  used on input line 
+268.
 (pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
-<assets/eyobed/vignette_blur_1.png, id=160, 513.92pt x 513.92pt>
+<assets/eyobed/vignette_blur_1.png, id=170, 513.92pt x 513.92pt>
 File: assets/eyobed/vignette_blur_1.png Graphic file (type png)
 <use assets/eyobed/vignette_blur_1.png>
-Package pdftex.def Info: assets/eyobed/vignette_blur_1.png  used on input line 274.
+Package pdftex.def Info: assets/eyobed/vignette_blur_1.png  used on input line 
+274.
 (pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
-<assets/eyobed/vignette_blur_2.png, id=161, 513.92pt x 513.92pt>
+<assets/eyobed/vignette_blur_2.png, id=171, 513.92pt x 513.92pt>
 File: assets/eyobed/vignette_blur_2.png Graphic file (type png)
 <use assets/eyobed/vignette_blur_2.png>
-Package pdftex.def Info: assets/eyobed/vignette_blur_2.png  used on input line 280.
+Package pdftex.def Info: assets/eyobed/vignette_blur_2.png  used on input line 
+280.
 (pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
-<assets/eyobed/vignette_blur_3.png, id=162, 513.92pt x 513.92pt>
+<assets/eyobed/vignette_blur_3.png, id=172, 513.92pt x 513.92pt>
 File: assets/eyobed/vignette_blur_3.png Graphic file (type png)
 <use assets/eyobed/vignette_blur_3.png>
-Package pdftex.def Info: assets/eyobed/vignette_blur_3.png  used on input line 286.
+Package pdftex.def Info: assets/eyobed/vignette_blur_3.png  used on input line 
+286.
 (pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
-
-
-[5{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <./assets/eyobed/posterize_0.png (PNG copy)> <./assets/eyobed/posterize_1.png (PNG copy)> <./assets/eyobed/posterize_2.png (PNG copy)> <./assets/eyobed/posterize_3.png (PNG copy)>]
-<assets/denis/threshold_0.png, id=170, 513.92pt x 513.92pt>
+ [5{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <./assets/eyobe
+d/posterize_0.png (PNG copy)> <./assets/eyobed/posterize_1.png (PNG copy)> <./a
+ssets/eyobed/posterize_2.png (PNG copy)> <./assets/eyobed/posterize_3.png (PNG 
+copy)>]
+<assets/denis/threshold_0.png, id=181, 513.92pt x 513.92pt>
 File: assets/denis/threshold_0.png Graphic file (type png)
 <use assets/denis/threshold_0.png>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/denis/threshold_0.png  used on input line 325.
+=======
+Package pdftex.def Info: assets/denis/threshold_0.png  used on input line 327.
+>>>>>>> f2a0313 (Update report)
 (pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
-<assets/denis/threshold_1.png, id=171, 513.92pt x 513.92pt>
+<assets/denis/threshold_1.png, id=182, 513.92pt x 513.92pt>
 File: assets/denis/threshold_1.png Graphic file (type png)
 <use assets/denis/threshold_1.png>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/denis/threshold_1.png  used on input line 331.
+=======
+Package pdftex.def Info: assets/denis/threshold_1.png  used on input line 333.
+>>>>>>> f2a0313 (Update report)
 (pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
-<assets/denis/threshold_2.png, id=172, 513.92pt x 513.92pt>
+<assets/denis/threshold_2.png, id=183, 513.92pt x 513.92pt>
 File: assets/denis/threshold_2.png Graphic file (type png)
 <use assets/denis/threshold_2.png>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/denis/threshold_2.png  used on input line 337.
+=======
+Package pdftex.def Info: assets/denis/threshold_2.png  used on input line 339.
+>>>>>>> f2a0313 (Update report)
 (pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
-<assets/denis/threshold_3.png, id=173, 513.92pt x 513.92pt>
+<assets/denis/threshold_3.png, id=184, 513.92pt x 513.92pt>
 File: assets/denis/threshold_3.png Graphic file (type png)
 <use assets/denis/threshold_3.png>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/denis/threshold_3.png  used on input line 343.
 (pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
 <assets/denis/diffuse_0.png, id=174, 513.92pt x 513.92pt>
@@ -551,20 +638,65 @@ Package pdftex.def Info: assets/denis/diffuse_3.png  used on input line 386.
 File: assets/denis/crosshatch_0.png Graphic file (type png)
 <use assets/denis/crosshatch_0.png>
 Package pdftex.def Info: assets/denis/crosshatch_0.png  used on input line 410.
+=======
+Package pdftex.def Info: assets/denis/threshold_3.png  used on input line 345.
 (pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
-<assets/denis/crosshatch_1.png, id=186, 513.92pt x 513.92pt>
+ [6 <./assets/eyobed/vignette_blur_0.png (PNG copy)> <./assets/eyobed/vignette_
+blur_1.png (PNG copy)> <./assets/eyobed/vignette_blur_2.png (PNG copy)> <./asse
+ts/eyobed/vignette_blur_3.png (PNG copy)> <./assets/denis/threshold_0.png (PNG 
+copy)> <./assets/denis/threshold_1.png (PNG copy)> <./assets/denis/threshold_2.
+png (PNG copy)> <./assets/denis/threshold_3.png (PNG copy)>]
+<assets/denis/diffuse_0.png, id=191, 513.92pt x 513.92pt>
+File: assets/denis/diffuse_0.png Graphic file (type png)
+<use assets/denis/diffuse_0.png>
+Package pdftex.def Info: assets/denis/diffuse_0.png  used on input line 370.
+(pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
+<assets/denis/diffuse_1.png, id=192, 513.92pt x 513.92pt>
+File: assets/denis/diffuse_1.png Graphic file (type png)
+<use assets/denis/diffuse_1.png>
+Package pdftex.def Info: assets/denis/diffuse_1.png  used on input line 376.
+(pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
+<assets/denis/diffuse_2.png, id=193, 513.92pt x 513.92pt>
+File: assets/denis/diffuse_2.png Graphic file (type png)
+<use assets/denis/diffuse_2.png>
+Package pdftex.def Info: assets/denis/diffuse_2.png  used on input line 382.
+(pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
+<assets/denis/diffuse_3.png, id=194, 513.92pt x 513.92pt>
+File: assets/denis/diffuse_3.png Graphic file (type png)
+<use assets/denis/diffuse_3.png>
+Package pdftex.def Info: assets/denis/diffuse_3.png  used on input line 388.
+(pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
+<assets/denis/crosshatch_0.png, id=195, 513.92pt x 513.92pt>
+File: assets/denis/crosshatch_0.png Graphic file (type png)
+<use assets/denis/crosshatch_0.png>
+Package pdftex.def Info: assets/denis/crosshatch_0.png  used on input line 412.
+
+>>>>>>> f2a0313 (Update report)
+(pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
+<assets/denis/crosshatch_1.png, id=196, 513.92pt x 513.92pt>
 File: assets/denis/crosshatch_1.png Graphic file (type png)
 <use assets/denis/crosshatch_1.png>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/denis/crosshatch_1.png  used on input line 416.
+=======
+Package pdftex.def Info: assets/denis/crosshatch_1.png  used on input line 418.
+
+>>>>>>> f2a0313 (Update report)
 (pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
-<assets/denis/crosshatch_2.png, id=187, 513.92pt x 513.92pt>
+<assets/denis/crosshatch_2.png, id=197, 513.92pt x 513.92pt>
 File: assets/denis/crosshatch_2.png Graphic file (type png)
 <use assets/denis/crosshatch_2.png>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/denis/crosshatch_2.png  used on input line 422.
+=======
+Package pdftex.def Info: assets/denis/crosshatch_2.png  used on input line 424.
+
+>>>>>>> f2a0313 (Update report)
 (pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
-<assets/denis/crosshatch_3.png, id=188, 513.92pt x 513.92pt>
+<assets/denis/crosshatch_3.png, id=198, 513.92pt x 513.92pt>
 File: assets/denis/crosshatch_3.png Graphic file (type png)
 <use assets/denis/crosshatch_3.png>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/denis/crosshatch_3.png  used on input line 428.
 (pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
 <assets/denis/hue_rotate_0.png, id=189, 513.92pt x 513.92pt>
@@ -594,201 +726,349 @@ Package pdftex.def Info: assets/denis/hue_rotate_3.png  used on input line 470.
 File: assets/adar/bloom1.jpg Graphic file (type jpg)
 <use assets/adar/bloom1.jpg>
 Package pdftex.def Info: assets/adar/bloom1.jpg  used on input line 508.
+=======
+Package pdftex.def Info: assets/denis/crosshatch_3.png  used on input line 430.
+
+(pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
+<assets/denis/hue_rotate_0.png, id=199, 513.92pt x 513.92pt>
+File: assets/denis/hue_rotate_0.png Graphic file (type png)
+<use assets/denis/hue_rotate_0.png>
+Package pdftex.def Info: assets/denis/hue_rotate_0.png  used on input line 454.
+
+(pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
+<assets/denis/hue_rotate_1.png, id=200, 513.92pt x 513.92pt>
+File: assets/denis/hue_rotate_1.png Graphic file (type png)
+<use assets/denis/hue_rotate_1.png>
+Package pdftex.def Info: assets/denis/hue_rotate_1.png  used on input line 460.
+
+(pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
+<assets/denis/hue_rotate_2.png, id=201, 513.92pt x 513.92pt>
+File: assets/denis/hue_rotate_2.png Graphic file (type png)
+<use assets/denis/hue_rotate_2.png>
+Package pdftex.def Info: assets/denis/hue_rotate_2.png  used on input line 466.
+
+(pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
+<assets/denis/hue_rotate_3.png, id=202, 513.92pt x 513.92pt>
+File: assets/denis/hue_rotate_3.png Graphic file (type png)
+<use assets/denis/hue_rotate_3.png>
+Package pdftex.def Info: assets/denis/hue_rotate_3.png  used on input line 472.
+
+(pdftex.def)             Requested size: 120.80246pt x 120.80258pt.
+ [7 <./assets/denis/diffuse_0.png (PNG copy)> <./assets/denis/diffuse_1.png (PN
+G copy)> <./assets/denis/diffuse_2.png (PNG copy)> <./assets/denis/diffuse_3.pn
+g (PNG copy)> <./assets/denis/crosshatch_0.png (PNG copy)> <./assets/denis/cros
+shatch_1.png (PNG copy)> <./assets/denis/crosshatch_2.png (PNG copy)> <./assets
+/denis/crosshatch_3.png (PNG copy)>]
+<assets/adar/bloom1.jpg, id=210, 226.59656pt x 115.18031pt>
+File: assets/adar/bloom1.jpg Graphic file (type jpg)
+<use assets/adar/bloom1.jpg>
+Package pdftex.def Info: assets/adar/bloom1.jpg  used on input line 512.
+>>>>>>> f2a0313 (Update report)
 (pdftex.def)             Requested size: 162.82245pt x 82.76277pt.
-<assets/adar/bloom2.jpg, id=201, 235.63031pt x 111.41624pt>
+<assets/adar/bloom2.jpg, id=211, 235.63031pt x 111.41624pt>
 File: assets/adar/bloom2.jpg Graphic file (type jpg)
 <use assets/adar/bloom2.jpg>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/adar/bloom2.jpg  used on input line 509.
+=======
+Package pdftex.def Info: assets/adar/bloom2.jpg  used on input line 513.
+>>>>>>> f2a0313 (Update report)
 (pdftex.def)             Requested size: 162.82245pt x 76.98949pt.
-<assets/adar/bloom3.jpg, id=202, 231.86626pt x 118.19156pt>
+<assets/adar/bloom3.jpg, id=212, 231.86626pt x 118.19156pt>
 File: assets/adar/bloom3.jpg Graphic file (type jpg)
 <use assets/adar/bloom3.jpg>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/adar/bloom3.jpg  used on input line 510.
+=======
+Package pdftex.def Info: assets/adar/bloom3.jpg  used on input line 514.
+>>>>>>> f2a0313 (Update report)
 (pdftex.def)             Requested size: 162.82245pt x 82.99863pt.
-<assets/adar/bloom1graph.jpg, id=203, 246.9225pt x 67.75313pt>
+<assets/adar/bloom1graph.jpg, id=213, 246.9225pt x 67.75313pt>
 File: assets/adar/bloom1graph.jpg Graphic file (type jpg)
 <use assets/adar/bloom1graph.jpg>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/adar/bloom1graph.jpg  used on input line 514.
+=======
+Package pdftex.def Info: assets/adar/bloom1graph.jpg  used on input line 518.
+>>>>>>> f2a0313 (Update report)
 (pdftex.def)             Requested size: 162.82245pt x 44.67686pt.
-<assets/adar/bloom2graph.jpg, id=204, 231.86626pt x 63.23625pt>
+<assets/adar/bloom2graph.jpg, id=214, 231.86626pt x 63.23625pt>
 File: assets/adar/bloom2graph.jpg Graphic file (type jpg)
 <use assets/adar/bloom2graph.jpg>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/adar/bloom2graph.jpg  used on input line 515.
+=======
+Package pdftex.def Info: assets/adar/bloom2graph.jpg  used on input line 519.
+>>>>>>> f2a0313 (Update report)
 (pdftex.def)             Requested size: 162.82245pt x 44.4069pt.
-<assets/adar/bloom3graph.jpg, id=205, 220.57407pt x 67.0003pt>
+<assets/adar/bloom3graph.jpg, id=215, 220.57407pt x 67.0003pt>
 File: assets/adar/bloom3graph.jpg Graphic file (type jpg)
 <use assets/adar/bloom3graph.jpg>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/adar/bloom3graph.jpg  used on input line 516.
+=======
+Package pdftex.def Info: assets/adar/bloom3graph.jpg  used on input line 520.
+>>>>>>> f2a0313 (Update report)
 (pdftex.def)             Requested size: 162.82245pt x 49.45981pt.
-<assets/adar/bloomsample1.jpg, id=206, 237.88875pt x 113.67468pt>
+ [8 <./assets/denis/hue_rotate_0.png (PNG copy)> <./assets/denis/hue_rotate_1.p
+ng (PNG copy)> <./assets/denis/hue_rotate_2.png (PNG copy)> <./assets/denis/hue
+_rotate_3.png (PNG copy)>]
+<assets/adar/bloomsample1.jpg, id=222, 237.88875pt x 113.67468pt>
 File: assets/adar/bloomsample1.jpg Graphic file (type jpg)
 <use assets/adar/bloomsample1.jpg>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/adar/bloomsample1.jpg  used on input line 523.
+=======
+Package pdftex.def Info: assets/adar/bloomsample1.jpg  used on input line 527.
+>>>>>>> f2a0313 (Update report)
 (pdftex.def)             Requested size: 162.82245pt x 77.8077pt.
-<assets/adar/bloomsample2.jpg, id=207, 233.37187pt x 112.16907pt>
+<assets/adar/bloomsample2.jpg, id=223, 233.37187pt x 112.16907pt>
 File: assets/adar/bloomsample2.jpg Graphic file (type jpg)
 <use assets/adar/bloomsample2.jpg>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/adar/bloomsample2.jpg  used on input line 524.
+=======
+Package pdftex.def Info: assets/adar/bloomsample2.jpg  used on input line 528.
+>>>>>>> f2a0313 (Update report)
 (pdftex.def)             Requested size: 162.82245pt x 78.26277pt.
-<assets/adar/bloomsample3.jpg, id=208, 241.65282pt x 117.43875pt>
+<assets/adar/bloomsample3.jpg, id=224, 241.65282pt x 117.43875pt>
 File: assets/adar/bloomsample3.jpg Graphic file (type jpg)
 <use assets/adar/bloomsample3.jpg>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/adar/bloomsample3.jpg  used on input line 525.
+=======
+Package pdftex.def Info: assets/adar/bloomsample3.jpg  used on input line 529.
+>>>>>>> f2a0313 (Update report)
 (pdftex.def)             Requested size: 162.82245pt x 79.13153pt.
-
-
-[8 <./assets/denis/hue_rotate_0.png (PNG copy)> <./assets/denis/hue_rotate_1.png (PNG copy)> <./assets/denis/hue_rotate_2.png (PNG copy)> <./assets/denis/hue_rotate_3.png (PNG copy)> <./assets/adar/bloom1.jpg> <./assets/adar/bloom2.jpg> <./assets/adar/bloom3.jpg> <./assets/adar/bloom1graph.jpg> <./assets/adar/bloom2graph.jpg> <./assets/adar/bloom3graph.jpg>]
-<assets/adar/orton1.jpg, id=215, 234.8775pt x 115.18031pt>
+<assets/adar/orton1.jpg, id=225, 234.8775pt x 115.18031pt>
 File: assets/adar/orton1.jpg Graphic file (type jpg)
 <use assets/adar/orton1.jpg>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/adar/orton1.jpg  used on input line 560.
+=======
+Package pdftex.def Info: assets/adar/orton1.jpg  used on input line 564.
+>>>>>>> f2a0313 (Update report)
 (pdftex.def)             Requested size: 162.82245pt x 79.8453pt.
-<assets/adar/orton2.jpg, id=216, 221.32687pt x 113.67468pt>
+<assets/adar/orton2.jpg, id=226, 221.32687pt x 113.67468pt>
 File: assets/adar/orton2.jpg Graphic file (type jpg)
 <use assets/adar/orton2.jpg>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/adar/orton2.jpg  used on input line 561.
+=======
+Package pdftex.def Info: assets/adar/orton2.jpg  used on input line 565.
+>>>>>>> f2a0313 (Update report)
 (pdftex.def)             Requested size: 162.82245pt x 83.63052pt.
-<assets/adar/orton3.jpg, id=217, 232.61906pt x 113.67468pt>
+<assets/adar/orton3.jpg, id=227, 232.61906pt x 113.67468pt>
 File: assets/adar/orton3.jpg Graphic file (type jpg)
 <use assets/adar/orton3.jpg>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/adar/orton3.jpg  used on input line 562.
+=======
+Package pdftex.def Info: assets/adar/orton3.jpg  used on input line 566.
+>>>>>>> f2a0313 (Update report)
 (pdftex.def)             Requested size: 162.82245pt x 79.56999pt.
-<assets/adar/orton1graph.jpg, id=218, 222.8325pt x 66.2475pt>
+<assets/adar/orton1graph.jpg, id=228, 222.8325pt x 66.2475pt>
 File: assets/adar/orton1graph.jpg Graphic file (type jpg)
 <use assets/adar/orton1graph.jpg>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/adar/orton1graph.jpg  used on input line 566.
+=======
+Package pdftex.def Info: assets/adar/orton1graph.jpg  used on input line 570.
+>>>>>>> f2a0313 (Update report)
 (pdftex.def)             Requested size: 162.82245pt x 48.40675pt.
-<assets/adar/orton2graph.jpg, id=219, 218.31563pt x 63.98906pt>
+<assets/adar/orton2graph.jpg, id=229, 218.31563pt x 63.98906pt>
 File: assets/adar/orton2graph.jpg Graphic file (type jpg)
 <use assets/adar/orton2graph.jpg>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/adar/orton2graph.jpg  used on input line 567.
+=======
+Package pdftex.def Info: assets/adar/orton2graph.jpg  used on input line 571.
+>>>>>>> f2a0313 (Update report)
 (pdftex.def)             Requested size: 162.82245pt x 47.72414pt.
-<assets/adar/orton3graph3.jpg, id=220, 215.30438pt x 62.48344pt>
+<assets/adar/orton3graph3.jpg, id=230, 215.30438pt x 62.48344pt>
 File: assets/adar/orton3graph3.jpg Graphic file (type jpg)
 <use assets/adar/orton3graph3.jpg>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/adar/orton3graph3.jpg  used on input line 568.
+=======
+Package pdftex.def Info: assets/adar/orton3graph3.jpg  used on input line 572.
+>>>>>>> f2a0313 (Update report)
 (pdftex.def)             Requested size: 162.82245pt x 47.25336pt.
-<assets/adar/ortonsample1.jpg, id=221, 239.39438pt x 109.91063pt>
+ [9 <./assets/adar/bloom1.jpg> <./assets/adar/bloom2.jpg> <./assets/adar/bloom3
+.jpg> <./assets/adar/bloom1graph.jpg> <./assets/adar/bloom2graph.jpg> <./assets
+/adar/bloom3graph.jpg> <./assets/adar/bloomsample1.jpg> <./assets/adar/bloomsam
+ple2.jpg> <./assets/adar/bloomsample3.jpg>]
+<assets/adar/ortonsample1.jpg, id=235, 239.39438pt x 109.91063pt>
 File: assets/adar/ortonsample1.jpg Graphic file (type jpg)
 <use assets/adar/ortonsample1.jpg>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/adar/ortonsample1.jpg  used on input line 575.
+=======
+Package pdftex.def Info: assets/adar/ortonsample1.jpg  used on input line 579.
+>>>>>>> f2a0313 (Update report)
 (pdftex.def)             Requested size: 162.82245pt x 74.75499pt.
-<assets/adar/ortonsample2.jpg, id=222, 237.88875pt x 117.43875pt>
+<assets/adar/ortonsample2.jpg, id=236, 237.88875pt x 117.43875pt>
 File: assets/adar/ortonsample2.jpg Graphic file (type jpg)
 <use assets/adar/ortonsample2.jpg>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/adar/ortonsample2.jpg  used on input line 576.
+=======
+Package pdftex.def Info: assets/adar/ortonsample2.jpg  used on input line 580.
+>>>>>>> f2a0313 (Update report)
 (pdftex.def)             Requested size: 162.82245pt x 80.38411pt.
-<assets/adar/ortonsample3.jpg, id=223, 234.1247pt x 108.405pt>
+<assets/adar/ortonsample3.jpg, id=237, 234.1247pt x 108.405pt>
 File: assets/adar/ortonsample3.jpg Graphic file (type jpg)
 <use assets/adar/ortonsample3.jpg>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/adar/ortonsample3.jpg  used on input line 577.
+=======
+Package pdftex.def Info: assets/adar/ortonsample3.jpg  used on input line 581.
+>>>>>>> f2a0313 (Update report)
 (pdftex.def)             Requested size: 162.82245pt x 75.395pt.
-
-
-[9 <./assets/adar/bloomsample1.jpg> <./assets/adar/bloomsample2.jpg> <./assets/adar/bloomsample3.jpg> <./assets/adar/orton1.jpg> <./assets/adar/orton2.jpg> <./assets/adar/orton3.jpg> <./assets/adar/orton1graph.jpg> <./assets/adar/orton2graph.jpg> <./assets/adar/orton3graph3.jpg> <./assets/adar/ortonsample1.jpg> <./assets/adar/ortonsample2.jpg> <./assets/adar/ortonsample3.jpg>]
-<assets/adar/gamma1.jpg, id=228, 239.39438pt x 112.16907pt>
+<assets/adar/gamma1.jpg, id=238, 239.39438pt x 112.16907pt>
 File: assets/adar/gamma1.jpg Graphic file (type jpg)
 <use assets/adar/gamma1.jpg>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/adar/gamma1.jpg  used on input line 611.
+=======
+Package pdftex.def Info: assets/adar/gamma1.jpg  used on input line 615.
+>>>>>>> f2a0313 (Update report)
 (pdftex.def)             Requested size: 162.82245pt x 76.29106pt.
-<assets/adar/gamma2.jpg, id=229, 237.88875pt x 114.4275pt>
+<assets/adar/gamma2.jpg, id=239, 237.88875pt x 114.4275pt>
 File: assets/adar/gamma2.jpg Graphic file (type jpg)
 <use assets/adar/gamma2.jpg>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/adar/gamma2.jpg  used on input line 612.
+=======
+Package pdftex.def Info: assets/adar/gamma2.jpg  used on input line 616.
+>>>>>>> f2a0313 (Update report)
 (pdftex.def)             Requested size: 162.82245pt x 78.323pt.
-<assets/adar/gamma3.jpg, id=230, 237.88875pt x 115.18031pt>
+<assets/adar/gamma3.jpg, id=240, 237.88875pt x 115.18031pt>
 File: assets/adar/gamma3.jpg Graphic file (type jpg)
 <use assets/adar/gamma3.jpg>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/adar/gamma3.jpg  used on input line 613.
+=======
+Package pdftex.def Info: assets/adar/gamma3.jpg  used on input line 617.
+>>>>>>> f2a0313 (Update report)
 (pdftex.def)             Requested size: 162.82245pt x 78.83826pt.
-<assets/adar/gamma1graph.jpg, id=231, 96.36pt x 51.19125pt>
+<assets/adar/gamma1graph.jpg, id=241, 96.36pt x 51.19125pt>
 File: assets/adar/gamma1graph.jpg Graphic file (type jpg)
 <use assets/adar/gamma1graph.jpg>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/adar/gamma1graph.jpg  used on input line 615.
+=======
+Package pdftex.def Info: assets/adar/gamma1graph.jpg  used on input line 619.
+>>>>>>> f2a0313 (Update report)
 (pdftex.def)             Requested size: 162.82245pt x 86.49904pt.
-<assets/adar/gamma2graph.jpg, id=232, 96.36pt x 51.19125pt>
+<assets/adar/gamma2graph.jpg, id=242, 96.36pt x 51.19125pt>
 File: assets/adar/gamma2graph.jpg Graphic file (type jpg)
 <use assets/adar/gamma2graph.jpg>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/adar/gamma2graph.jpg  used on input line 616.
+=======
+Package pdftex.def Info: assets/adar/gamma2graph.jpg  used on input line 620.
+>>>>>>> f2a0313 (Update report)
 (pdftex.def)             Requested size: 162.82245pt x 86.49904pt.
-<assets/adar/gamma3graph.jpg, id=233, 98.61844pt x 56.46094pt>
+<assets/adar/gamma3graph.jpg, id=243, 98.61844pt x 56.46094pt>
 File: assets/adar/gamma3graph.jpg Graphic file (type jpg)
 <use assets/adar/gamma3graph.jpg>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/adar/gamma3graph.jpg  used on input line 617.
+=======
+Package pdftex.def Info: assets/adar/gamma3graph.jpg  used on input line 621.
+>>>>>>> f2a0313 (Update report)
 (pdftex.def)             Requested size: 162.82245pt x 93.22714pt.
-<assets/adar/gammasample1.jpg, id=234, 241.65282pt x 116.68594pt>
+ [10 <./assets/adar/orton1.jpg> <./assets/adar/orton2.jpg> <./assets/adar/orton
+3.jpg> <./assets/adar/orton1graph.jpg> <./assets/adar/orton2graph.jpg> <./asset
+s/adar/orton3graph3.jpg> <./assets/adar/ortonsample1.jpg> <./assets/adar/ortons
+ample2.jpg> <./assets/adar/ortonsample3.jpg>]
+<assets/adar/gammasample1.jpg, id=248, 241.65282pt x 116.68594pt>
 File: assets/adar/gammasample1.jpg Graphic file (type jpg)
 <use assets/adar/gammasample1.jpg>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/adar/gammasample1.jpg  used on input line 624.
+=======
+Package pdftex.def Info: assets/adar/gammasample1.jpg  used on input line 628.
+>>>>>>> f2a0313 (Update report)
 (pdftex.def)             Requested size: 162.82245pt x 78.62428pt.
-<assets/adar/gammasample2.jpg, id=235, 244.66406pt x 110.66344pt>
+<assets/adar/gammasample2.jpg, id=249, 244.66406pt x 110.66344pt>
 File: assets/adar/gammasample2.jpg Graphic file (type jpg)
 <use assets/adar/gammasample2.jpg>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/adar/gammasample2.jpg  used on input line 625.
+=======
+Package pdftex.def Info: assets/adar/gammasample2.jpg  used on input line 629.
+>>>>>>> f2a0313 (Update report)
 (pdftex.def)             Requested size: 162.82245pt x 73.64766pt.
-<assets/adar/gammasample3.jpg, id=236, 240.14719pt x 114.4275pt>
+<assets/adar/gammasample3.jpg, id=250, 240.14719pt x 114.4275pt>
 File: assets/adar/gammasample3.jpg Graphic file (type jpg)
 <use assets/adar/gammasample3.jpg>
+<<<<<<< HEAD
 Package pdftex.def Info: assets/adar/gammasample3.jpg  used on input line 626.
+=======
+Package pdftex.def Info: assets/adar/gammasample3.jpg  used on input line 630.
+>>>>>>> f2a0313 (Update report)
 (pdftex.def)             Requested size: 162.82245pt x 77.58443pt.
-
-
-[10 <./assets/adar/gamma1.jpg> <./assets/adar/gamma2.jpg> <./assets/adar/gamma3.jpg> <./assets/adar/gamma1graph.jpg> <./assets/adar/gamma2graph.jpg> <./assets/adar/gamma3graph.jpg> <./assets/adar/gammasample1.jpg> <./assets/adar/gammasample2.jpg> <./assets/adar/gammasample3.jpg>]
-<assets/adar/dodge1.jpg, id=241, 246.9225pt x 118.19156pt>
+<assets/adar/dodge1.jpg, id=251, 246.9225pt x 118.19156pt>
 File: assets/adar/dodge1.jpg Graphic file (type jpg)
 <use assets/adar/dodge1.jpg>
 Package pdftex.def Info: assets/adar/dodge1.jpg  used on input line 656.
 (pdftex.def)             Requested size: 162.82245pt x 77.93633pt.
-<assets/adar/dodge2.jpg, id=242, 236.38312pt x 109.91063pt>
+<assets/adar/dodge2.jpg, id=252, 236.38312pt x 109.91063pt>
 File: assets/adar/dodge2.jpg Graphic file (type jpg)
 <use assets/adar/dodge2.jpg>
 Package pdftex.def Info: assets/adar/dodge2.jpg  used on input line 657.
 (pdftex.def)             Requested size: 162.82245pt x 75.70926pt.
-<assets/adar/dodge3.jpg, id=243, 247.67531pt x 115.18031pt>
+<assets/adar/dodge3.jpg, id=253, 247.67531pt x 115.18031pt>
 File: assets/adar/dodge3.jpg Graphic file (type jpg)
 <use assets/adar/dodge3.jpg>
 Package pdftex.def Info: assets/adar/dodge3.jpg  used on input line 658.
 (pdftex.def)             Requested size: 162.82245pt x 75.72044pt.
-<assets/adar/dodge1graph.jpg, id=244, 86.57344pt x 47.42719pt>
+<assets/adar/dodge1graph.jpg, id=254, 86.57344pt x 47.42719pt>
 File: assets/adar/dodge1graph.jpg Graphic file (type jpg)
 <use assets/adar/dodge1graph.jpg>
 Package pdftex.def Info: assets/adar/dodge1graph.jpg  used on input line 660.
 (pdftex.def)             Requested size: 162.82245pt x 89.2087pt.
-<assets/adar/dodge2graph.jpg, id=245, 89.58469pt x 54.2025pt>
+<assets/adar/dodge2graph.jpg, id=255, 89.58469pt x 54.2025pt>
 File: assets/adar/dodge2graph.jpg Graphic file (type jpg)
 <use assets/adar/dodge2graph.jpg>
 Package pdftex.def Info: assets/adar/dodge2graph.jpg  used on input line 661.
 (pdftex.def)             Requested size: 162.82245pt x 98.52132pt.
-<assets/adar/dodge3graph.jpg, id=246, 105.39375pt x 72.27pt>
+<assets/adar/dodge3graph.jpg, id=256, 105.39375pt x 72.27pt>
 File: assets/adar/dodge3graph.jpg Graphic file (type jpg)
 <use assets/adar/dodge3graph.jpg>
 Package pdftex.def Info: assets/adar/dodge3graph.jpg  used on input line 662.
 (pdftex.def)             Requested size: 162.82245pt x 111.6523pt.
-<assets/adar/dodgesample1.jpg, id=247, 234.8775pt x 117.43875pt>
+ [11 <./assets/adar/gamma1.jpg> <./assets/adar/gamma2.jpg> <./assets/adar/gamma
+3.jpg> <./assets/adar/gamma1graph.jpg> <./assets/adar/gamma2graph.jpg> <./asset
+s/adar/gamma3graph.jpg> <./assets/adar/gammasample1.jpg> <./assets/adar/gammasa
+mple2.jpg> <./assets/adar/gammasample3.jpg>]
+<assets/adar/dodgesample1.jpg, id=261, 234.8775pt x 117.43875pt>
 File: assets/adar/dodgesample1.jpg Graphic file (type jpg)
 <use assets/adar/dodgesample1.jpg>
 Package pdftex.def Info: assets/adar/dodgesample1.jpg  used on input line 669.
 (pdftex.def)             Requested size: 162.82245pt x 81.41092pt.
-<assets/adar/dodgesample2.jpg, id=248, 235.63031pt x 110.66344pt>
+<assets/adar/dodgesample2.jpg, id=262, 235.63031pt x 110.66344pt>
 File: assets/adar/dodgesample2.jpg Graphic file (type jpg)
 <use assets/adar/dodgesample2.jpg>
 Package pdftex.def Info: assets/adar/dodgesample2.jpg  used on input line 670.
 (pdftex.def)             Requested size: 162.82245pt x 76.46928pt.
-<assets/adar/dodgesample3.jpg, id=249, 225.84375pt x 115.93312pt>
+<assets/adar/dodgesample3.jpg, id=263, 225.84375pt x 115.93312pt>
 File: assets/adar/dodgesample3.jpg Graphic file (type jpg)
 <use assets/adar/dodgesample3.jpg>
 Package pdftex.def Info: assets/adar/dodgesample3.jpg  used on input line 671.
 (pdftex.def)             Requested size: 162.82245pt x 83.58676pt.
-
-
-[11 <./assets/adar/dodge1.jpg> <./assets/adar/dodge2.jpg> <./assets/adar/dodge3.jpg> <./assets/adar/dodge1graph.jpg> <./assets/adar/dodge2graph.jpg> <./assets/adar/dodge3graph.jpg> <./assets/adar/dodgesample1.jpg> <./assets/adar/dodgesample2.jpg> <./assets/adar/dodgesample3.jpg>]
-
-[12] (./report.aux)
+ [12 <./assets/adar/dodge1.jpg> <./assets/adar/dodge2.jpg> <./assets/adar/dodge
+3.jpg> <./assets/adar/dodge1graph.jpg> <./assets/adar/dodge2graph.jpg> <./asset
+s/adar/dodge3graph.jpg> <./assets/adar/dodgesample1.jpg> <./assets/adar/dodgesa
+mple2.jpg> <./assets/adar/dodgesample3.jpg>] [13] (./report.aux)
  ***********
-LaTeX2e <2024-11-01> patch level 2
-L3 programming layer <2025-01-18>
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `report.out' has not changed.
+<<<<<<< HEAD
 (rerunfilecheck)             Checksum: 8670D778AA05F534A5259DEE082AD3BE;2993.
  ) 
 Here is how much of TeX's memory you used:
@@ -801,9 +1081,35 @@ Here is how much of TeX's memory you used:
  75i,12n,79p,638b,541s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb>
 Output written on report.pdf (12 pages, 10372146 bytes).
+=======
+(rerunfilecheck)             Checksum: 5D3AD8572B30078F753C3DF4DF4EBE9C;3300.
+ ) 
+Here is how much of TeX's memory you used:
+ 11783 strings out of 474222
+ 196167 string characters out of 5748734
+ 1936975 words of memory out of 5000000
+ 33858 multiletter control sequences out of 15000+600000
+ 567459 words of font info for 69 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 75i,12n,79p,547b,541s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+sy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></us
+r/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb>
+Output written on report.pdf (13 pages, 10373495 bytes).
+>>>>>>> f2a0313 (Update report)
 PDF statistics:
- 338 PDF objects out of 1000 (max. 8388607)
- 219 compressed objects within 3 object streams
- 48 named destinations out of 1000 (max. 500000)
- 534 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 354 PDF objects out of 1000 (max. 8388607)
+ 234 compressed objects within 3 object streams
+ 51 named destinations out of 1000 (max. 500000)
+ 550 words of extra memory for PDF output out of 10000 (max. 10000000)
 
