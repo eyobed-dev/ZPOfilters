@@ -483,6 +483,9 @@ The implemented filters demonstrate key image processing concepts through simple
 \subsection{Adar's Filters}
 Adar's contributions focus on creative glow and tone/brightness manipulation filters.
 
+\subsubsection{Python implementation}
+Reference Python sources for the filters are distributed as an archive on Google Drive: \url{https://drive.google.com/file/d/19-CrN0iL8ds6OZ9fjDcawsgh3FoqknMW/view?usp=sharing}. An interactive web demo of the implementations is available at \url{http://161.97.70.30:7860/}. The code was developed and tested with \textbf{Python 3.12}.
+
 \subsubsection{Bloom Filter}
 \textbf{Core model}
 \[
@@ -677,42 +680,6 @@ for each pixel/channel:
 \end{center}
 \textbf{Compare} more aggressive than gamma; non-spatial (no blur spread).
 \textbf{Cost note} Per-pixel asymptotic cost is \(O(1)\) for direct pixel arithmetic.
-
-
-
-\subsubsection{Comparison of Filter Categories}
-
-\paragraph{Geometric / Structural Comparison}
-\begin{center}
-\setlength{\tabcolsep}{3pt}
-\footnotesize
-\resizebox{\textwidth}{!}{
-\begin{tabular}{@{}llllll@{}}
-\toprule
-\textbf{Filter} & \textbf{Methodology} & \textbf{Linear?} & \textbf{Edge Preservation} & \textbf{Best Use} & \textbf{Cost} \\
-\midrule
-Bloom Filter & Bright-mask + blur + additive blend & Hybrid & Medium & Dramatic bright sources & Medium \\
-Orton Effect Filter & Blur + screen blend + mix & Hybrid & Medium & Portrait stylization & Medium \\
-\bottomrule
-\end{tabular}
-}
-\end{center}
-
-\paragraph{Tone / Brightness Comparison}
-\begin{center}
-\setlength{\tabcolsep}{3pt}
-\footnotesize
-\resizebox{\textwidth}{!}{
-\begin{tabular}{@{}llllll@{}}
-\toprule
-\textbf{Filter} & \textbf{Methodology} & \textbf{Linear?} & \textbf{Edge Preservation} & \textbf{Best Use} & \textbf{Risk} \\
-\midrule
-Gamma Filter & Point-wise power-law mapping (LUT) & No & N/A & Midtone correction & Can flatten contrast if overused \\
-Dodge Filter & Point-wise nonlinear brightening curve & No & N/A & Stylized brightening & Highlight clipping/saturation \\
-\bottomrule
-\end{tabular}
-}
-\end{center}
 
 \section{Conclusion}
 This project demonstrates the application of fundamental image processing techniques. The students also estimated the computational complexity of each filter thanks to the knowledge they acquired in the course TINe. Moreover, we  also learned the importance of using appropriate data structures and algorithms as well as performance considerations for image processing. 

@@ -9,7 +9,7 @@ ZPOe_Project_Filter_Effects/
 ├── data/       input images here (.jpg, .png, etc.)
 ├── src/        main.cpp and filter implementations
 │   ├── eyobed/
-│   ├── adar/
+│   ├── adar/   README: Python filters (Bloom, Orton, Gamma, Dodge) + demo links
 │   └── denis/
 ├── build/      CMake build directory
 ```
