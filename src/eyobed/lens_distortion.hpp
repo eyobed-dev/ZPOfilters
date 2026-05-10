@@ -5,14 +5,13 @@
 using namespace cv;
 using namespace std;
 
-// Lens Distortion 
 Mat applyLensDistortion(const Mat& src) {
     Mat dst = Mat::zeros(src.size(), src.type());
 
-    float k  = 5.0f;                                  // distortion coefficient
-    float cx = src.cols / 2.0f;                        // center of the image
-    float cy = src.rows / 2.0f;                        // center of the image
-    float R  = sqrt(cx * cx + cy * cy);          // center-to-corner radius
+    float k  = 5.0f;                  // Distortion coefficient
+    float cx = src.cols / 2.0f;       // Center of image
+    float cy = src.rows / 2.0f;       // Center of image
+    float R  = sqrt(cx * cx + cy * cy); //radius
 
     for (int y = 0; y < dst.rows; y++) {
         for (int x = 0; x < dst.cols; x++) {
@@ -28,10 +27,10 @@ Mat applyLensDistortion(const Mat& src) {
 
             // Bound check otherwise seg fault may happen
             if (src_x >= 0 && src_x < src.cols &&
-                src_y >= 0 && src_y < src.rows)
+                src_y >= 0 && src_y < src.rows) {
                 dst.at<Vec3b>(y, x) = src.at<Vec3b>(src_y, src_x);
+            }
         }
     }
-
     return dst;
 }

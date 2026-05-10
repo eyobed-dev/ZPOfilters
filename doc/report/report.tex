@@ -73,7 +73,7 @@ The program expects input images in the \texttt{data/} directory. If you have ex
 This section presents the filters developed by each student. Each student individually developed 4 filters, only the GUI is shared by the students. 
 
 \subsection{Common Input Images}
-The following four images (Figure~\ref{fig:common_inputs}) serve as the common baseline for evaluating the filters.
+We used following four images (Figure~\ref{fig:common_inputs}) for demonstrating the filters.
 
 \begin{figure}[H]
     \centering
@@ -250,11 +250,11 @@ Complexity: $O(W \times H)$ for the pixel pass, plus $O(256)$ for LUT constructi
 Softens edges while keeping the center sharp. Implemented as a two step process: a 15×15 box blur followed by a radial blend.
 
 \begin{description}
-    \item[1. Box Blur:] For interior pixels (7-pixel border excluded), compute the 15×15 mean kernel convolution.
+    \item[1. Normalization:] Coordinates are centered and scaled by $R = \sqrt{c_x^2 + c_y^2}$ to maintain similar results for different image sizes:
+    \[ d_x = \frac{x - c_x}{R}, \quad d_y = \frac{y - c_y}{R} \]
+    The radial distance $d$ is then computed as $d = \min(1.0, \sqrt{d_x^2 + d_y^2})$.
+    \item[2. Box Blur:] For interior pixels (7-pixel border excluded), compute the 15×15 mean kernel convolution.
     \[ \text{Blur}(x,y) = \frac{1}{225} \sum_{dy=-7}^{7} \sum_{dx=-7}^{7} \text{Input}(x+dx,\, y+dy) \]
-    \item[2. Radial Mask:] Normalize the distance from center $(c_x, c_y)$ by the corner radius $R$:
-    \[ d = \frac{\sqrt{(x-c_x)^2 + (y-c_y)^2}}{R}, \quad d \in [0, 1] \]
-    The center maps to 0 (no blur) and corners to 1 (full blur).
     \item[3. Blending:] Linearly interpolate between original and blurred using $d$ as the weight:
     \[ \text{Output}(x,y) = \text{Input}(x,y) \cdot (1-d) + \text{Blur}(x,y) \cdot d \]
 \end{description}
@@ -477,99 +477,204 @@ O(W \times H)
 
 
 \subsection{Adar's Filters}
-Adar's contributions focus on manual pixel manipulation using native loops, avoiding optimized OpenCV functions for educational purposes.
+Adar's contributions focus on creative glow and tone/brightness manipulation filters.
 
 \subsubsection{Bloom Filter}
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/adar/bloomsample1.jpg}
-        \caption{Input}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/adar/bloom1.jpg}
-        \caption{Bloom Effect}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/adar/bloom1graph.jpg}
-        \caption{Intensity Graph}
-    \end{subfigure}
-    \caption{Bloom filter results and light intensity analysis.}
-\end{figure}
+\textbf{Core model}
+\[
+M(x)=\mathbf{1}_{I_g(x)\ge T},\quad B=I\odot M,\quad G=G_{\sigma}*B,\quad I'=I+\alpha G
+\]
+\textbf{Notation} \(T\): threshold, \(\sigma\): blur spread, \(\alpha\): glow strength, \(I'\): output.
 
-\subsubsection{Orton Effect}
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/adar/ortonsample1.jpg}
-        \caption{Input}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/adar/orton1.jpg}
-        \caption{Orton Effect}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/adar/orton1graph.jpg}
-        \caption{Contrast Graph}
-    \end{subfigure}
-    \caption{Orton Effect results and contrast analysis.}
-\end{figure}
+\textbf{Pixel-level transformation}
+\[
+I'_c(x,y)=I_c(x,y)+\alpha\sum_{i=-r}^{r}\sum_{j=-r}^{r}G_{\sigma}(i,j)\,B_c(x+i,y+j)
+\]
+Only bright pixels feed the glow layer; high \(T\) can suppress bloom even with high \(\alpha\).
 
-\subsubsection{Gamma Correction}
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/adar/gammasample1.jpg}
-        \caption{Input}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/adar/gamma1.jpg}
-        \caption{Gamma $\gamma=2.2$}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/adar/gamma1graph.jpg}
-        \caption{Gamma Curve}
-    \end{subfigure}
-    \caption{Gamma correction results and mapping curves.}
-\end{figure}
+\textbf{Algorithm (implementation)}
+\begin{verbatim}
+for each pixel (x,y):
+  scan (2r+1)x(2r+1) neighborhood
+  accumulate only neighbors with intensity > threshold
+  glow = sum / ((2r+1)*(2r+1))
+  out = clamp(src + strength * glow)
+\end{verbatim}
+\textbf{Implementation note} Radius/threshold/strength are clamped in setter functions; output channels are clamped to \([0,255]\).
 
-\subsubsection{Color Dodge}
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/adar/dodgesample1.jpg}
-        \caption{Input}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/adar/dodge1.jpg}
-        \caption{Dodge Effect}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{assets/adar/dodge1graph.jpg}
-        \caption{Blend Graph}
-    \end{subfigure}
-    \caption{Color Dodge results and blend analysis.}
-\end{figure}
+\textbf{Experiment -- Bloom}
+\begin{center}
+\begin{tabular}{ccc}
+\includegraphics[width=0.31\textwidth]{assets/adar/bloom1.jpg} &
+\includegraphics[width=0.31\textwidth]{assets/adar/bloom2.jpg} &
+\includegraphics[width=0.31\textwidth]{assets/adar/bloom3.jpg} \\
+\scriptsize $T=24,\ \alpha=0.05,\ \sigma=0.5$ &
+\scriptsize $T=21,\ \alpha=0.65,\ \sigma=1.2$ &
+\scriptsize $T=144,\ \alpha=1.8,\ \sigma=11.3$ \\
+\includegraphics[width=0.31\textwidth]{assets/adar/bloom1graph.jpg} &
+\includegraphics[width=0.31\textwidth]{assets/adar/bloom2graph.jpg} &
+\includegraphics[width=0.31\textwidth]{assets/adar/bloom3graph.jpg}
+\end{tabular}
+\end{center}
+
+\textbf{Use} cinematic highlight glow and light-source emphasis.  
+\begin{center}
+\begin{tabular}{ccc}
+\includegraphics[width=0.31\textwidth]{assets/adar/bloomsample1.jpg} &
+\includegraphics[width=0.31\textwidth]{assets/adar/bloomsample2.jpg} &
+\includegraphics[width=0.31\textwidth]{assets/adar/bloomsample3.jpg}
+\end{tabular}
+\end{center}
+\textbf{Compare} stronger spatial glow than gamma/dodge.
+\textbf{Cost note} Per-pixel asymptotic cost is \(O(k^2)\) because Bloom applies Gaussian blur on a \(k\times k\) neighborhood.
+
+\subsubsection{Orton Effect Filter}
+\textbf{Core model}
+\[
+S = 255 - \frac{(255-I)(255-B)}{255},\quad B=G_{\sigma}*I,\quad I'=(1-\alpha)I+\alpha S
+\]
+\textbf{Notation} \(B\): blurred image, \(S\): screen blend, \(\sigma\): blur spread, \(\alpha\): mix strength.
+
+\textbf{Pixel-level transformation}
+\[
+\begin{aligned}
+B_c(x,y)&=\sum_{i=-r}^{r}\sum_{j=-r}^{r}G_{\sigma}(i,j)\,I_c(x+i,y+j),\\
+S_c(x,y)&=255-\frac{(255-I_c(x,y))(255-B_c(x,y))}{255},\\
+I'_c(x,y)&=(1-\alpha)I_c(x,y)+\alpha S_c(x,y).
+\end{aligned}
+\]
+
+\textbf{Algorithm (implementation)}
+\begin{verbatim}
+build 1D Gaussian kernel from sigma
+horizontal pass with edge clamping
+vertical pass with edge clamping
+screen = 255 - ((255-src)*(255-blur)/255)
+out = clamp((1-strength)*src + strength*screen)
+\end{verbatim}
+\textbf{Implementation note} Implementation uses separable blur in \texttt{CV\_64FC3}, then blends and clamps per channel.
+
+\textbf{Experiment -- Orton}
+\begin{center}
+\begin{tabular}{ccc}
+\includegraphics[width=0.31\textwidth]{assets/adar/orton1.jpg} &
+\includegraphics[width=0.31\textwidth]{assets/adar/orton2.jpg} &
+\includegraphics[width=0.31\textwidth]{assets/adar/orton3.jpg} \\
+\scriptsize $\alpha=0.15,\ \sigma=0.1$ &
+\scriptsize $\alpha=0.45,\ \sigma=8.5$ &
+\scriptsize $\alpha=1.0,\ \sigma=19.1$ \\
+\includegraphics[width=0.31\textwidth]{assets/adar/orton1graph.jpg} &
+\includegraphics[width=0.31\textwidth]{assets/adar/orton2graph.jpg} &
+\includegraphics[width=0.31\textwidth]{assets/adar/orton3graph3.jpg}
+\end{tabular}
+\end{center}
+
+\textbf{Use} soft-focus portrait look with reduced micro-contrast.  
+\begin{center}
+\begin{tabular}{ccc}
+\includegraphics[width=0.31\textwidth]{assets/adar/ortonsample1.jpg} &
+\includegraphics[width=0.31\textwidth]{assets/adar/ortonsample2.jpg} &
+\includegraphics[width=0.31\textwidth]{assets/adar/ortonsample3.jpg}
+\end{tabular}
+\end{center}
+\textbf{Compare} gentler and more diffuse than bloom.
+\textbf{Cost note} Per-pixel asymptotic cost is \(O(k^2)\) due to Gaussian blur plus point-wise blend.
+
+\subsubsection{Gamma Filter}
+\textbf{Core model}
+\[
+V_{\text{out}} = A\,V_{\text{in}}^{\gamma},\qquad
+I' = 255\left(\frac{I}{255}\right)^{1/\gamma}
+\]
+\textbf{Notation} \(\gamma\): tone-curve exponent, \(A\): scale (usually 1), \(I\in[0,255]\): 8-bit input.
+\textbf{Why \(0..255\)} 8-bit \texttt{uint8} images have 256 levels; divide by 255 to normalize to \([0,1]\), then multiply by 255 to return.
+
+\textbf{Pixel-level transformation}
+\[
+I'_{c}(x,y)=255\left(\frac{I_{c}(x,y)}{255}\right)^{1/\gamma}
+\]
+\(\gamma<1\): brighter midtones, \(\gamma>1\): darker midtones.
+
+\textbf{Algorithm (implementation)}
+\begin{verbatim}
+invGamma = 1.0 / gamma
+for each pixel/channel:
+  normalized = value / 255.0
+  corrected = round((normalized ^ invGamma) * 255)
+  out = clamp(corrected)
+\end{verbatim}
+\textbf{Implementation note} \(\gamma\) is clamped in the setter and correction is computed directly per channel (no LUT in C++).
+
+\textbf{Experiment -- Gamma}
+\begin{center}
+\begin{tabular}{ccc}
+\includegraphics[width=0.31\textwidth]{assets/adar/gamma1.jpg} &
+\includegraphics[width=0.31\textwidth]{assets/adar/gamma2.jpg} &
+\includegraphics[width=0.31\textwidth]{assets/adar/gamma3.jpg} \\
+\scriptsize $\gamma=0.2$ & \scriptsize $\gamma=1.0$ & \scriptsize $\gamma=1.95$ \\
+\includegraphics[width=0.31\textwidth]{assets/adar/gamma1graph.jpg} &
+\includegraphics[width=0.31\textwidth]{assets/adar/gamma2graph.jpg} &
+\includegraphics[width=0.31\textwidth]{assets/adar/gamma3graph.jpg}
+\end{tabular}
+\end{center}
+
+\textbf{Use} controlled global tone and midtone correction.  
+\begin{center}
+\begin{tabular}{ccc}
+\includegraphics[width=0.31\textwidth]{assets/adar/gammasample1.jpg} &
+\includegraphics[width=0.31\textwidth]{assets/adar/gammasample2.jpg} &
+\includegraphics[width=0.31\textwidth]{assets/adar/gammasample3.jpg}
+\end{tabular}
+\end{center}
+\textbf{Compare} smoother and less aggressive than dodge.
+\textbf{Cost note} Per-pixel asymptotic cost is \(O(1)\) when implemented with LUT lookup.
+
+\subsubsection{Dodge Filter}
+\textbf{Core model}
+\[
+I' \approx \frac{255\,I}{255-sI}
+\]
+\textbf{Notation} \(s\): dodge strength, \(I\): input intensity, \(I'\): output intensity.
+
+\textbf{Pixel-level transformation}
+\[
+I'_{c}(x,y)=\mathrm{clip}\!\left(\frac{255\,I_{c}(x,y)}{\max(255-s\,I_{c}(x,y),1)}\right)
+\]
+Higher \(s\) strongly boosts highlights and may clip to white.
+
+\textbf{Algorithm (implementation)}
+\begin{verbatim}
+for each pixel/channel:
+  dodge = (src*255) / max(1, 255 - src + protect)
+  out = clamp((1-strength)*src + strength*dodge)
+\end{verbatim}
+\textbf{Implementation note} Strength/protect are clamped in setters; denominator is guarded and output is clamped per channel.
+
+\textbf{Experiment -- Dodge}
+\begin{center}
+\begin{tabular}{ccc}
+\includegraphics[width=0.31\textwidth]{assets/adar/dodge1.jpg} &
+\includegraphics[width=0.31\textwidth]{assets/adar/dodge2.jpg} &
+\includegraphics[width=0.31\textwidth]{assets/adar/dodge3.jpg} \\
+\scriptsize $s=0.01$ & \scriptsize $s=0.5$ & \scriptsize $s=0.90$ \\
+\includegraphics[width=0.31\textwidth]{assets/adar/dodge1graph.jpg} &
+\includegraphics[width=0.31\textwidth]{assets/adar/dodge2graph.jpg} &
+\includegraphics[width=0.31\textwidth]{assets/adar/dodge3graph.jpg}
+\end{tabular}
+\end{center}
+
+\textbf{Use} stylized highlight brightening and sketch-like effects.  
+\begin{center}
+\begin{tabular}{ccc}
+\includegraphics[width=0.31\textwidth]{assets/adar/dodgesample1.jpg} &
+\includegraphics[width=0.31\textwidth]{assets/adar/dodgesample2.jpg} &
+\includegraphics[width=0.31\textwidth]{assets/adar/dodgesample3.jpg}
+\end{tabular}
+\end{center}
+\textbf{Compare} more aggressive than gamma; non-spatial (no blur spread).
+\textbf{Cost note} Per-pixel asymptotic cost is \(O(1)\) for direct pixel arithmetic.
+
+
 
 \section{Comparison of Filter Categories}
 
