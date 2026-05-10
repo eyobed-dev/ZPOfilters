@@ -57,7 +57,7 @@
 % --- Main Content ---
 
 \section{Introduction}
-This project focuses on the implementation and analysis of twelve advanced image processing filters. These filters were selected to replace simpler baseline operations (such as basic blurring or sharpening) with more sophisticated algorithms that demonstrate key concepts in spatial and frequency domain manipulation. We developed 12 filters from different categories in total, 4 filters per student. 
+The students have decided to rework the project by removing previously proposed trivial filters, namely blur, sharpen and emboss and replaced them with more sophisticated ones as per the suggestions of the professor. We developed 12 filters from different categories in total, 4 filters per student. 
 
 
 \section{Compilation and Running}
@@ -107,7 +107,7 @@ We used the following four images (Figure~\ref{fig:common_inputs}) for demonstra
 \subsection{Eyobed's Filters}
 
 \subsubsection{Histogram Equalization}
-Histogram Equalization is a contrast enhancement filter that redistributes the brightness values in an image. To prevent unwanted color shifting, the algorithm is applied in the YCrCb color space exclusively on the luminance channel before converting back to BGR.
+Histogram Equalization is a contrast enhancement filter that redistributes the brightness values in an image. To prevent unwanted color shifting, we do it in the YCrCb color space only on the luminance channel then converting back to BGR.
 
 The algorithm calculates the histogram frequencies, the Probability Density Function (PDF), and the Cumulative Distribution Function (CDF). The PDF for a pixel intensity $i$ is calculated as:
 \[
