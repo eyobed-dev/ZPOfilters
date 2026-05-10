@@ -102,7 +102,6 @@ int gammaSlider = 220;            // 2.20
 int ortonSigmaSlider = 200;       // 2.00
 int ortonStrengthSlider = 60;     // 0.60
 int dodgeStrengthSlider = 100;    // 1.00
-int dodgeProtectSlider = 0;       // 0
 int bloomRadiusSlider = 3;        // 3
 int bloomThresholdSlider = 180;   // 180
 int bloomStrengthSlider = 100;    // 1.00
@@ -112,7 +111,6 @@ constexpr int GAMMA_MAX_SLIDER = 500;  // 5.00
 constexpr int ORTON_SIGMA_MIN_SLIDER = 10;    // 0.10
 constexpr int ORTON_SIGMA_MAX_SLIDER = 2000;  // 20.00
 constexpr int DODGE_STRENGTH_MAX_SLIDER = 200;  // 2.00
-constexpr int DODGE_PROTECT_MAX_SLIDER = 128;
 constexpr int BLOOM_RADIUS_MAX_SLIDER = 12;
 constexpr int BLOOM_THRESHOLD_MAX_SLIDER = 255;
 constexpr int BLOOM_STRENGTH_MAX_SLIDER = 300;  // 3.00
@@ -141,7 +139,6 @@ void onGammaChange(int pos, void*);
 void onOrtonSigmaChange(int pos, void*);
 void onOrtonStrengthChange(int pos, void*);
 void onDodgeStrengthChange(int pos, void*);
-void onDodgeProtectChange(int pos, void*);
 void onBloomRadiusChange(int pos, void*);
 void onBloomThresholdChange(int pos, void*);
 void onBloomStrengthChange(int pos, void*);
@@ -224,14 +221,6 @@ void onDodgeStrengthChange(int pos, void*) {
     redraw();
 }
 
-void onDodgeProtectChange(int pos, void*) {
-    dodgeProtectSlider = max(0, min(DODGE_PROTECT_MAX_SLIDER, pos));
-    if (dodgeProtectSlider != pos && isParamWindowVisible)
-        setTrackbarPos("Protect", PARAM_WINDOW, dodgeProtectSlider);
-    setDodgeProtect(dodgeProtectSlider);
-    redraw();
-}
-
 void onBloomRadiusChange(int pos, void*) {
     bloomRadiusSlider = max(1, min(BLOOM_RADIUS_MAX_SLIDER, pos));
     if (bloomRadiusSlider != pos && isParamWindowVisible)
@@ -268,6 +257,7 @@ void updateParameterWindow() {
 
     namedWindow(PARAM_WINDOW, WINDOW_NORMAL);
     resizeWindow(PARAM_WINDOW, 380, 160);
+    moveWindow(PARAM_WINDOW, 40, 160);
     isParamWindowVisible = true;
 
     if (filterName == "Gamma") {
@@ -277,7 +267,6 @@ void updateParameterWindow() {
         createTrackbar("Strength %", PARAM_WINDOW, &ortonStrengthSlider, 100, onOrtonStrengthChange);
     } else if (filterName == "Dodge") {
         createTrackbar("Strength x0.01", PARAM_WINDOW, &dodgeStrengthSlider, DODGE_STRENGTH_MAX_SLIDER, onDodgeStrengthChange);
-        createTrackbar("Protect", PARAM_WINDOW, &dodgeProtectSlider, DODGE_PROTECT_MAX_SLIDER, onDodgeProtectChange);
     } else if (filterName == "Bloom") {
         createTrackbar("Radius", PARAM_WINDOW, &bloomRadiusSlider, BLOOM_RADIUS_MAX_SLIDER, onBloomRadiusChange);
         createTrackbar("Threshold", PARAM_WINDOW, &bloomThresholdSlider, BLOOM_THRESHOLD_MAX_SLIDER, onBloomThresholdChange);
@@ -304,13 +293,13 @@ int main(int argc, char* argv[]) {
     setOrtonSigma(ortonSigmaSlider / 100.0);
     setOrtonStrength(ortonStrengthSlider / 100.0);
     setDodgeStrength(dodgeStrengthSlider / 100.0);
-    setDodgeProtect(dodgeProtectSlider);
     setBloomRadius(bloomRadiusSlider);
     setBloomThreshold(bloomThresholdSlider);
     setBloomStrength(bloomStrengthSlider / 100.0);
 
     namedWindow("Controls", WINDOW_NORMAL);
-    resizeWindow("Controls", 400, 60);
+    resizeWindow("Controls", 560, 120);
+    moveWindow("Controls", 40, 40);
     if ((int)imageFiles.size() > 1)
         createTrackbar("Image ", "Controls", NULL, (int)imageFiles.size() - 1, onImageChange);
     if (FILTER_COUNT > 1)

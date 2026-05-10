@@ -1089,11 +1089,13 @@ Only bright pixels feed the glow layer; high \(T\) can suppress bloom even with 
 
 \textbf{Algorithm (implementation)}
 \begin{verbatim}
-bright = image * (gray >= T)
-glow = convolve(bright, gaussian_kernel(k, sigma))
-out = clip(image + alpha * glow)
+for each pixel (x,y):
+  scan (2r+1)x(2r+1) neighborhood
+  accumulate only neighbors with intensity > threshold
+  glow = sum / ((2r+1)*(2r+1))
+  out = clamp(src + strength * glow)
 \end{verbatim}
-\textbf{Implementation note} Convert to BGR \texttt{uint8}, clamp \(T,\alpha,\sigma\) to safe ranges, run blur/blend in float, then clip and cast back to \([0,255]\).
+\textbf{Implementation note} Radius/threshold/strength are clamped in setter functions; output channels are clamped to \([0,255]\).
 
 \textbf{Experiment -- Bloom}
 \begin{center}
@@ -1139,11 +1141,13 @@ I'_c(x,y)&=(1-\alpha)I_c(x,y)+\alpha S_c(x,y).
 
 \textbf{Algorithm (implementation)}
 \begin{verbatim}
-blur = convolve(image, gaussian_kernel(k, sigma))
-screen = 255 - ((255-image)*(255-blur)/255)
-out = clip((1-alpha)*image + alpha*screen)
+build 1D Gaussian kernel from sigma
+horizontal pass with edge clamping
+vertical pass with edge clamping
+screen = 255 - ((255-src)*(255-blur)/255)
+out = clamp((1-strength)*src + strength*screen)
 \end{verbatim}
-\textbf{Implementation note} Convert to BGR \texttt{uint8}, clamp \(\alpha,\sigma\), compute blur and screen blend in float, then clip and cast to \texttt{uint8}.
+\textbf{Implementation note} Implementation uses separable blur in \texttt{CV\_64FC3}, then blends and clamps per channel.
 
 \textbf{Experiment -- Orton}
 \begin{center}
@@ -1188,10 +1192,13 @@ I'_{c}(x,y)=255\left(\frac{I_{c}(x,y)}{255}\right)^{1/\gamma}
 
 \textbf{Algorithm (implementation)}
 \begin{verbatim}
-lut[i] = round(((i/255.0)**(1.0/gamma))*255)
-out = lut[image]
+invGamma = 1.0 / gamma
+for each pixel/channel:
+  normalized = value / 255.0
+  corrected = round((normalized ^ invGamma) * 255)
+  out = clamp(corrected)
 \end{verbatim}
-\textbf{Implementation note} Convert to BGR \texttt{uint8}, clamp \(\gamma\), build a 256-entry LUT in float, then apply LUT and keep output in \([0,255]\) \texttt{uint8}.
+\textbf{Implementation note} \(\gamma\) is clamped in the setter and correction is computed directly per channel (no LUT in C++).
 
 \textbf{Experiment -- Gamma}
 \begin{center}
@@ -1232,10 +1239,11 @@ Higher \(s\) strongly boosts highlights and may clip to white.
 
 \textbf{Algorithm (implementation)}
 \begin{verbatim}
-denom = 255 - strength*image
-out = clip((image*255) / max(denom, 1))
+for each pixel/channel:
+  dodge = (src*255) / max(1, 255 - src + protect)
+  out = clamp((1-strength)*src + strength*dodge)
 \end{verbatim}
-\textbf{Implementation note} Convert to BGR \texttt{uint8}, clamp strength \(s\), compute in float with denominator floor for stability, then clip and cast to \texttt{uint8}.
+\textbf{Implementation note} Strength/protect are clamped in setters; denominator is guarded and output is clamped per channel.
 
 \textbf{Experiment -- Dodge}
 \begin{center}
