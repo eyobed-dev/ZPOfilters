@@ -160,7 +160,7 @@ The filter uses an inverse geometric mapping to simulate lens distortion. For ea
 \begin{description}
     \item[1. Normalization:] Coordinates are centered and scaled by $R = \sqrt{c_x^2 + c_y^2}$ to maintain similar results for different image sizes:
     \[ d_x = \frac{x - c_x}{R}, \quad d_y = \frac{y - c_y}{R} \]
-    \item[2. Distortion:] A radial factor is computed using coefficient $k$:
+    \item[2. Distortion:] A radial factor is computed using coefficient $k$~\cite{ma2003analytical}:
     \[ \text{dist} = 1 + k(d_x^2 + d_y^2) \]
     Positive $k$ produces barrel distortion, while negative $k$ produces pincushion effects.
     \item[3. Mapping:] Coordinates are scaled back to source pixel space:
@@ -201,17 +201,17 @@ Pixels are then sampled using nearest-neighbor interpolation. The computational 
 
 \subsubsection{Posterize}
 
-Reduces color depth by quantizing each channel into $L = 8$ discrete levels. A 256-entry LUT is computed once to improve performance.
+Reduces color depth by quantizing each channel into 8 discrete levels. A 256 value LUT is solved once to improve performance.
 
 \begin{description}
     \item[1. Step Calculation:] The spacing between levels:
     \[ \text{step} = \frac{255}{L - 1} \approx 36.4 \]
-    \item[2. LUT Construction:] Each intensity $i$ is snapped to the nearest level index, then scaled back:
+    \item[2. LUT Construction:] Each intensity $i$ is rounded to the nearest level index, then scaled back:
     \[ \text{level}_i = \text{round}\!\left(\frac{i}{\text{step}}\right), \quad \text{LUT}[i] = \text{round}(\text{level}_i \times \text{step}) \]
     \item[3. Pixel Remapping:] Each BGR channel is independently mapped:
     \[ \text{Output}_{c}(x, y) = \text{LUT}[\text{Input}_{c}(x, y)], \quad c \in \{B, G, R\} \]
 \end{description}
-Complexity: $O(W \times H)$ for the pixel pass, plus $O(256)$ for LUT construction.
+The complexity is $O(W \times H)$ for the pixel pass, plus $O(256)$ for LUT construction.
 
 \begin{figure}[H]
     \centering
@@ -247,18 +247,18 @@ Complexity: $O(W \times H)$ for the pixel pass, plus $O(256)$ for LUT constructi
 
 \subsubsection{Vignette Blur}
 
-Softens edges while keeping the center sharp. Implemented as a two step process: a 15×15 box blur followed by a radial blend.
+Softens edges while keeping the center sharp.  it is 2 step. first box blur followed by a radial blend.
 
 \begin{description}
     \item[1. Normalization:] Coordinates are centered and scaled by $R = \sqrt{c_x^2 + c_y^2}$ to maintain similar results for different image sizes:
     \[ d_x = \frac{x - c_x}{R}, \quad d_y = \frac{y - c_y}{R} \]
     The radial distance $d$ is then computed as $d = \min(1.0, \sqrt{d_x^2 + d_y^2})$.
-    \item[2. Box Blur:] For interior pixels (7-pixel border excluded), compute the 15×15 mean kernel convolution.
+    \item[2. Box Blur:] We do simple $15 \times 15$ mean kernel convolution on the interior pixels (7-pixel border excluded):
     \[ \text{Blur}(x,y) = \frac{1}{225} \sum_{dy=-7}^{7} \sum_{dx=-7}^{7} \text{Input}(x+dx,\, y+dy) \]
-    \item[3. Blending:] Linearly interpolate between original and blurred using $d$ as the weight:
+    \item[3. Blending:] Mix original and blurred using $d$ as the weight:
     \[ \text{Output}(x,y) = \text{Input}(x,y) \cdot (1-d) + \text{Blur}(x,y) \cdot d \]
 \end{description}
-Complexity: $O(W \times H)$ since the blur and blend are computed in a single pass.
+The complexity is $O(W \times H)$ since the blur and blend are computed in a single pass.
 
 \begin{figure}[H]
     \centering
@@ -476,7 +476,7 @@ O(W \times H)
     \caption{Results after applying the Hue Rotate filter.}
     \label{fig:hue_results}
 \end{figure}
-\subsection{Evaluation and Discussion}
+\subsubsection{Evaluation and Discussion}
 
 The implemented filters demonstrate key image processing concepts through simple pixel-level operations. The Threshold filter supports segmentation and preprocessing, the Diffuse filter creates frosted-glass distortion, the Crosshatch filter produces sketch-like stylization, and the Hue Rotate filter changes color appearance while preserving image structure. Overall, the results show that lightweight algorithms can produce meaningful visual transformations with linear computational complexity.
 
