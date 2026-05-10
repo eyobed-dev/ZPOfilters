@@ -48,13 +48,13 @@ Filter allFilters[] = {
      applyHistogramEq},
 
     {"Eyobed", "Lens Distortion",
-     "lens distortion effect.\nPixels are mapped using a lens geometric "
+     "Lens distortion effect.\nPixels are mapped using a lens geometric "
      "transform.",
      applyLensDistortion},
 
     {"Eyobed", "Vignette Blur",
      "Softens the edges of the image while keeping\nthe center "
-     "sharp.\nCombines a 15x15 box blur\nwith a radial distanc mask.",
+     "sharp.\nCombines a 15x15 box blur\nwith a radial distance mask.",
      applyVignetteBlur},
 
     {"Eyobed", "Posterize",
