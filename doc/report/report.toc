@@ -19,7 +19,7 @@
 \contentsline {subsubsection}{\numberline {3.4.2}Orton Effect Filter}{9}{subsubsection.3.4.2}%
 \contentsline {subsubsection}{\numberline {3.4.3}Gamma Filter}{10}{subsubsection.3.4.3}%
 \contentsline {subsubsection}{\numberline {3.4.4}Dodge Filter}{11}{subsubsection.3.4.4}%
-\contentsline {section}{\numberline {4}Comparison of Filter Categories}{12}{section.4}%
+\contentsline {subsubsection}{\numberline {3.4.5}Comparison of Filter Categories}{12}{subsubsection.3.4.5}%
 \contentsline {paragraph}{Geometric / Structural Comparison}{12}{section*.11}%
 \contentsline {paragraph}{Tone / Brightness Comparison}{12}{section*.12}%
-\contentsline {section}{\numberline {5}Conclusion}{12}{section.5}%
+\contentsline {section}{\numberline {4}Conclusion}{12}{section.4}%
