@@ -290,7 +290,9 @@ Complexity: $O(W \times H)$ since the blur and blend are computed in a single pa
     \caption{Results after applying the Vignette Blur filter using a 15x15 manual kernel.}
     \label{fig:vignette_blur_results}
 \end{figure}
+\subsubsection{Discussion}
 
+The author of this section studied the implementation of histogram equalization, lens distortion, posterization, and vignette blur filters. He believes that these filters are good demonstrations of concepts discussed in class. Additional techniques like look-up tables helped to take into consideration the performance aspect of image processing.
 \subsection{Deniz's Filters}
 
 Deniz's filters focus on fundamental image processing operations implemented through direct pixel-by-pixel matrix iteration.
@@ -474,7 +476,9 @@ O(W \times H)
     \caption{Results after applying the Hue Rotate filter.}
     \label{fig:hue_results}
 \end{figure}
+\subsection{Evaluation and Discussion}
 
+The implemented filters demonstrate key image processing concepts through simple pixel-level operations. The Threshold filter supports segmentation and preprocessing, the Diffuse filter creates frosted-glass distortion, the Crosshatch filter produces sketch-like stylization, and the Hue Rotate filter changes color appearance while preserving image structure. Overall, the results show that lightweight algorithms can produce meaningful visual transformations with linear computational complexity.
 
 \subsection{Adar's Filters}
 Adar's contributions focus on creative glow and tone/brightness manipulation filters.

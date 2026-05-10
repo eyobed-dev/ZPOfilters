@@ -12,6 +12,7 @@
 \contentsline {subsubsection}{\numberline {3.3.2}Diffuse Filter}{6}{subsubsection.3.3.2}%
 \contentsline {subsubsection}{\numberline {3.3.3}Crosshatch Filter}{7}{subsubsection.3.3.3}%
 \contentsline {subsubsection}{\numberline {3.3.4}Hue Rotate Filter}{7}{subsubsection.3.3.4}%
+<<<<<<< HEAD
 \contentsline {subsection}{\numberline {3.4}Adar's Filters}{8}{subsection.3.4}%
 \contentsline {subsubsection}{\numberline {3.4.1}Bloom Filter}{8}{subsubsection.3.4.1}%
 \contentsline {subsubsection}{\numberline {3.4.2}Orton Effect Filter}{9}{subsubsection.3.4.2}%
@@ -20,4 +21,15 @@
 \contentsline {section}{\numberline {4}Comparison of Filter Categories}{11}{section.4}%
 \contentsline {paragraph}{Geometric / Structural Comparison}{11}{section*.11}%
 \contentsline {paragraph}{Tone / Brightness Comparison}{11}{section*.12}%
+=======
+\contentsline {subsection}{\numberline {3.4}Evaluation and Discussion}{8}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Adar's Filters}{8}{subsection.3.5}%
+\contentsline {subsubsection}{\numberline {3.5.1}Bloom Filter}{8}{subsubsection.3.5.1}%
+\contentsline {subsubsection}{\numberline {3.5.2}Orton Effect Filter}{9}{subsubsection.3.5.2}%
+\contentsline {subsubsection}{\numberline {3.5.3}Gamma Filter}{10}{subsubsection.3.5.3}%
+\contentsline {subsubsection}{\numberline {3.5.4}Dodge Filter}{11}{subsubsection.3.5.4}%
+\contentsline {section}{\numberline {4}Comparison of Filter Categories}{12}{section.4}%
+\contentsline {paragraph}{Geometric / Structural Comparison}{12}{section*.11}%
+\contentsline {paragraph}{Tone / Brightness Comparison}{12}{section*.12}%
+>>>>>>> f2a0313 (Update report)
 \contentsline {section}{\numberline {5}Conclusion}{12}{section.5}%
