@@ -1,5 +1,4 @@
 #include <filesystem>
-#include <iostream>
 #include <string>
 #include <vector>
 
@@ -85,14 +84,11 @@ Mat src;
 int imageIdx = 0;
 int filterIdx = 0;
 
-const string PARAM_WINDOW = "Filter Parameters";
-bool isParamWindowVisible = false;
-
-void updateParameterWindow();
-
 void redraw() {
+
   if (src.empty())
     return;
+
   Mat filtered = allFilters[filterIdx].apply(src.clone());
   imshow("Original", src);
   imshow("Filtered", filtered);
@@ -131,15 +127,7 @@ void onImageChange(int pos, void *) {
 
 void onFilterChange(int pos, void *) {
   filterIdx = pos;
-  updateParameterWindow();
   redraw();
-}
-
-void updateParameterWindow() {
-  if (isParamWindowVisible) {
-    destroyWindow(PARAM_WINDOW);
-    isParamWindowVisible = false;
-  }
 }
 
 int main(int argc, char *argv[]) {
@@ -167,8 +155,6 @@ int main(int argc, char *argv[]) {
   if (FILTER_COUNT > 1)
     createTrackbar("Filter", "Controls", NULL, FILTER_COUNT - 1,
                    onFilterChange);
-  updateParameterWindow();
-
   redraw();
   waitKey(0);
   return 0;

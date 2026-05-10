@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2025.10.29)  10 MAY 2026 12:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2025.10.29)  10 MAY 2026 21:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -590,197 +590,197 @@ Package pdftex.def Info: assets/denis/hue_rotate_3.png  used on input line 472.
 
 
 [7 <./assets/denis/diffuse_0.png (PNG copy)> <./assets/denis/diffuse_1.png (PNG copy)> <./assets/denis/diffuse_2.png (PNG copy)> <./assets/denis/diffuse_3.png (PNG copy)> <./assets/denis/crosshatch_0.png (PNG copy)> <./assets/denis/crosshatch_1.png (PNG copy)> <./assets/denis/crosshatch_2.png (PNG copy)> <./assets/denis/crosshatch_3.png (PNG copy)>]
-<assets/adar/bloom1.jpg, id=211, 226.59656pt x 115.18031pt>
+<assets/adar/bloom1.jpg, id=213, 226.59656pt x 115.18031pt>
 File: assets/adar/bloom1.jpg Graphic file (type jpg)
 <use assets/adar/bloom1.jpg>
-Package pdftex.def Info: assets/adar/bloom1.jpg  used on input line 512.
+Package pdftex.def Info: assets/adar/bloom1.jpg  used on input line 515.
 (pdftex.def)             Requested size: 162.82245pt x 82.76277pt.
-<assets/adar/bloom2.jpg, id=212, 235.63031pt x 111.41624pt>
+<assets/adar/bloom2.jpg, id=214, 235.63031pt x 111.41624pt>
 File: assets/adar/bloom2.jpg Graphic file (type jpg)
 <use assets/adar/bloom2.jpg>
-Package pdftex.def Info: assets/adar/bloom2.jpg  used on input line 513.
+Package pdftex.def Info: assets/adar/bloom2.jpg  used on input line 516.
 (pdftex.def)             Requested size: 162.82245pt x 76.98949pt.
-<assets/adar/bloom3.jpg, id=213, 231.86626pt x 118.19156pt>
+<assets/adar/bloom3.jpg, id=215, 231.86626pt x 118.19156pt>
 File: assets/adar/bloom3.jpg Graphic file (type jpg)
 <use assets/adar/bloom3.jpg>
-Package pdftex.def Info: assets/adar/bloom3.jpg  used on input line 514.
+Package pdftex.def Info: assets/adar/bloom3.jpg  used on input line 517.
 (pdftex.def)             Requested size: 162.82245pt x 82.99863pt.
-<assets/adar/bloom1graph.jpg, id=214, 246.9225pt x 67.75313pt>
+<assets/adar/bloom1graph.jpg, id=216, 246.9225pt x 67.75313pt>
 File: assets/adar/bloom1graph.jpg Graphic file (type jpg)
 <use assets/adar/bloom1graph.jpg>
-Package pdftex.def Info: assets/adar/bloom1graph.jpg  used on input line 518.
+Package pdftex.def Info: assets/adar/bloom1graph.jpg  used on input line 521.
 (pdftex.def)             Requested size: 162.82245pt x 44.67686pt.
-<assets/adar/bloom2graph.jpg, id=215, 231.86626pt x 63.23625pt>
+<assets/adar/bloom2graph.jpg, id=217, 231.86626pt x 63.23625pt>
 File: assets/adar/bloom2graph.jpg Graphic file (type jpg)
 <use assets/adar/bloom2graph.jpg>
-Package pdftex.def Info: assets/adar/bloom2graph.jpg  used on input line 519.
+Package pdftex.def Info: assets/adar/bloom2graph.jpg  used on input line 522.
 (pdftex.def)             Requested size: 162.82245pt x 44.4069pt.
-<assets/adar/bloom3graph.jpg, id=216, 220.57407pt x 67.0003pt>
+<assets/adar/bloom3graph.jpg, id=218, 220.57407pt x 67.0003pt>
 File: assets/adar/bloom3graph.jpg Graphic file (type jpg)
 <use assets/adar/bloom3graph.jpg>
-Package pdftex.def Info: assets/adar/bloom3graph.jpg  used on input line 520.
+Package pdftex.def Info: assets/adar/bloom3graph.jpg  used on input line 523.
 (pdftex.def)             Requested size: 162.82245pt x 49.45981pt.
 
 
 [8 <./assets/denis/hue_rotate_0.png (PNG copy)> <./assets/denis/hue_rotate_1.png (PNG copy)> <./assets/denis/hue_rotate_2.png (PNG copy)> <./assets/denis/hue_rotate_3.png (PNG copy)>]
-<assets/adar/bloomsample1.jpg, id=223, 237.88875pt x 113.67468pt>
+<assets/adar/bloomsample1.jpg, id=226, 237.88875pt x 113.67468pt>
 File: assets/adar/bloomsample1.jpg Graphic file (type jpg)
 <use assets/adar/bloomsample1.jpg>
-Package pdftex.def Info: assets/adar/bloomsample1.jpg  used on input line 527.
+Package pdftex.def Info: assets/adar/bloomsample1.jpg  used on input line 530.
 (pdftex.def)             Requested size: 162.82245pt x 77.8077pt.
-<assets/adar/bloomsample2.jpg, id=224, 233.37187pt x 112.16907pt>
+<assets/adar/bloomsample2.jpg, id=227, 233.37187pt x 112.16907pt>
 File: assets/adar/bloomsample2.jpg Graphic file (type jpg)
 <use assets/adar/bloomsample2.jpg>
-Package pdftex.def Info: assets/adar/bloomsample2.jpg  used on input line 528.
+Package pdftex.def Info: assets/adar/bloomsample2.jpg  used on input line 531.
 (pdftex.def)             Requested size: 162.82245pt x 78.26277pt.
-<assets/adar/bloomsample3.jpg, id=225, 241.65282pt x 117.43875pt>
+<assets/adar/bloomsample3.jpg, id=228, 241.65282pt x 117.43875pt>
 File: assets/adar/bloomsample3.jpg Graphic file (type jpg)
 <use assets/adar/bloomsample3.jpg>
-Package pdftex.def Info: assets/adar/bloomsample3.jpg  used on input line 529.
+Package pdftex.def Info: assets/adar/bloomsample3.jpg  used on input line 532.
 (pdftex.def)             Requested size: 162.82245pt x 79.13153pt.
-<assets/adar/orton1.jpg, id=226, 234.8775pt x 115.18031pt>
+<assets/adar/orton1.jpg, id=229, 234.8775pt x 115.18031pt>
 File: assets/adar/orton1.jpg Graphic file (type jpg)
 <use assets/adar/orton1.jpg>
-Package pdftex.def Info: assets/adar/orton1.jpg  used on input line 564.
+Package pdftex.def Info: assets/adar/orton1.jpg  used on input line 567.
 (pdftex.def)             Requested size: 162.82245pt x 79.8453pt.
-<assets/adar/orton2.jpg, id=227, 221.32687pt x 113.67468pt>
+<assets/adar/orton2.jpg, id=230, 221.32687pt x 113.67468pt>
 File: assets/adar/orton2.jpg Graphic file (type jpg)
 <use assets/adar/orton2.jpg>
-Package pdftex.def Info: assets/adar/orton2.jpg  used on input line 565.
+Package pdftex.def Info: assets/adar/orton2.jpg  used on input line 568.
 (pdftex.def)             Requested size: 162.82245pt x 83.63052pt.
-<assets/adar/orton3.jpg, id=228, 232.61906pt x 113.67468pt>
+<assets/adar/orton3.jpg, id=231, 232.61906pt x 113.67468pt>
 File: assets/adar/orton3.jpg Graphic file (type jpg)
 <use assets/adar/orton3.jpg>
-Package pdftex.def Info: assets/adar/orton3.jpg  used on input line 566.
+Package pdftex.def Info: assets/adar/orton3.jpg  used on input line 569.
 (pdftex.def)             Requested size: 162.82245pt x 79.56999pt.
-<assets/adar/orton1graph.jpg, id=229, 222.8325pt x 66.2475pt>
+<assets/adar/orton1graph.jpg, id=232, 222.8325pt x 66.2475pt>
 File: assets/adar/orton1graph.jpg Graphic file (type jpg)
 <use assets/adar/orton1graph.jpg>
-Package pdftex.def Info: assets/adar/orton1graph.jpg  used on input line 570.
+Package pdftex.def Info: assets/adar/orton1graph.jpg  used on input line 573.
 (pdftex.def)             Requested size: 162.82245pt x 48.40675pt.
-<assets/adar/orton2graph.jpg, id=230, 218.31563pt x 63.98906pt>
+<assets/adar/orton2graph.jpg, id=233, 218.31563pt x 63.98906pt>
 File: assets/adar/orton2graph.jpg Graphic file (type jpg)
 <use assets/adar/orton2graph.jpg>
-Package pdftex.def Info: assets/adar/orton2graph.jpg  used on input line 571.
+Package pdftex.def Info: assets/adar/orton2graph.jpg  used on input line 574.
 (pdftex.def)             Requested size: 162.82245pt x 47.72414pt.
-<assets/adar/orton3graph3.jpg, id=231, 215.30438pt x 62.48344pt>
+<assets/adar/orton3graph3.jpg, id=234, 215.30438pt x 62.48344pt>
 File: assets/adar/orton3graph3.jpg Graphic file (type jpg)
 <use assets/adar/orton3graph3.jpg>
-Package pdftex.def Info: assets/adar/orton3graph3.jpg  used on input line 572.
+Package pdftex.def Info: assets/adar/orton3graph3.jpg  used on input line 575.
 (pdftex.def)             Requested size: 162.82245pt x 47.25336pt.
 
 
 [9 <./assets/adar/bloom1.jpg> <./assets/adar/bloom2.jpg> <./assets/adar/bloom3.jpg> <./assets/adar/bloom1graph.jpg> <./assets/adar/bloom2graph.jpg> <./assets/adar/bloom3graph.jpg> <./assets/adar/bloomsample1.jpg> <./assets/adar/bloomsample2.jpg> <./assets/adar/bloomsample3.jpg>]
-<assets/adar/ortonsample1.jpg, id=236, 239.39438pt x 109.91063pt>
+<assets/adar/ortonsample1.jpg, id=239, 239.39438pt x 109.91063pt>
 File: assets/adar/ortonsample1.jpg Graphic file (type jpg)
 <use assets/adar/ortonsample1.jpg>
-Package pdftex.def Info: assets/adar/ortonsample1.jpg  used on input line 579.
+Package pdftex.def Info: assets/adar/ortonsample1.jpg  used on input line 582.
 (pdftex.def)             Requested size: 162.82245pt x 74.75499pt.
-<assets/adar/ortonsample2.jpg, id=237, 237.88875pt x 117.43875pt>
+<assets/adar/ortonsample2.jpg, id=240, 237.88875pt x 117.43875pt>
 File: assets/adar/ortonsample2.jpg Graphic file (type jpg)
 <use assets/adar/ortonsample2.jpg>
-Package pdftex.def Info: assets/adar/ortonsample2.jpg  used on input line 580.
+Package pdftex.def Info: assets/adar/ortonsample2.jpg  used on input line 583.
 (pdftex.def)             Requested size: 162.82245pt x 80.38411pt.
-<assets/adar/ortonsample3.jpg, id=238, 234.1247pt x 108.405pt>
+<assets/adar/ortonsample3.jpg, id=241, 234.1247pt x 108.405pt>
 File: assets/adar/ortonsample3.jpg Graphic file (type jpg)
 <use assets/adar/ortonsample3.jpg>
-Package pdftex.def Info: assets/adar/ortonsample3.jpg  used on input line 581.
+Package pdftex.def Info: assets/adar/ortonsample3.jpg  used on input line 584.
 (pdftex.def)             Requested size: 162.82245pt x 75.395pt.
-<assets/adar/gamma1.jpg, id=239, 239.39438pt x 112.16907pt>
+<assets/adar/gamma1.jpg, id=242, 239.39438pt x 112.16907pt>
 File: assets/adar/gamma1.jpg Graphic file (type jpg)
 <use assets/adar/gamma1.jpg>
-Package pdftex.def Info: assets/adar/gamma1.jpg  used on input line 615.
+Package pdftex.def Info: assets/adar/gamma1.jpg  used on input line 618.
 (pdftex.def)             Requested size: 162.82245pt x 76.29106pt.
-<assets/adar/gamma2.jpg, id=240, 237.88875pt x 114.4275pt>
+<assets/adar/gamma2.jpg, id=243, 237.88875pt x 114.4275pt>
 File: assets/adar/gamma2.jpg Graphic file (type jpg)
 <use assets/adar/gamma2.jpg>
-Package pdftex.def Info: assets/adar/gamma2.jpg  used on input line 616.
+Package pdftex.def Info: assets/adar/gamma2.jpg  used on input line 619.
 (pdftex.def)             Requested size: 162.82245pt x 78.323pt.
-<assets/adar/gamma3.jpg, id=241, 237.88875pt x 115.18031pt>
+<assets/adar/gamma3.jpg, id=244, 237.88875pt x 115.18031pt>
 File: assets/adar/gamma3.jpg Graphic file (type jpg)
 <use assets/adar/gamma3.jpg>
-Package pdftex.def Info: assets/adar/gamma3.jpg  used on input line 617.
+Package pdftex.def Info: assets/adar/gamma3.jpg  used on input line 620.
 (pdftex.def)             Requested size: 162.82245pt x 78.83826pt.
-<assets/adar/gamma1graph.jpg, id=242, 96.36pt x 51.19125pt>
+<assets/adar/gamma1graph.jpg, id=245, 96.36pt x 51.19125pt>
 File: assets/adar/gamma1graph.jpg Graphic file (type jpg)
 <use assets/adar/gamma1graph.jpg>
-Package pdftex.def Info: assets/adar/gamma1graph.jpg  used on input line 619.
+Package pdftex.def Info: assets/adar/gamma1graph.jpg  used on input line 622.
 (pdftex.def)             Requested size: 162.82245pt x 86.49904pt.
-<assets/adar/gamma2graph.jpg, id=243, 96.36pt x 51.19125pt>
+<assets/adar/gamma2graph.jpg, id=246, 96.36pt x 51.19125pt>
 File: assets/adar/gamma2graph.jpg Graphic file (type jpg)
 <use assets/adar/gamma2graph.jpg>
-Package pdftex.def Info: assets/adar/gamma2graph.jpg  used on input line 620.
+Package pdftex.def Info: assets/adar/gamma2graph.jpg  used on input line 623.
 (pdftex.def)             Requested size: 162.82245pt x 86.49904pt.
-<assets/adar/gamma3graph.jpg, id=244, 98.61844pt x 56.46094pt>
+<assets/adar/gamma3graph.jpg, id=247, 98.61844pt x 56.46094pt>
 File: assets/adar/gamma3graph.jpg Graphic file (type jpg)
 <use assets/adar/gamma3graph.jpg>
-Package pdftex.def Info: assets/adar/gamma3graph.jpg  used on input line 621.
+Package pdftex.def Info: assets/adar/gamma3graph.jpg  used on input line 624.
 (pdftex.def)             Requested size: 162.82245pt x 93.22714pt.
 
 
 [10 <./assets/adar/orton1.jpg> <./assets/adar/orton2.jpg> <./assets/adar/orton3.jpg> <./assets/adar/orton1graph.jpg> <./assets/adar/orton2graph.jpg> <./assets/adar/orton3graph3.jpg> <./assets/adar/ortonsample1.jpg> <./assets/adar/ortonsample2.jpg> <./assets/adar/ortonsample3.jpg>]
-<assets/adar/gammasample1.jpg, id=249, 241.65282pt x 116.68594pt>
+<assets/adar/gammasample1.jpg, id=252, 241.65282pt x 116.68594pt>
 File: assets/adar/gammasample1.jpg Graphic file (type jpg)
 <use assets/adar/gammasample1.jpg>
-Package pdftex.def Info: assets/adar/gammasample1.jpg  used on input line 628.
+Package pdftex.def Info: assets/adar/gammasample1.jpg  used on input line 631.
 (pdftex.def)             Requested size: 162.82245pt x 78.62428pt.
-<assets/adar/gammasample2.jpg, id=250, 244.66406pt x 110.66344pt>
+<assets/adar/gammasample2.jpg, id=253, 244.66406pt x 110.66344pt>
 File: assets/adar/gammasample2.jpg Graphic file (type jpg)
 <use assets/adar/gammasample2.jpg>
-Package pdftex.def Info: assets/adar/gammasample2.jpg  used on input line 629.
+Package pdftex.def Info: assets/adar/gammasample2.jpg  used on input line 632.
 (pdftex.def)             Requested size: 162.82245pt x 73.64766pt.
-<assets/adar/gammasample3.jpg, id=251, 240.14719pt x 114.4275pt>
+<assets/adar/gammasample3.jpg, id=254, 240.14719pt x 114.4275pt>
 File: assets/adar/gammasample3.jpg Graphic file (type jpg)
 <use assets/adar/gammasample3.jpg>
-Package pdftex.def Info: assets/adar/gammasample3.jpg  used on input line 630.
+Package pdftex.def Info: assets/adar/gammasample3.jpg  used on input line 633.
 (pdftex.def)             Requested size: 162.82245pt x 77.58443pt.
-<assets/adar/dodge1.jpg, id=252, 246.9225pt x 118.19156pt>
+<assets/adar/dodge1.jpg, id=255, 246.9225pt x 118.19156pt>
 File: assets/adar/dodge1.jpg Graphic file (type jpg)
 <use assets/adar/dodge1.jpg>
-Package pdftex.def Info: assets/adar/dodge1.jpg  used on input line 660.
+Package pdftex.def Info: assets/adar/dodge1.jpg  used on input line 663.
 (pdftex.def)             Requested size: 162.82245pt x 77.93633pt.
-<assets/adar/dodge2.jpg, id=253, 236.38312pt x 109.91063pt>
+<assets/adar/dodge2.jpg, id=256, 236.38312pt x 109.91063pt>
 File: assets/adar/dodge2.jpg Graphic file (type jpg)
 <use assets/adar/dodge2.jpg>
-Package pdftex.def Info: assets/adar/dodge2.jpg  used on input line 661.
+Package pdftex.def Info: assets/adar/dodge2.jpg  used on input line 664.
 (pdftex.def)             Requested size: 162.82245pt x 75.70926pt.
-<assets/adar/dodge3.jpg, id=254, 247.67531pt x 115.18031pt>
+<assets/adar/dodge3.jpg, id=257, 247.67531pt x 115.18031pt>
 File: assets/adar/dodge3.jpg Graphic file (type jpg)
 <use assets/adar/dodge3.jpg>
-Package pdftex.def Info: assets/adar/dodge3.jpg  used on input line 662.
+Package pdftex.def Info: assets/adar/dodge3.jpg  used on input line 665.
 (pdftex.def)             Requested size: 162.82245pt x 75.72044pt.
-<assets/adar/dodge1graph.jpg, id=255, 86.57344pt x 47.42719pt>
+<assets/adar/dodge1graph.jpg, id=258, 86.57344pt x 47.42719pt>
 File: assets/adar/dodge1graph.jpg Graphic file (type jpg)
 <use assets/adar/dodge1graph.jpg>
-Package pdftex.def Info: assets/adar/dodge1graph.jpg  used on input line 664.
+Package pdftex.def Info: assets/adar/dodge1graph.jpg  used on input line 667.
 (pdftex.def)             Requested size: 162.82245pt x 89.2087pt.
-<assets/adar/dodge2graph.jpg, id=256, 89.58469pt x 54.2025pt>
+<assets/adar/dodge2graph.jpg, id=259, 89.58469pt x 54.2025pt>
 File: assets/adar/dodge2graph.jpg Graphic file (type jpg)
 <use assets/adar/dodge2graph.jpg>
-Package pdftex.def Info: assets/adar/dodge2graph.jpg  used on input line 665.
+Package pdftex.def Info: assets/adar/dodge2graph.jpg  used on input line 668.
 (pdftex.def)             Requested size: 162.82245pt x 98.52132pt.
-<assets/adar/dodge3graph.jpg, id=257, 105.39375pt x 72.27pt>
+<assets/adar/dodge3graph.jpg, id=260, 105.39375pt x 72.27pt>
 File: assets/adar/dodge3graph.jpg Graphic file (type jpg)
 <use assets/adar/dodge3graph.jpg>
-Package pdftex.def Info: assets/adar/dodge3graph.jpg  used on input line 666.
+Package pdftex.def Info: assets/adar/dodge3graph.jpg  used on input line 669.
 (pdftex.def)             Requested size: 162.82245pt x 111.6523pt.
 
 
 [11 <./assets/adar/gamma1.jpg> <./assets/adar/gamma2.jpg> <./assets/adar/gamma3.jpg> <./assets/adar/gamma1graph.jpg> <./assets/adar/gamma2graph.jpg> <./assets/adar/gamma3graph.jpg> <./assets/adar/gammasample1.jpg> <./assets/adar/gammasample2.jpg> <./assets/adar/gammasample3.jpg>]
-<assets/adar/dodgesample1.jpg, id=262, 234.8775pt x 117.43875pt>
+<assets/adar/dodgesample1.jpg, id=265, 234.8775pt x 117.43875pt>
 File: assets/adar/dodgesample1.jpg Graphic file (type jpg)
 <use assets/adar/dodgesample1.jpg>
-Package pdftex.def Info: assets/adar/dodgesample1.jpg  used on input line 673.
+Package pdftex.def Info: assets/adar/dodgesample1.jpg  used on input line 676.
 (pdftex.def)             Requested size: 162.82245pt x 81.41092pt.
-<assets/adar/dodgesample2.jpg, id=263, 235.63031pt x 110.66344pt>
+<assets/adar/dodgesample2.jpg, id=266, 235.63031pt x 110.66344pt>
 File: assets/adar/dodgesample2.jpg Graphic file (type jpg)
 <use assets/adar/dodgesample2.jpg>
-Package pdftex.def Info: assets/adar/dodgesample2.jpg  used on input line 674.
+Package pdftex.def Info: assets/adar/dodgesample2.jpg  used on input line 677.
 (pdftex.def)             Requested size: 162.82245pt x 76.46928pt.
-<assets/adar/dodgesample3.jpg, id=264, 225.84375pt x 115.93312pt>
+<assets/adar/dodgesample3.jpg, id=267, 225.84375pt x 115.93312pt>
 File: assets/adar/dodgesample3.jpg Graphic file (type jpg)
 <use assets/adar/dodgesample3.jpg>
-Package pdftex.def Info: assets/adar/dodgesample3.jpg  used on input line 675.
+Package pdftex.def Info: assets/adar/dodgesample3.jpg  used on input line 678.
 (pdftex.def)             Requested size: 162.82245pt x 83.58676pt.
 
 
@@ -790,21 +790,21 @@ LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: CF2908A386AF9C356F420C0EE9D39EAF;3334.
+(rerunfilecheck)             Checksum: 632015C0FDCC0A429F1819E96F8E4F62;3278.
  ) 
 Here is how much of TeX's memory you used:
- 11901 strings out of 475178
- 198446 string characters out of 5766538
+ 11895 strings out of 475178
+ 198384 string characters out of 5766538
  588884 words of memory out of 5000000
- 34719 multiletter control sequences out of 15000+600000
- 567890 words of font info for 68 fonts, out of 8000000 for 9000
+ 34717 multiletter control sequences out of 15000+600000
+ 567272 words of font info for 66 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  75i,12n,79p,621b,541s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on report.pdf (12 pages, 10370324 bytes).
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on report.pdf (12 pages, 10349721 bytes).
 PDF statistics:
- 344 PDF objects out of 1000 (max. 8388607)
- 227 compressed objects within 3 object streams
- 50 named destinations out of 1000 (max. 500000)
+ 339 PDF objects out of 1000 (max. 8388607)
+ 224 compressed objects within 3 object streams
+ 48 named destinations out of 1000 (max. 500000)
  550 words of extra memory for PDF output out of 10000 (max. 10000000)
 
