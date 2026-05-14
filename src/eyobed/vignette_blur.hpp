@@ -1,3 +1,14 @@
+/**
+ * @file      vignette_blur.hpp
+ * @author    Eyobed Awel Nuri (xnuriey00)
+ * @date      May 2026
+ * @brief     Vignette Blur filter implementation.
+ * 
+ * @copyright Copyright (c) 2026
+ *            Project: ZPOe Image Filter Effects
+ *            Brno University of Technology (BUT)
+ */
+
 #pragma once
 #include <cmath>
 #include <opencv2/opencv.hpp>

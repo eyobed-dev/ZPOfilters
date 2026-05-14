@@ -1,3 +1,14 @@
+/**
+ * @file      lens_distortion.hpp
+ * @author    Eyobed Awel Nuri (xnuriey00)
+ * @date      May 2026
+ * @brief     Lens Distortion filter implementation.
+ * 
+ * @copyright Copyright (c) 2026
+ *            Project: ZPOe Image Filter Effects
+ *            Brno University of Technology (BUT)
+ */
+
 #pragma once
 #include <opencv2/opencv.hpp>
 #include <cmath>
@@ -8,7 +19,7 @@ using namespace std;
 Mat applyLensDistortion(const Mat& src) {
     Mat dst = Mat::zeros(src.size(), src.type());
 
-    float k  = 5.0f;                  // Distortion coefficient
+    float k  = -0.2f;                  // Distortion coefficient
     float cx = src.cols / 2.0f;       // Center of image
     float cy = src.rows / 2.0f;       // Center of image
     float R  = sqrt(cx * cx + cy * cy); //radius

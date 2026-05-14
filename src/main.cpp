@@ -1,3 +1,14 @@
+/**
+ * @file      main.cpp
+ * @author    Eyobed Awel Nuri (xnuriey00), Deniz Aksoy (xaksoyd00)
+ * @date      May 2026
+ * @brief     Main application entry point and GUI setup.
+ * 
+ * @copyright Copyright (c) 2026
+ *            Project: ZPOe Image Filter Effects
+ *            Brno University of Technology (BUT)
+ */
+
 #include <filesystem>
 #include <string>
 #include <vector>
